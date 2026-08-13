@@ -8,7 +8,7 @@
 /* ── CSS Custom Properties ──────────────────────────────── */
 :root {
   /* Navy / Blue Palette */
-  --navy-deep:    #070f1f;
+  --navy-deep:    #87CEEB;
   --navy-mid:     #0c1a30;
   --navy-surface: #112240;
   --blue-primary: #1e3a5f;
@@ -23,7 +23,7 @@
   --gold-dim:     rgba(201, 168, 76, 0.15);
 
   /* Text */
-  --text-primary: #e8f0f8;
+  --text-primary: #070f1f;
   --text-secondary: #a8bcd0;
   --text-muted:   #5a7080;
 
