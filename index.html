@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.css?v=10.0" />
+  <link rel="stylesheet" href="css/styles.css?v=11.0" />
 </head>
 <body>
   <div id="app-container">
@@ -110,7 +110,13 @@
   </section>
   <!-- ── EXPLORAR SCREEN ────────────────────────────────────────── -->
   <section class="screen" id="explorar-screen">
-
+    <div class="screen-top-bar">
+      <button class="back-btn" onclick="document.querySelector('.nav-item[data-target=\'inicio-screen\']').click()" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title">Explorar</h2>
+      <div style="width:32px"></div>
+    </div>
 
   <section class="section map-section" id="mapa" aria-labelledby="map-title">
     <div class="section-inner">
@@ -208,7 +214,13 @@
 
   <!-- ── BIBLIOTECA SCREEN ──────────────────────────────────────── -->
   <section class="screen" id="biblioteca-screen">
-
+    <div class="screen-top-bar">
+      <button class="back-btn" onclick="document.querySelector('.nav-item[data-target=\'inicio-screen\']').click()" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title">Biblioteca</h2>
+      <div style="width:32px"></div>
+    </div>
 
   <section class="section timeline-section" id="timeline" aria-labelledby="timeline-title">
     <div class="section-inner">
@@ -254,19 +266,31 @@
     </div>
   </section>
 
-  <!-- ── COMUNIDAD SCREEN ────────────────────────────────────── -->
+  <!-- ── COMUNIDAD SCREEN ───────────────────────────────────────── -->
   <section class="screen" id="comunidad-screen">
-    <div class="screen-header">
-      <div>
-        <h1 class="screen-title">Comunidad</h1>
-        <p class="screen-subtitle">Conectá con otros y sumá tu voz.</p>
-      </div>
+    <div class="screen-top-bar">
+      <button class="back-btn" onclick="document.querySelector('.nav-item[data-target=\'inicio-screen\']').click()" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title">Comunidad</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div style="text-align:center; padding: 4rem 1rem;">
+      <h3 style="color:var(--text-secondary)">Próximamente</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.5rem">Acá podrás conectar con otros usuarios e iniciativas locales.</p>
     </div>
   </section>
 
-  <!-- ── PERFIL SCREEN ───────────────────────────────────────── -->
+  <!-- ── PERFIL SCREEN ──────────────────────────────────────────── -->
   <section class="screen" id="perfil-screen">
-    <div class="screen-header">
+    <div class="screen-top-bar">
+      <button class="back-btn" onclick="document.querySelector('.nav-item[data-target=\'inicio-screen\']').click()" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title">Perfil</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div style="text-align:center; padding: 4rem 1rem;">
       <div>
         <h1 class="screen-title">Perfil</h1>
         <p class="screen-subtitle">Tus datos e inscripciones.</p>
@@ -393,6 +417,6 @@
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.js?v=6.0"></script>
+  <script type="module" src="js/app.js?v=11.0"></script>
 </body>
 </html>

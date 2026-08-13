@@ -631,6 +631,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Handle menu card clicks on home screen
+  document.querySelectorAll('.menu-card').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      // Go to biblioteca screen
+      const bibliotecaNav = document.querySelector('.nav-item[data-target="biblioteca-screen"]');
+      if (bibliotecaNav) bibliotecaNav.click();
+      
+      // Scroll to target section
+      const targetId = card.getAttribute('href').substring(1);
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    });
+  });
+
   // Keyboard ESC
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') window.closeModal();
