@@ -284,15 +284,6 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   font-style: italic;
 }
 
-.hero-subtitle-2 {
-  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.8rem;
-  font-family: 'Playfair Display', serif;
-  animation: fadeInUp 0.9s 0.15s ease both;
-}
-
 .hero-subtitle-line {
   font-family: 'Inter', sans-serif;
   font-size: clamp(0.95rem, 2vw, 1.18rem);
@@ -425,29 +416,15 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   gap: 0.4rem;
   animation: fadeInUp 1s 0.6s ease both;
 }
-.hero-scroll span {
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+.hero-bottom-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text-primary);
   text-transform: uppercase;
-  color: var(--text-muted);
-}
-.scroll-mouse {
-  width: 22px; height: 36px;
-  border: 2px solid var(--text-muted);
-  border-radius: 11px;
-  display: flex;
-  justify-content: center;
-  padding-top: 6px;
-}
-.scroll-wheel {
-  width: 3px; height: 7px;
-  background: var(--blue-bright);
-  border-radius: 2px;
-  animation: scroll-anim 1.8s ease infinite;
-}
-@keyframes scroll-anim {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(10px); }
+  letter-spacing: 0.12em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
 }
 
 /* ── Section Layout ──────────────────────────────────────── */
