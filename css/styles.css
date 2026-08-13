@@ -284,6 +284,15 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   font-style: italic;
 }
 
+.hero-subtitle-2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+  font-family: 'Playfair Display', serif;
+  animation: fadeInUp 0.9s 0.15s ease both;
+}
+
 .hero-subtitle-line {
   font-family: 'Inter', sans-serif;
   font-size: clamp(0.95rem, 2vw, 1.18rem);
