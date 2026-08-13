@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JusSocial — Plataforma Nacional de Justicia Social. Encontrá eventos, marchas, asambleas y actividades sociales y políticas organizadas por provincia en toda Argentina." />
+  <meta name="keywords" content="justicia social, derechos humanos, eventos sociales, argentina, provincias, marchas, asambleas" />
+  <meta property="og:title" content="JusSocial — Plataforma Nacional de Justicia Social" />
+  <meta property="og:description" content="Eventos y actividades sociales organizados por provincia en toda Argentina." />
+  <meta property="og:type" content="website" />
+  <title>JusSocial — Plataforma Nacional de Justicia Social</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <header class="navbar" role="banner">
+    <a href="#inicio" class="nav-brand" aria-label="JusSocial inicio">
+      <div class="nav-logo-icon" aria-hidden="true">
+        <img src="img/logo.jpg" alt="JusSocial logo" class="nav-logo-img" />
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-title">JusSocial</span>
+        <span class="nav-logo-sub">Justicia Social</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegación principal">
+      <button class="nav-link active" data-section="inicio" id="nav-inicio">Inicio</button>
+      <button class="nav-link" data-section="provincias" id="nav-provincias">Provincias</button>
+      <button class="nav-link" data-section="mapa" id="nav-mapa">Mapa</button>
+      <button class="nav-link" data-section="eventos" id="nav-eventos">Eventos</button>
+      <button class="nav-link" data-section="timeline" id="nav-timeline">Agenda</button>
+    </nav>
+
+    <!-- Hamburger button (mobile) -->
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <span class="nav-active-province" id="nav-active-province" aria-live="polite"></span>
+      <button class="nav-pill" onclick="document.getElementById('eventos').scrollIntoView({behavior:'smooth'})">
+        Ver Eventos →
+      </button>
+    </div>
+  </header>
+
+  <!-- ── HERO ────────────────────────────────────────────────── -->
+  <section class="hero" id="inicio" aria-label="Sección de inicio">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge" aria-label="Plataforma activa">
+        <div class="hero-badge-dot" aria-hidden="true"></div>
+        Plataforma Nacional · Argentina 2026
+      </div>
+
+      <h1 class="hero-title">
+        Justicia Social
+      </h1>
+
+      <p class="hero-subtitle-line">
+        Eventos · Marchas · Asambleas · Audiencias · Debates · Acciones Solidarias
+      </p>
+
+      <div class="hero-stats" id="hero-stats" role="region" aria-label="Estadísticas de la plataforma">
+        <!-- Rendered by JS -->
+      </div>
+
+
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Explorá</span>
+    </div>
+  </section>
+
+  <!-- ── MAP SECTION ──────────────────────────────────────────── -->
+  <div class="section-divider"></div>
+
+  <section class="section map-section" id="mapa" aria-labelledby="map-title">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-eyebrow">Vista Territorial</span>
+          <h2 class="section-title" id="map-title">Mapa de Argentina</h2>
+          <p class="section-desc">
+            Hacé clic en una provincia para filtrar sus eventos. El color indica la cantidad de actividades registradas.
+          </p>
+        </div>
+        <div id="map-legend" class="map-legend" aria-label="Leyenda del mapa">
+          <span class="map-legend-label">Menos eventos</span>
+          <div class="map-legend-bar"></div>
+          <span class="map-legend-label">Más eventos</span>
+        </div>
+      </div>
+      <div class="map-container" role="region" aria-label="Mapa interactivo de Argentina">
+        <div class="map-tooltip" id="map-tooltip" aria-live="polite"></div>
+        <svg id="argentina-map" viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Rendered by JS -->
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROVINCES ───────────────────────────────────────────── -->
+  <div class="section-divider"></div>
+
+  <section class="section provinces-section" id="provincias" aria-labelledby="provinces-title">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-eyebrow">Organización Territorial</span>
+          <h2 class="section-title" id="provinces-title">Seleccioná tu Provincia</h2>
+          <p class="section-desc">
+            Filtrá los eventos por territorio. Hacé clic en una provincia para ver todas las actividades de esa región.
+          </p>
+        </div>
+        <div class="filter-bar" id="type-filter-bar" role="group" aria-label="Filtros por tipo de evento">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <div class="province-grid" id="province-grid" role="list" aria-label="Grilla de provincias">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EVENTS ──────────────────────────────────────────────── -->
+  <div class="section-divider"></div>
+
+  <section class="section events-section" id="eventos" aria-labelledby="events-title">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-eyebrow">Agenda Nacional</span>
+          <h2 class="section-title" id="events-title">Eventos y Actividades</h2>
+          <p class="section-desc">
+            Todas las marchas, audiencias, asambleas y acciones solidarias del país en un solo lugar.
+          </p>
+        </div>
+        <div class="events-toolbar" role="toolbar" aria-label="Herramientas de búsqueda">
+          <div class="toolbar-search-wrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Buscar eventos…"
+              autocomplete="off"
+              aria-label="Buscar eventos"
+            />
+          </div>
+          <div class="toolbar-date-wrap">
+            <label for="date-from" class="date-label">Desde</label>
+            <input type="date" id="date-from" class="date-input" aria-label="Fecha desde" />
+            <label for="date-to" class="date-label">Hasta</label>
+            <input type="date" id="date-to" class="date-input" aria-label="Fecha hasta" />
+            <button class="date-clear-btn" id="date-clear-btn" aria-label="Limpiar fechas">✕</button>
+          </div>
+          <div class="events-count-tag" id="events-count" aria-live="polite">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="events-grid" id="events-grid" role="list" aria-label="Lista de eventos">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TIMELINE ────────────────────────────────────────────── -->
+  <div class="section-divider"></div>
+
+  <section class="section timeline-section" id="timeline" aria-labelledby="timeline-title">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-eyebrow">Próximos eventos</span>
+          <h2 class="section-title" id="timeline-title">Agenda Cronológica</h2>
+          <p class="section-desc">
+            Los próximos 18 eventos ordenados por fecha. Arrastrá para explorar la agenda completa.
+          </p>
+        </div>
+        <span style="font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:0.4rem">
+          ← Arrastrá para explorar →
+        </span>
+      </div>
+    </div>
+
+    <div class="timeline-scroll-wrap" role="region" aria-label="Línea de tiempo de eventos">
+      <div class="timeline-track" id="timeline-track">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+                <a href="#inicio" class="nav-brand" style="text-decoration:none;margin-bottom:0.2rem;display:inline-flex">
+            <div class="nav-logo-icon">
+              <img src="img/logo.jpg" alt="JusSocial logo" class="nav-logo-img" />
+            </div>
+            <div class="nav-logo-text" style="margin-left:0.75rem">
+              <span class="nav-logo-title">JusSocial</span>
+              <span class="nav-logo-sub">Justicia Social</span>
+            </div>
+          </a>
+          <p>
+            Plataforma nacional de articulación de eventos sociales y políticos.
+            Construida colectivamente para fortalecer los lazos de la justicia social en cada rincón del país.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Plataforma</h5>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#provincias">Provincias</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#timeline">Agenda</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Tipos de Evento</h5>
+          <ul>
+            <li><a href="#eventos">✊ Marchas</a></li>
+            <li><a href="#eventos">⚖️ Audiencias</a></li>
+            <li><a href="#eventos">🏛️ Asambleas</a></li>
+            <li><a href="#eventos">🎭 Culturales</a></li>
+            <li><a href="#eventos">📋 Legales</a></li>
+            <li><a href="#eventos">🎙️ Debates</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Regiones</h5>
+          <ul>
+            <li><a href="#provincias">🌾 Pampeana</a></li>
+            <li><a href="#provincias">🌿 Mesopotamia</a></li>
+            <li><a href="#provincias">🦙 Noroeste</a></li>
+            <li><a href="#provincias">🌴 Nordeste</a></li>
+            <li><a href="#provincias">🍇 Cuyo</a></li>
+            <li><a href="#provincias">🐋 Patagonia</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 <a href="#inicio">JusSocial Argentina</a>. Plataforma de acceso libre y gratuito.</p>
+        <p style="font-size:0.75rem;color:var(--text-muted)">
+          Construido con ❤️ para la justicia social
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── EVENT MODAL ─────────────────────────────────────────── -->
+  <div class="modal-overlay" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar ventana">✕</button>
+      <div id="modal-content">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST CONTAINER ─────────────────────────────────────── -->
+  <div class="toast-container" id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- ── MOBILE NAV DRAWER ──────────────────────────────────── -->
+  <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <div class="mobile-drawer-inner">
+      <button class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Cerrar menú">✕</button>
+      <nav class="mobile-nav-links" aria-label="Navegación móvil">
+        <button class="mobile-nav-link" data-section="inicio">🏠 Inicio</button>
+        <button class="mobile-nav-link" data-section="provincias">🗂️ Provincias</button>
+        <button class="mobile-nav-link" data-section="mapa">🗺️ Mapa</button>
+        <button class="mobile-nav-link" data-section="eventos">📅 Eventos</button>
+        <button class="mobile-nav-link" data-section="timeline">⏱️ Agenda</button>
+      </nav>
+    </div>
+  </div>
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+
+  <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
