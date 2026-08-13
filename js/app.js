@@ -516,67 +516,42 @@ window.toggleJoin = function(eventId) {
   }
 };
 
-// ── Nav links ─────────────────────────────────────────────────
-function initNavLinks() {
-  const links = document.querySelectorAll('.nav-link[data-section]');
-  const sections = document.querySelectorAll('section[id]');
+// ── Bottom Nav ──────────────────────────────────────────────────
+function initBottomNav() {
+  const tabs = document.querySelectorAll('.bottom-nav .nav-item');
+  const screens = document.querySelectorAll('section.screen');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        links.forEach(link => {
-          link.classList.toggle('active', link.dataset.section === id);
-        });
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Remove active class from all tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      // Add active class to clicked tab
+      tab.classList.add('active');
+
+      // Hide all screens, show target
+      const targetId = tab.dataset.tab;
+      screens.forEach(screen => {
+        if (screen.id === targetId + '-screen') {
+          screen.classList.add('active');
+        } else {
+          screen.classList.remove('active');
+        }
+      });
+      
+      window.scrollTo(0, 0);
+    });
+  });
+
+  // Handle Home menu links
+  document.querySelectorAll('.menu-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = card.dataset.target;
+      if (targetId === 'historia') {
+        document.querySelector('.nav-item[data-tab="biblioteca"]').click();
+      } else if (targetId === 'accion' || targetId === 'comparativa' || targetId === 'documentos' || targetId === 'conceptos') {
+        document.querySelector('.nav-item[data-tab="explorar"]').click();
       }
-    });
-  }, { threshold: 0.4 });
-
-  sections.forEach(s => observer.observe(s));
-
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      const target = document.getElementById(link.dataset.section);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-}
-
-// ── Hamburger Menu ────────────────────────────────────────────
-function initHamburger() {
-  const btn = document.getElementById('hamburger-btn');
-  const drawer = document.getElementById('mobile-drawer');
-  const overlay = document.getElementById('mobile-drawer-overlay');
-  const closeBtn = document.getElementById('mobile-drawer-close');
-  if (!btn || !drawer || !overlay) return;
-
-  function openDrawer() {
-    drawer.classList.add('open');
-    overlay.classList.add('open');
-    btn.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeDrawer() {
-    drawer.classList.remove('open');
-    overlay.classList.remove('open');
-    btn.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  btn.addEventListener('click', () => {
-    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
-  });
-  overlay.addEventListener('click', closeDrawer);
-  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-
-  // Mobile nav link clicks
-  document.querySelectorAll('.mobile-nav-link[data-section]').forEach(link => {
-    link.addEventListener('click', () => {
-      closeDrawer();
-      const target = document.getElementById(link.dataset.section);
-      if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 300);
     });
   });
 }
@@ -635,8 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initDraggableTimeline();
   initSearch();
-  initNavLinks();
-  initHamburger();
+  initBottomNav();
   initDateFilter();
   initMap();
 
