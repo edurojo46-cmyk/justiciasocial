@@ -1851,10 +1851,11 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
 
 /* ── Splash Screen ─────────────────────────────────────────── */
 .splash-screen {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   background: linear-gradient(135deg, #1c66d8, #0049be);
-  z-index: 9999;
+  z-index: 99999;
   display: flex;
   flex-direction: column;
   justify-content: center;
