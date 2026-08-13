@@ -7,6 +7,7 @@ import {
   getTotalStats, getEventCountByProvince,
   getUpcomingEvents, filterEvents,
 } from './data.js';
+import { historyData } from './history.js';
 import {
   initParticles, initNavbar, initReveal,
   initCounters, initDraggableTimeline, showToast,
@@ -268,6 +269,78 @@ function renderTimeline() {
     }).join('')}
   `;
 }
+
+// ── History Accordion ─────────────────────────────────────────
+function renderHistory() {
+  const container = document.getElementById('history-accordion');
+  if (!container) return;
+
+  container.innerHTML = historyData.map((item, index) => {
+    let icon = '📖';
+    if (item.type === 'milestone') icon = '⭐';
+    if (item.type === 'era') icon = '⏳';
+    if (item.type === 'summary' || item.type === 'definition' || item.type === 'concepts') icon = '💡';
+    
+    const yearBadge = item.year ? `<span class="history-year">${item.year}</span>` : '';
+    const subtitle = item.subtitle ? `<div class="history-subtitle">${item.subtitle}</div>` : '';
+
+    return `
+      <div class="history-item reveal" id="history-item-${index}">
+        <button class="history-header" aria-expanded="false" aria-controls="history-content-${index}" onclick="toggleHistory(${index})">
+          <div class="history-header-left">
+            <span class="history-icon">${icon}</span>
+            <div class="history-title-wrap">
+              <h3 class="history-item-title">${item.title}</h3>
+              ${subtitle}
+            </div>
+          </div>
+          <div class="history-header-right">
+            ${yearBadge}
+            <span class="history-toggle-icon">▼</span>
+          </div>
+        </button>
+        <div class="history-content" id="history-content-${index}" hidden>
+          <div class="history-content-inner">
+            ${item.content}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  // Re-run reveal observer after render
+  setTimeout(() => window.dispatchEvent(new Event('scroll')), 100); // trigger scroll to reveal
+}
+
+window.toggleHistory = function(index) {
+  const allItems = document.querySelectorAll('.history-item');
+  const targetItem = document.getElementById(`history-item-${index}`);
+  const targetHeader = targetItem.querySelector('.history-header');
+  const targetContent = document.getElementById(`history-content-${index}`);
+  
+  const isExpanded = targetHeader.getAttribute('aria-expanded') === 'true';
+  
+  // Close all
+  allItems.forEach(item => {
+    const header = item.querySelector('.history-header');
+    const content = item.querySelector('.history-content');
+    header.setAttribute('aria-expanded', 'false');
+    content.hidden = true;
+    item.classList.remove('open');
+  });
+  
+  // Toggle target
+  if (!isExpanded) {
+    targetHeader.setAttribute('aria-expanded', 'true');
+    targetContent.hidden = false;
+    targetItem.classList.add('open');
+    
+    // Optional: scroll slightly if it opens
+    setTimeout(() => {
+       targetItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
+};
 
 // ── Event Modal ───────────────────────────────────────────────
 window.openEventModal = function(eventId) {
@@ -554,6 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTypeFilters();
   renderEvents();
   renderTimeline();
+  renderHistory();
 
   initParticles();
   initNavbar();
