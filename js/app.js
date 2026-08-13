@@ -622,6 +622,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Hide splash screen after 2 seconds
+  setTimeout(() => {
+    const splash = document.getElementById('splash-screen');
+    if (splash) splash.classList.add('hidden');
+  }, 2000);
+
   // Keyboard ESC
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') window.closeModal();
