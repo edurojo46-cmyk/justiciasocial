@@ -622,11 +622,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Hide splash screen after 2 seconds
-  setTimeout(() => {
-    const splash = document.getElementById('splash-screen');
-    if (splash) splash.classList.add('hidden');
-  }, 2000);
+  // Hide splash screen on enter button click
+  const splashEnterBtn = document.getElementById('splash-enter-btn');
+  if (splashEnterBtn) {
+    splashEnterBtn.addEventListener('click', () => {
+      const splash = document.getElementById('splash-screen');
+      if (splash) splash.classList.add('hidden');
+    });
+  }
 
   // Keyboard ESC
   document.addEventListener('keydown', e => {
