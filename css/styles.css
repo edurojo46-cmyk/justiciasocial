@@ -262,30 +262,30 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
 .menu-card {
   display: flex;
   align-items: center;
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  background: white;
+  border: none;
+  border-radius: 24px;
   padding: 1rem 1.2rem;
   text-decoration: none;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 0.8rem;
 }
 .menu-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: #d1dcf0;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
 }
 
 .menu-icon-box {
-  width: 40px; height: 40px;
-  background: #e6f0ff;
+  width: 44px; height: 44px;
+  background: #1c66d8;
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--blue-primary);
+  color: white;
   flex-shrink: 0;
-  margin-right: 1rem;
+  margin-right: 1.2rem;
 }
 .menu-icon-box svg {
   width: 20px; height: 20px; fill: currentColor;
