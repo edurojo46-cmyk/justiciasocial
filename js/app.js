@@ -636,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', e => {
       e.preventDefault();
       // Go to biblioteca screen
-      const bibliotecaNav = document.querySelector('.nav-item[data-target="biblioteca-screen"]');
+      const bibliotecaNav = document.querySelector('.nav-item[data-tab="biblioteca"]');
       if (bibliotecaNav) bibliotecaNav.click();
       
       // Scroll to target section
