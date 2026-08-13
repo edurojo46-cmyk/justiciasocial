@@ -210,6 +210,8 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   justify-content: center;
   padding: 7rem 2rem 4rem;
   overflow: hidden;
+}
+
 /* ── Mobile App Screens ────────────────────────────────────── */
 .screen {
   display: none;
