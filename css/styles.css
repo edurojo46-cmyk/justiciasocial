@@ -278,12 +278,12 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
 
 .menu-icon-box {
   width: 40px; height: 40px;
-  background: var(--blue-primary);
+  background: #e6f0ff;
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--blue-primary);
   flex-shrink: 0;
   margin-right: 1rem;
 }
