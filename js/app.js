@@ -622,6 +622,47 @@ function initMap() {
   );
 }
 
+
+// ── Home & Back Buttons ─────────────────────────────────────────
+function initHomeButtons() {
+  document.querySelectorAll('.back-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.showScreenById('inicio-screen');
+    });
+  });
+
+  document.querySelectorAll('.home-quick-chip').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = chip.dataset.target;
+      if (target === 'historia' || target === 'documentos' || target === 'mapa') {
+        const tabName = target === 'historia' ? 'biblioteca' : 'explorar';
+        const tab = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
+        if (tab) tab.click();
+      } else if (target === 'comparativa') {
+        window.showScreenById('comparativa-screen');
+      }
+    });
+  });
+
+  document.querySelectorAll('.home-action-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = btn.dataset.target;
+      if (target === 'aprender') {
+        const tab = document.querySelector('.nav-item[data-tab="biblioteca"]');
+        if (tab) tab.click();
+      } else if (target === 'futuro') {
+        window.showScreenById('futuro-screen');
+      } else if (target === 'ayuda') {
+        window.showScreenById('ayuda-screen');
+      } else if (target === 'voluntario') {
+        window.showScreenById('voluntario-screen');
+      }
+    });
+  });
+}
+
 // ── Bootstrap ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderStats();
@@ -638,6 +679,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDraggableTimeline();
   initSearch();
   initBottomNav();
+  initHomeButtons();
   initDateFilter();
   initMap();
 
