@@ -214,13 +214,13 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
 
 /* ── Mobile App Screens ────────────────────────────────────── */
 .screen {
-  display: none;
+  display: none !important;
   padding: 1.5rem;
   padding-bottom: 90px;
   animation: fadeIn 0.3s ease;
 }
 .screen.active {
-  display: block;
+  display: block !important;
 }
 
 .screen-top-bar {
@@ -1884,6 +1884,7 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
 
 /* ── Splash Screen ─────────────────────────────────────────── */
 .splash-screen {
+  display: none !important;
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;

@@ -15,23 +15,33 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=28.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=30.0" />
+<script>
+  window.showScreenById = function(id) {
+    var screens = document.querySelectorAll('section.screen');
+    for (var i = 0; i < screens.length; i++) {
+      screens[i].classList.remove('active');
+      screens[i].style.setProperty('display', 'none', 'important');
+    }
+    var el = document.getElementById(id);
+    if (el) {
+      el.classList.add('active');
+      el.style.setProperty('display', 'block', 'important');
+    }
+    var bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) {
+      bottomNav.style.display = (id === 'inicio-screen') ? 'flex' : 'none';
+    }
+    window.scrollTo(0, 0);
+  };
+</script>
 </head>
 <body>
   <!-- ── NAVIGATION HELPERS ── inline so it works regardless of module scope ── -->
   
   <div id="app-container">
 
-  <!-- ── SPLASH SCREEN ───────────────────────────────────────── -->
-  <div id="splash-screen" class="splash-screen">
-    <div class="splash-circle">
-      <h1>JUSTICIA<br>SOCIAL</h1>
-    </div>
-    <p class="splash-subtitle">Historia, dignidad<br>y bien común</p>
-    <div class="splash-enter-wrapper">
-      <button id="splash-enter-btn" class="splash-enter-btn">Entrar</button>
-    </div>
-  </div>
+  
 
   <!-- Particle Canvas -->
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
@@ -64,7 +74,7 @@
     <div class="home-actions">
 
       <!-- MAPA DE ARGENTINA -->
-      <a href="#mapa" class="home-action-btn" data-target="mapa" id="btn-mapa">
+      <a href="javascript:void(0)" class="home-action-btn" data-target="mapa" id="btn-mapa" onclick="window.showScreenById('mapa-screen'); return false;">
         <div class="hab-icon hab-cyan">
           <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
         </div>
@@ -76,8 +86,7 @@
       </a>
 
       <!-- APRENDER -->
-      <a href="#" class="home-action-btn" data-target="aprender" id="btn-aprender"
-         >
+      <a href="javascript:void(0)" class="home-action-btn" data-target="aprender" id="btn-aprender" onclick="window.showScreenById('biblioteca-screen'); return false;">
         <div class="hab-icon hab-blue">
           <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18V15h2v-2.82L9 13.36V15c0 1.66 1.34 3 3 3s3-1.34 3-3v-1.64l4.5-2.18V9L12 3zm0 2.34l5.5 3.02L12 11.38 6.5 8.36 12 5.34zM15 15c0 1.66-1.34 3-3 3s-3-1.34-3-3v-.64l3 1.45 3-1.45V15z"/></svg>
         </div>
@@ -89,8 +98,7 @@
       </a>
 
       <!-- MEJORAR MI FUTURO -->
-      <a href="#" class="home-action-btn" data-target="futuro" id="btn-futuro"
-         >
+      <a href="javascript:void(0)" class="home-action-btn" data-target="futuro" id="btn-futuro" onclick="window.showScreenById('futuro-screen'); return false;">
         <div class="hab-icon hab-green">
           <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
         </div>
@@ -102,8 +110,7 @@
       </a>
 
       <!-- NECESITO AYUDA -->
-      <a href="#" class="home-action-btn hab-urgent" data-target="ayuda" id="btn-ayuda"
-         >
+      <a href="javascript:void(0)" class="home-action-btn hab-urgent" data-target="ayuda" id="btn-ayuda" onclick="window.showScreenById('ayuda-screen'); return false;">
         <div class="hab-icon hab-red">
           <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
         </div>
@@ -115,8 +122,7 @@
       </a>
 
       <!-- QUIERO AYUDAR -->
-      <a href="#" class="home-action-btn" data-target="voluntario" id="btn-voluntario"
-         >
+      <a href="javascript:void(0)" class="home-action-btn" data-target="voluntario" id="btn-voluntario" onclick="window.showScreenById('voluntario-screen'); return false;">
         <div class="hab-icon hab-gold">
           <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         </div>
@@ -132,10 +138,10 @@
     <!-- Quick access chips -->
     <div class="home-quick-links">
       <span class="home-quick-label">Accesos rápidos:</span>
-      <a href="#" class="home-quick-chip" data-target="historia">📚 Historia</a>
-      <a href="#" class="home-quick-chip" data-target="comparativa">⚖️ León XIII·XIV</a>
-      <a href="#" class="home-quick-chip" data-target="documentos">📄 Documentos</a>
-      <a href="#" class="home-quick-chip" data-target="mapa">🗺️ Mapa</a>
+      <a href="javascript:void(0)" class="home-quick-chip" data-target="historia" onclick="window.showScreenById('biblioteca-screen'); return false;">📚 Historia</a>
+      <a href="javascript:void(0)" class="home-quick-chip" data-target="comparativa" onclick="window.showScreenById('comparativa-screen'); return false;">⚖️ León XIII·XIV</a>
+      <a href="javascript:void(0)" class="home-quick-chip" data-target="documentos" onclick="window.showScreenById('biblioteca-screen'); return false;">📄 Documentos</a>
+      <a href="javascript:void(0)" class="home-quick-chip" data-target="mapa" onclick="window.showScreenById('mapa-screen'); return false;">🗺️ Mapa</a>
     </div>
 
 
@@ -144,7 +150,7 @@
   <!-- ── MAPA Y EVENTOS SCREEN ────────────────────────────────── -->
   <section class="screen" id="mapa-screen">
     <div class="screen-top-bar">
-      <button class="back-btn" aria-label="Volver al inicio">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title" style="flex:1">Mapa de Argentina</h2>
@@ -248,7 +254,7 @@
   <!-- ── COMPARATIVA SCREEN ────────────────────────────────────────── -->
   <section class="screen" id="comparativa-screen">
     <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
+      <button class="back-btn"  aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title" style="flex:1">León XIII → León XIV</h2>
@@ -615,7 +621,7 @@
   <!-- ── BIBLIOTECA SCREEN ──────────────────────────────────────── -->
   <section class="screen" id="biblioteca-screen">
     <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
+      <button class="back-btn"  aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title">Biblioteca</h2>
@@ -647,7 +653,7 @@
   <!-- ── COMUNIDAD SCREEN ───────────────────────────────────────── -->
   <section class="screen" id="comunidad-screen">
     <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
+      <button class="back-btn"  aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title">Comunidad</h2>
@@ -662,7 +668,7 @@
   <!-- ── PERFIL SCREEN ──────────────────────────────────────────── -->
   <section class="screen" id="perfil-screen">
     <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
+      <button class="back-btn"  aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title">Perfil</h2>
@@ -800,7 +806,7 @@
     <!-- ── NECESITO AYUDA SCREEN ──────────────────────────── -->
   <section class="screen" id="ayuda-screen">
     <div class="screen-top-bar">
-      <button class="back-btn" aria-label="Volver al inicio">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title" style="flex:1">Necesito Ayuda</h2>
@@ -895,7 +901,7 @@
     <!-- ── QUIERO AYUDAR SCREEN ───────────────────────────── -->
   <section class="screen" id="voluntario-screen">
     <div class="screen-top-bar">
-      <button class="back-btn" aria-label="Volver al inicio">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title" style="flex:1">Quiero Ayudar</h2>
@@ -986,7 +992,7 @@
   
   <section class="screen" id="futuro-screen">
     <div class="screen-top-bar">
-      <button class="back-btn" aria-label="Volver al inicio">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title" style="flex:1">Mejorar mi Futuro</h2>
@@ -1100,6 +1106,6 @@
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=28.0"></script>
+  <script type="module" src="js/app.v2.js?v=30.0"></script>
 </body>
 </html>
