@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=42.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=45.0" />
 <script>
   window.showScreenById = function(id) {
     var screens = document.querySelectorAll('section.screen');
@@ -46,6 +46,7 @@
     <div class="splash-circle">
       <h1>JUSTICIA<br>SOCIAL</h1>
     </div>
+    <h2 class="splash-pope">PAPA LEON IX EN ARGENTINA</h2>
     <p class="splash-subtitle">Historia, dignidad<br>y bien común</p>
     <div class="splash-enter-wrapper">
       <button id="splash-enter-btn" class="splash-enter-btn" onclick="document.getElementById('splash-screen').classList.add('hidden'); event.stopPropagation();">Entrar</button>
@@ -273,6 +274,12 @@
       <div class="map-container" role="region" aria-label="Mapa interactivo de Argentina">
         <div class="map-tooltip" id="map-tooltip" aria-live="polite"></div>
         <svg id="argentina-map" viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <filter id="province-glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
           <!-- Rendered by JS -->
         </svg>
       </div>
@@ -1530,6 +1537,6 @@
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=42.0"></script>
+  <script type="module" src="js/app.v2.js?v=43.2"></script>
 </body>
 </html>

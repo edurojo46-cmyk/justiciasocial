@@ -159,16 +159,7 @@ export function initArgentinaMap(getEventCountByProvince, selectProvince, state)
   }
 
   function buildMap() {
-    svg.innerHTML = '';
-
-    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    defs.innerHTML = `
-      <filter id="province-glow">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    `;
-    svg.appendChild(defs);
+    svg.querySelectorAll('.prov-path').forEach(el => el.remove());
 
     Object.entries(PROVINCE_PATHS).forEach(([id, prov]) => {
       const count = getEventCountByProvince(id);

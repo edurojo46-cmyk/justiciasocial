@@ -8,12 +8,12 @@ import {
   getUpcomingEvents, filterEvents,
   JOB_IMPACT,
 } from './data.js';
-import { historyData } from './history.js';
+import { historyData } from './history.js?v=43.0';
 import {
   initParticles, initNavbar, initReveal,
   initCounters, initDraggableTimeline, showToast,
 } from './animations.js';
-import { initArgentinaMap } from './map.js';
+import { initArgentinaMap } from './map.js?v=43.1';
 
 // ── Global navigation (defined early so buttons always work) ──
 window.showScreenById = function(id) {
@@ -313,7 +313,7 @@ function renderHistory() {
     const subtitle = item.subtitle ? `<div class="history-subtitle">${item.subtitle}</div>` : '';
 
     return `
-      <div class="history-item reveal" id="history-item-${index}">
+      <div class="history-item" id="history-item-${index}">
         <button class="history-header" aria-expanded="false" aria-controls="history-content-${index}" onclick="toggleHistory(${index})">
           <div class="history-header-left">
             <span class="history-icon">${icon}</span>
@@ -1241,38 +1241,38 @@ window.audioSeek = function(e) {
 // ═══════════════════════════════════════════════════════
 
 // ── 1. Alertas ────────────────────────────────────────
-function renderAlerts() {
-  var el = document.getElementById('alerts-list');
-  if (!el) return;
-  el.innerHTML = ALERTS.map(function(a) {
-    return '<div class="alert-global-banner"><div class="alert-dot"></div><span class="alert-banner-text">' + a.text + '</span><span class="alert-type-badge badge-' + a.type + '">' + a.type.toUpperCase() + '</span></div>';
-  }).join('');
-}
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
 
-function renderAlertsBanner() {
-  var topbar = document.querySelector('#inicio-screen .home-topbar');
-  if (!topbar || document.getElementById('alert-banner-home')) return;
-  var latest = ALERTS[0];
-  if (!latest) return;
-  var banner = document.createElement('div');
-  banner.id = 'alert-banner-home';
-  banner.className = 'alert-global-banner';
-  banner.style.cssText = 'margin: 0.5rem 1rem; cursor:pointer;';
-  banner.innerHTML = '<div class="alert-dot"></div><span class="alert-banner-text">' + latest.text + '</span><span class="alert-type-badge badge-' + latest.type + '">' + latest.type + '</span>';
-  banner.onclick = function() { window.showScreenById('alertas-screen'); };
-  topbar.insertAdjacentElement('afterend', banner);
-}
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
 
 // ── 2. Termómetro Social ──────────────────────────────
-function renderSocialStats() {
-  var el = document.getElementById('social-stats-grid');
-  if (!el) return;
-  el.className = 'social-stats-grid';
-  el.innerHTML = SOCIAL_STATS.map(function(s) {
-    var arw = s.trend === 'up' ? '▲' : (s.trend === 'down' ? '▼' : '▬');
-    return '<div class="stat-social-card" data-icon="' + s.icon + '"><div class="ssc-label">' + s.label + '</div><div class="ssc-value">' + s.value + '</div><div class="ssc-unit">' + s.unit + '</div><div class="ssc-trend-' + s.trend + '">' + arw + ' ' + s.change + '</div></div>';
-  }).join('');
-}
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
 
 // ── 3. Encuestas ──────────────────────────────────────
 var pollVotes = {};
@@ -1281,29 +1281,29 @@ try {
   if (savedVotes) pollVotes = JSON.parse(savedVotes);
 } catch(e) {}
 
-function renderPolls() {
-  var el = document.getElementById('polls-container');
-  if (!el) return;
-  el.innerHTML = POLLS.map(function(poll) {
-    var hasVoted = pollVotes[poll.id] !== undefined;
-    if (hasVoted) {
-      var myVote = pollVotes[poll.id];
-      var allVotes = poll.votes.slice();
-      allVotes[myVote]++;
-      var total = allVotes.reduce(function(a,b){return a+b;}, 0);
-      var bars = poll.options.map(function(opt, i) {
-        var pct = total > 0 ? Math.round((allVotes[i]/total)*100) : 0;
-        return '<div class="poll-result-bar-wrap"><div class="poll-result-label"><span>' + opt + '</span><span>' + pct + '%</span></div><div class="poll-bar-bg"><div class="poll-bar-fill" style="width:' + pct + '%"></div></div></div>';
-      }).join('');
-      return '<div class="poll-card"><p class="poll-question">' + poll.question + '</p><div class="poll-options">' + bars + '</div><div class="poll-total">' + total.toLocaleString('es-AR') + ' votos totales · Ya votaste ✓</div></div>';
-    }
-    var totalVotes = poll.votes.reduce(function(a,b){return a+b;},0);
-    var btns = poll.options.map(function(opt, i) {
-      return '<button class="poll-option-btn" onclick="window.castVote(\'' + poll.id + '\',' + i + ')">' + opt + '</button>';
-    }).join('');
-    return '<div class="poll-card"><p class="poll-question">' + poll.question + '</p><div class="poll-options">' + btns + '</div><div class="poll-total">' + totalVotes.toLocaleString('es-AR') + ' votos ya registrados</div></div>';
-  }).join('');
-}
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
 
 window.castVote = function(pollId, optionIndex) {
   pollVotes[pollId] = optionIndex;
@@ -1413,24 +1413,24 @@ window.generateComunicado = function() {
 };
 
 // ── 6. Consignas del Día ──────────────────────────────
-function renderConsignas() {
-  var el = document.getElementById('consignas-container');
-  if (!el) return;
-  el.innerHTML = DAILY_PHRASES.map(function(p) {
-    var waText = encodeURIComponent(p.icon + ' ' + p.text + '\n\n— ' + p.author + '\n\n#JusSocial #JusticiaSocial');
-    return '<div class="consigna-card"><div class="consigna-icon">' + p.icon + '</div><p class="consigna-text">' + p.text + '</p><p class="consigna-author">— ' + p.author + '</p><div class="consigna-share-row"><button class="btn-share-consigna" onclick="window.open(\'https://api.whatsapp.com/send?text=' + waText + '\',\'_blank\')">📲 Compartir</button></div></div>';
-  }).join('');
-}
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
 
 // ── Init all communication modules ────────────────────
-function initCommunicationModules() {
-  try { renderAlerts(); } catch(e) { console.warn('renderAlerts error:', e); }
-  try { renderAlertsBanner(); } catch(e) { console.warn('renderAlertsBanner error:', e); }
-  try { renderSocialStats(); } catch(e) { console.warn('renderSocialStats error:', e); }
-  try { renderPolls(); } catch(e) { console.warn('renderPolls error:', e); }
-  try { renderBarrioPosts(); } catch(e) { console.warn('renderBarrioPosts error:', e); }
-  try { renderConsignas(); } catch(e) { console.warn('renderConsignas error:', e); }
-}
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
+// DELETED DUP
 
 
 // ═══════════════════════════════════════════════════
