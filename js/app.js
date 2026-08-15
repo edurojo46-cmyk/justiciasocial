@@ -519,7 +519,16 @@ window.toggleJoin = function(eventId) {
 // ── Bottom Nav ──────────────────────────────────────────────────
 function initBottomNav() {
   const tabs = document.querySelectorAll('.bottom-nav .nav-item');
-  const screens = document.querySelectorAll('section.screen');
+
+  // ── Global navigation helper ─────────────────────────────
+  window.showScreenById = function(id) {
+    document.querySelectorAll('section.screen').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) bottomNav.style.display = id === 'inicio-screen' ? 'flex' : 'none';
+    window.scrollTo(0, 0);
+  };
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -528,9 +537,9 @@ function initBottomNav() {
       // Add active class to clicked tab
       tab.classList.add('active');
 
-      // Hide all screens, show target
+      // Hide all screens, show target (live query so it includes new screens)
       const targetId = tab.dataset.tab;
-      screens.forEach(screen => {
+      document.querySelectorAll('section.screen').forEach(screen => {
         if (screen.id === targetId + '-screen') {
           screen.classList.add('active');
         } else {
@@ -546,15 +555,7 @@ function initBottomNav() {
     });
   });
 
-  // ── Home: 4 Action Buttons ───────────────────────────────
-  function showScreenById(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    const el = document.getElementById(id);
-    if (el) el.classList.add('active');
-    const bottomNav = document.querySelector('.bottom-nav');
-    if (bottomNav) bottomNav.style.display = id === 'inicio-screen' ? 'flex' : 'none';
-  }
-
+  // ── Home: 4 Action Buttons & Quick Links ─────────────────
   document.querySelectorAll('.home-action-btn, .home-quick-chip, .menu-card').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -564,15 +565,15 @@ function initBottomNav() {
       // Map targets to screens
       const screenMap = {
         historia:     () => document.querySelector('.nav-item[data-tab="biblioteca"]').click(),
-        comparativa:  () => { showScreenById('comparativa-screen'); },
+        comparativa:  () => window.showScreenById('comparativa-screen'),
         documentos:   () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
         conceptos:    () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
         mapa:         () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
         accion:       () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
         aprender:     () => document.querySelector('.nav-item[data-tab="biblioteca"]').click(),
-        futuro:       () => showScreenById('futuro-screen'),
-        ayuda:        () => showScreenById('ayuda-screen'),
-        voluntario:   () => showScreenById('voluntario-screen'),
+        futuro:       () => window.showScreenById('futuro-screen'),
+        ayuda:        () => window.showScreenById('ayuda-screen'),
+        voluntario:   () => window.showScreenById('voluntario-screen'),
       };
 
       if (screenMap[targetId]) {
