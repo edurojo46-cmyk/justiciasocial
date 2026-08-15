@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=31.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=32.0" />
 <script>
   window.showScreenById = function(id) {
     var screens = document.querySelectorAll('section.screen');
@@ -41,9 +41,16 @@
   
   <div id="app-container">
 
-  
-
-  <!-- Particle Canvas -->
+  <!-- ── SPLASH SCREEN (PÁGINA DE INICIO AZUL) ────────────────── -->
+  <div id="splash-screen" class="splash-screen" onclick="this.classList.add('hidden');">
+    <div class="splash-circle">
+      <h1>JUSTICIA<br>SOCIAL</h1>
+    </div>
+    <p class="splash-subtitle">Historia, dignidad<br>y bien común</p>
+    <div class="splash-enter-wrapper">
+      <button id="splash-enter-btn" class="splash-enter-btn" onclick="document.getElementById('splash-screen').classList.add('hidden'); event.stopPropagation();">Entrar</button>
+    </div>
+  </div>
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
   <!-- ── HOME SCREEN (INICIO) ────────────────────────────────── -->
@@ -1109,6 +1116,6 @@
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=31.0"></script>
+  <script type="module" src="js/app.v2.js?v=32.0"></script>
 </body>
 </html>

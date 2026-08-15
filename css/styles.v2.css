@@ -1884,7 +1884,6 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
 
 /* ── Splash Screen ─────────────────────────────────────────── */
 .splash-screen {
-  display: none !important;
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
@@ -1895,10 +1894,11 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   justify-content: center;
   align-items: center;
   color: white;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 .splash-screen.hidden {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 .splash-circle {
