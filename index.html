@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=26.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=28.0" />
 </head>
 <body>
   <!-- ── NAVIGATION HELPERS ── inline so it works regardless of module scope ── -->
@@ -797,54 +797,184 @@
   
 
   <!-- ── NECESITO AYUDA SCREEN ──────────────────────────── -->
+    <!-- ── NECESITO AYUDA SCREEN ──────────────────────────── -->
   <section class="screen" id="ayuda-screen">
     <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
+      <button class="back-btn" aria-label="Volver al inicio">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title" style="flex:1">Necesito Ayuda</h2>
       <div style="width:32px"></div>
     </div>
-    <div class="coming-soon-screen">
-      <div class="coming-soon-icon">🤝</div>
-      <h2>Próximamente</h2>
-      <p>Esta sección conectará personas con servicios, instituciones y organizaciones que pueden ayudar en situaciones concretas.</p>
-      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:1rem;max-width:320px;text-align:left;">
-        <p style="color:#ff7070;font-weight:600;margin-bottom:0.5rem">¿Qué vendrá aquí?</p>
-        <ul style="list-style:none;padding:0;color:var(--text-secondary);font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem">
-          <li>🥗 Alimentos · Salud · Vivienda</li>
-          <li>⚖️ Conocé tus derechos</li>
-          <li>🏛️ Instituciones y organismos</li>
-          <li>⛪ Parroquias y fundaciones cercanas</li>
-          <li>📞 Asesoramiento gratuito</li>
-        </ul>
+
+    <div class="screen-content" style="padding: 16px;">
+      <p class="intro-text" style="color:var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem;">
+        La justicia social empieza por no dejar a nadie atrás. Accedé a recursos, organismos y redes de contención comunitaria en todo el país.
+      </p>
+
+      <!-- CATEGORÍAS DE AYUDA -->
+      <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px;">
+        
+        <!-- Alimentación -->
+        <div class="card" style="background: var(--surface-color); border: 1px solid var(--border-color); border-left: 4px solid #ef4444; padding: 16px; border-radius: 12px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <span style="font-size:1.6rem">🥗</span>
+            <div>
+              <h3 style="font-size:1.1rem; color:var(--text-color); margin:0">Alimentación y Comedores</h3>
+              <span style="font-size:0.8rem; color:var(--text-secondary)">Redes de apoyo nutricional y bolsones</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:12px">
+            Encontrá comedores comunitarios, merenderos y centros de distribución de alimentos gestionados por organizaciones barriales y parroquiales.
+          </p>
+          <a href="#provincias" class="btn-secondary" style="display:inline-block; font-size:0.85rem; padding:8px 14px; text-decoration:none;" onclick="window.showScreenById('mapa-screen')">Ver comedores por provincia →</a>
+        </div>
+
+        <!-- Asesoría Legal -->
+        <div class="card" style="background: var(--surface-color); border: 1px solid var(--border-color); border-left: 4px solid #3b82f6; padding: 16px; border-radius: 12px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <span style="font-size:1.6rem">⚖️</span>
+            <div>
+              <h3 style="font-size:1.1rem; color:var(--text-color); margin:0">Derechos y Asesoría Legal</h3>
+              <span style="font-size:0.8rem; color:var(--text-secondary)">Orientación jurídica gratuita</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:12px">
+            Asistencia ante despidos, precarización laboral, reclamos de jubilaciones o vulneración de derechos básicos en consultorios jurídicos populares.
+          </p>
+          <div style="background:rgba(59,130,246,0.1); padding:10px; border-radius:8px; font-size:0.85rem; color:var(--text-color);">
+            📌 <strong>Consultorios Gratuitos:</strong> Colegios de Abogados y Defensorías del Pueblo de cada jurisdicción atienden sin cargo.
+          </div>
+        </div>
+
+        <!-- Salud y Contención -->
+        <div class="card" style="background: var(--surface-color); border: 1px solid var(--border-color); border-left: 4px solid #10b981; padding: 16px; border-radius: 12px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <span style="font-size:1.6rem">🏥</span>
+            <div>
+              <h3 style="font-size:1.1rem; color:var(--text-color); margin:0">Salud y Medicación</h3>
+              <span style="font-size:0.8rem; color:var(--text-secondary)">Centros de salud y bancos de medicamentos</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:12px">
+            Información sobre Centros de Atención Primaria (CAPS), bancos solidarios de medicamentos y orientación en salud mental comunitaria.
+          </p>
+        </div>
+
       </div>
+
+      <!-- LÍNEAS DE URGENCIA -->
+      <div class="card" style="background: var(--bg-color); border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; margin-bottom: 24px;">
+        <h3 style="color:#ef4444; margin-bottom: 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px;">
+          <span>📞</span> Líneas Telefónicas Gratuitas Nacionales
+        </h3>
+        <div style="display:flex; flex-direction:column; gap:10px; font-size:0.88rem;">
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border-color);">
+            <span><strong>Línea 144:</strong> Violencia de género</span>
+            <a href="tel:144" style="color:var(--primary-color); font-weight:bold; text-decoration:none;">Llamar 144</a>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border-color);">
+            <span><strong>Línea 102:</strong> Derechos de niñas, niños y adolescentes</span>
+            <a href="tel:102" style="color:var(--primary-color); font-weight:bold; text-decoration:none;">Llamar 102</a>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border-color);">
+            <span><strong>Línea 141:</strong> SEDRONAR (Consumos problemáticos)</span>
+            <a href="tel:141" style="color:var(--primary-color); font-weight:bold; text-decoration:none;">Llamar 141</a>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0;">
+            <span><strong>Línea 134:</strong> Denuncias y asistencia nacional</span>
+            <a href="tel:134" style="color:var(--primary-color); font-weight:bold; text-decoration:none;">Llamar 134</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ── QUIERO AYUDAR SCREEN ───────────────────────────── -->
+    <!-- ── QUIERO AYUDAR SCREEN ───────────────────────────── -->
   <section class="screen" id="voluntario-screen">
     <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
+      <button class="back-btn" aria-label="Volver al inicio">
         <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
       </button>
       <h2 class="screen-top-title" style="flex:1">Quiero Ayudar</h2>
       <div style="width:32px"></div>
     </div>
-    <div class="coming-soon-screen">
-      <div class="coming-soon-icon">❤️</div>
-      <h2>Próximamente</h2>
-      <p>Esta sección conectará a quienes quieren dar su tiempo, habilidades y solidaridad con quienes más lo necesitan.</p>
-      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:12px;padding:1rem;max-width:320px;text-align:left;">
-        <p style="color:var(--gold);font-weight:600;margin-bottom:0.5rem">¿Qué vendrá aquí?</p>
-        <ul style="list-style:none;padding:0;color:var(--text-secondary);font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem">
-          <li>👐 Voluntariado local</li>
-          <li>🏘️ Proyectos comunitarios</li>
-          <li>🎯 Desafío de justicia social</li>
-          <li>📦 Donaciones de ropa y alimentos</li>
-          <li>📊 Tu impacto personal</li>
-        </ul>
+
+    <div class="screen-content" style="padding: 16px;">
+      <p class="intro-text" style="color:var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem;">
+        Transformar la realidad es una tarea colectiva. Sumá tus manos, conocimientos o recursos para construir una sociedad más justa.
+      </p>
+
+      <!-- ÁREAS DE PARTICIPACIÓN -->
+      <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px;">
+        
+        <!-- Voluntariado -->
+        <div class="card" style="background: var(--surface-color); border: 1px solid var(--border-color); border-left: 4px solid #f59e0b; padding: 16px; border-radius: 12px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <span style="font-size:1.6rem">🤝</span>
+            <div>
+              <h3 style="font-size:1.1rem; color:var(--text-color); margin:0">Voluntariado Territorial</h3>
+              <span style="font-size:0.8rem; color:var(--text-secondary)">Apoyo escolar, comedores y talleres</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:12px">
+            Participá activamente en centros comunitarios y espacios barriales brindando tu tiempo y habilidades en tu localidad.
+          </p>
+        </div>
+
+        <!-- Donaciones -->
+        <div class="card" style="background: var(--surface-color); border: 1px solid var(--border-color); border-left: 4px solid #8b5cf6; padding: 16px; border-radius: 12px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <span style="font-size:1.6rem">📦</span>
+            <div>
+              <h3 style="font-size:1.1rem; color:var(--text-color); margin:0">Puntos de Donación</h3>
+              <span style="font-size:0.8rem; color:var(--text-secondary)">Alimentos, abrigo y herramientas</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:12px">
+            Coordiná la entrega de alimentos no perecederos, ropa en buen estado y materiales didácticos con las sedes más cercanas.
+          </p>
+        </div>
+
       </div>
+
+      <!-- FORMULARIO RÁPIDO DE REGISTRO -->
+      <div class="card" style="background: var(--surface-color); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 24px;">
+        <h3 style="color:var(--text-color); margin-bottom: 8px; font-size:1.1rem;">Sumate a la Red Solidaria</h3>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:16px;">Dejanos tus datos para coordinar con iniciativas de tu zona:</p>
+        
+        <form id="volunteer-form" onsubmit="event.preventDefault(); document.getElementById('vol-success').style.display='block'; this.reset();">
+          <div style="margin-bottom:12px;">
+            <label style="display:block; font-size:0.85rem; color:var(--text-secondary); margin-bottom:4px;">Tu Nombre y Apellido:</label>
+            <input type="text" required placeholder="Ej: Juan Pérez" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-color);">
+          </div>
+          
+          <div style="margin-bottom:12px;">
+            <label style="display:block; font-size:0.85rem; color:var(--text-secondary); margin-bottom:4px;">Tu Teléfono o Email de contacto:</label>
+            <input type="text" required placeholder="Ej: 11 2345-6789 / email@ejemplo.com" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-color);">
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <label style="display:block; font-size:0.85rem; color:var(--text-secondary); margin-bottom:4px;">Área en la que podés colaborar:</label>
+            <select style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-color);">
+              <option>Apoyo escolar y alfabetización</option>
+              <option>Comedor y cocina comunitaria</option>
+              <option>Asesoría profesional / legal / informática</option>
+              <option>Logística y distribución de donaciones</option>
+              <option>Salud comunitaria y primeros auxilios</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%; padding:12px; font-weight:600; border-radius:8px;">¡Quiero participar! ✨</button>
+        </form>
+
+        <div id="vol-success" style="display:none; margin-top:16px; padding:12px; background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.3); border-radius:8px; color:var(--text-color); font-size:0.9rem; text-align:center;">
+          🎉 <strong>¡Gracias por tu compromiso!</strong> Un coordinador local se contactará pronto con vos.
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -970,6 +1100,6 @@
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=26.0"></script>
+  <script type="module" src="js/app.v2.js?v=28.0"></script>
 </body>
 </html>

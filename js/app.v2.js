@@ -812,12 +812,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Hide splash screen on enter button click
-  const splashEnterBtn = document.getElementById('splash-enter-btn');
-  if (splashEnterBtn) {
-    splashEnterBtn.addEventListener('click', () => {
-      const splash = document.getElementById('splash-screen');
-      if (splash) splash.classList.add('hidden');
+  // Hide splash screen on enter button or splash click
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    splash.addEventListener('click', () => {
+      splash.classList.add('hidden');
     });
   }
 
