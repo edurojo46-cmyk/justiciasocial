@@ -2401,6 +2401,16 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   letter-spacing: 0.3px;
 }
 
+.home-platform-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 420px;
+  margin: 0.25rem auto 0.5rem;
+  padding: 0 0.5rem;
+}
+
 /* 4 Action Buttons */
 .home-actions {
   display: flex;
