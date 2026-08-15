@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=41.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=42.0" />
 <script>
   window.showScreenById = function(id) {
     var screens = document.querySelectorAll('section.screen');
@@ -230,6 +230,10 @@
       <button type="button" id="btn-comunicados" class="comm-shortcut comm-gold" onclick="window.showScreenById('comunicados-screen')">
         <span class="cs-icon">📰</span>
         <span class="cs-label">Comunicados</span>
+      </button>
+      <button type="button" id="btn-suscripcion" class="comm-shortcut comm-green" onclick="window.showScreenById('suscripcion-screen')">
+        <span class="cs-icon">🔔</span>
+        <span class="cs-label">Alertas</span>
       </button>
       <button type="button" id="btn-consignas" class="comm-shortcut comm-cyan" onclick="window.showScreenById('consignas-screen')">
         <span class="cs-icon">📱</span>
@@ -1303,6 +1307,16 @@
       <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
         Alertas, avisos urgentes y noticias del movimiento social en tiempo real.
       </p>
+      <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+        <input type="text" id="alert-search-input" placeholder="Buscar alerta…" style="flex:1;min-width:120px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.6rem;color:white;font-size:0.85rem;" oninput="window.filterAlerts()"/>
+        <select id="alert-type-filter" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.6rem;color:white;font-size:0.85rem;" onchange="window.filterAlerts()">
+          <option value="">Todos los tipos</option>
+          <option value="urgente">🔴 Urgente</option>
+          <option value="info">🔵 Información</option>
+          <option value="aviso">🟡 Aviso</option>
+        </select>
+      </div>
+      <div id="alerts-ticker" class="alerts-ticker-wrap" style="margin-bottom:1rem;"></div>
       <div id="alerts-list"></div>
     </div>
   </section>
@@ -1321,6 +1335,10 @@
         Indicadores socioeconómicos clave del país, actualizados mensualmente.
       </p>
       <div id="social-stats-grid"></div>
+      <div class="termometro-chart-wrap" id="termometro-chart-wrap" style="margin-top:1.5rem;">
+        <h4 style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:0.75rem;font-weight:600;">📈 Evolución Histórica · Feb–Jul 2026</h4>
+        <div id="canasta-mini-chart"></div>
+      </div>
       <p style="font-size:0.72rem;color:var(--text-muted);margin-top:1.5rem;text-align:center;">
         Fuentes: INDEC · Ministerio de Trabajo · Relevamiento de Organizaciones Sociales · Agosto 2026
       </p>
@@ -1341,6 +1359,14 @@
         Hacé oír tu voz. Participá de las consultas comunitarias activas.
       </p>
       <div id="polls-container"></div>
+      <div style="margin-top:1.5rem;background:var(--surface-color);border:1px dashed rgba(139,92,246,0.35);border-radius:14px;padding:1.25rem;">
+        <h4 style="color:#a78bfa;margin-bottom:0.5rem;font-size:0.95rem;">🗳️ Proponé una consulta ciudadana</h4>
+        <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.75rem;">¿Qué tema te gustaría que la comunidad vote?</p>
+        <input type="text" id="propose-poll-input" placeholder="Ej: ¿Apoyás el aumento de la asignación universal?" style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.65rem;color:white;font-size:0.87rem;font-family:inherit;box-sizing:border-box;"/>
+        <button id="propose-poll-btn" style="margin-top:0.65rem;width:100%;padding:0.75rem;background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.4);color:#a78bfa;border-radius:10px;font-weight:700;font-size:0.9rem;cursor:pointer;font-family:inherit;" onclick="window.proposePoll()">
+          📩 Enviar propuesta
+        </button>
+      </div>
     </div>
   </section>
 
@@ -1477,13 +1503,33 @@
       <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
         Frases históricas y consignas actuales para compartir como estados de WhatsApp o historias de redes.
       </p>
+      <div id="consigna-del-dia-card" class="consigna-del-dia-card" style="margin-bottom:1.5rem;"></div>
       <div id="consignas-container"></div>
+    </div>
+  </section>
+
+  
+  <!-- ── SUSCRIPCIÓN POR PROVINCIA ──────────────────────────── -->
+  <section class="screen" id="suscripcion-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">🔔 Alertas por Provincia</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="screen-content" style="padding:16px;">
+      <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
+        Elegí tu provincia y recibí alertas cuando se publique un nuevo evento o denuncia en tu región.
+      </p>
+      <div id="subs-provinces-list"></div>
+      <div id="subs-active-section" style="margin-top:1.5rem;"></div>
     </div>
   </section>
 
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=41.0"></script>
+  <script type="module" src="js/app.v2.js?v=42.0"></script>
 </body>
 </html>

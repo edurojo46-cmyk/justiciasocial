@@ -869,3 +869,89 @@ export const DAILY_PHRASES = [
   { text: '"La solidaridad es la virtud que nos hace más fuertes juntos que separados."', author: 'Doctrina Social · Juan Pablo II', icon: '🤝' },
   { text: '"Ningún niño debe irse a dormir con hambre en una tierra que tiene para todos."', author: 'Organización Barrial Nacional', icon: '🍲' },
 ];
+
+// ── Alertas Extra ─────────────────────────────────────────────
+export const ALERTS_EXTRA = [
+  { id: 'a5', type: 'info',    text: '📘 Nuevo convenio colectivo firmado por UOCRA · Vigente agosto 2026', date: '2026-08-14', province: 'nacional' },
+  { id: 'a6', type: 'urgente', text: '🔴 Corte de ruta nacional 3 · Chubut · Por falta de combustible', date: '2026-08-14', province: 'chubut' },
+  { id: 'a7', type: 'aviso',   text: '🏥 Guardia del Hospital Garrahan reforzada · Jueves y viernes', date: '2026-08-13', province: 'caba' },
+  { id: 'a8', type: 'info',    text: '⚖️ Resolución judicial a favor de trabajadores de Loma Negra · Indemnizaciones reconocidas', date: '2026-08-12', province: 'nacional' },
+  { id: 'a9', type: 'aviso',   text: '📢 Nuevo merendero comunitario en barrio Mataderos · Lunes y miércoles 15hs', date: '2026-08-11', province: 'caba' },
+];
+
+// ── Historial Termómetro (mini-gráfico) ───────────────────────
+export const STATS_HISTORY = {
+  canasta: [98420, 109500, 121300, 133800, 139000, 145230],
+  desempleo: [9.1, 8.9, 8.6, 8.4, 8.2, 8.1],
+  comedores: [11400, 11700, 11900, 12050, 12200, 12400],
+  smvm:      [245000, 268000, 290000, 316000, 335000, 350000],
+  labels:    ['Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
+};
+
+// ── Encuestas Extra ───────────────────────────────────────────
+export const POLLS_EXTRA = [
+  {
+    id: 'p4',
+    question: '¿Tuviste acceso a atención médica gratuita en los últimos 6 meses?',
+    options: ['✅ Sí, sin problemas', '⚠️ Con dificultades', '❌ No pude acceder'],
+    votes: [580, 720, 340],
+    category: 'salud',
+    active: true,
+  },
+  {
+    id: 'p5',
+    question: '¿Creés que el Estado argentino protege suficientemente los derechos de los trabajadores informales?',
+    options: ['✅ Sí, hay avances', '🟡 Es insuficiente', '❌ No los protege'],
+    votes: [210, 890, 1240],
+    category: 'laboral',
+    active: true,
+  },
+];
+
+// ── Plantillas de Comunicados ─────────────────────────────────
+export const COMUNICADO_TEMPLATES = [
+  {
+    id: 't1',
+    nombre: '🚨 Reclamo por servicios básicos',
+    tipo: 'reclamo',
+    destinatario: 'Municipio / Intendencia',
+    tema: 'Falta de servicios básicos en el barrio',
+    detalle: 'Desde hace X días, los vecinos del barrio no contamos con agua potable / luz / gas correctamente. Esta situación afecta gravemente la salud y la vida cotidiana de X familias. Solicitamos intervención urgente.',
+  },
+  {
+    id: 't2',
+    nombre: '⚖️ Denuncia laboral',
+    tipo: 'denuncia',
+    destinatario: 'Ministerio de Trabajo de la Provincia',
+    tema: 'Incumplimiento de convenio colectivo y trabajo no registrado',
+    detalle: 'La empresa "____" con domicilio en "____" incumple sistemáticamente el convenio colectivo vigente. Existen trabajadores que prestan servicios sin estar registrados, sin obra social y sin aportes previsionales.',
+  },
+  {
+    id: 't3',
+    nombre: '📋 Solicitud de información pública',
+    tipo: 'solicitud',
+    destinatario: 'Autoridad de Aplicación / Organismo correspondiente',
+    tema: 'Solicitud de acceso a información pública (Ley 27.275)',
+    detalle: 'En virtud de la Ley de Acceso a la Información Pública N° 27.275, solicito se informe sobre el estado actual de ____. Aguardamos respuesta en el plazo legal de 30 días hábiles.',
+  },
+];
+
+// ── Suscripciones por Provincia ──────────────────────────────
+export const ALL_PROVINCES_FOR_SUBS = [
+  { id: 'nacional', label: '🌍 Nacional (todo el país)' },
+  { id: 'buenosaires', label: '🏛️ Buenos Aires' },
+  { id: 'caba', label: '🌆 Ciudad de Buenos Aires' },
+  { id: 'cordoba', label: '⛪ Córdoba' },
+  { id: 'santafe', label: '🌾 Santa Fe' },
+  { id: 'mendoza', label: '🍇 Mendoza' },
+  { id: 'tucuman', label: '🎺 Tucumán' },
+  { id: 'salta', label: '🦙 Salta' },
+  { id: 'misiones', label: '🌿 Misiones' },
+  { id: 'chaco', label: '🌵 Chaco' },
+  { id: 'corrientes', label: '🐊 Corrientes' },
+  { id: 'entrerios', label: '🌊 Entre Ríos' },
+  { id: 'jujuy', label: '🪘 Jujuy' },
+  { id: 'rionegro', label: '🏔️ Río Negro' },
+  { id: 'neuquen', label: '⛽ Neuquén' },
+  { id: 'chubut', label: '🐋 Chubut' },
+];

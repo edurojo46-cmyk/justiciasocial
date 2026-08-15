@@ -1431,3 +1431,255 @@ function initCommunicationModules() {
   try { renderBarrioPosts(); } catch(e) { console.warn('renderBarrioPosts error:', e); }
   try { renderConsignas(); } catch(e) { console.warn('renderConsignas error:', e); }
 }
+
+
+// ═══════════════════════════════════════════════════
+// SIMULADORES COMPLETOS — OVERRIDE
+// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// SIMULATOR LOGIC - all 7 feature simulators
+// Use only var/function, no template literals
+// ═══════════════════════════════════════════════════════
+
+// ── IMPORTS extension (handled by caller script) ──────
+// Expects: ALERTS_EXTRA, STATS_HISTORY, POLLS_EXTRA,
+//          COMUNICADO_TEMPLATES, ALL_PROVINCES_FOR_SUBS, DAILY_PHRASES
+
+// ── ALERTAS: Full simulator with search + ticker ──────
+var allAlertsForFilter = [];
+
+function buildAllAlerts() {
+  allAlertsForFilter = ALERTS.concat(ALERTS_EXTRA);
+}
+
+function renderAlerts() {
+  buildAllAlerts();
+  var el = document.getElementById('alerts-list');
+  if (!el) return;
+  var query = '';
+  var typeFilter = '';
+  var searchEl = document.getElementById('alert-search-input');
+  var typeEl = document.getElementById('alert-type-filter');
+  if (searchEl) query = searchEl.value.toLowerCase();
+  if (typeEl) typeFilter = typeEl.value;
+
+  var filtered = allAlertsForFilter.filter(function(a) {
+    if (typeFilter && a.type !== typeFilter) return false;
+    if (query && a.text.toLowerCase().indexOf(query) === -1) return false;
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:1.5rem;">No se encontraron alertas con esos filtros.</p>';
+    return;
+  }
+  el.innerHTML = filtered.map(function(a) {
+    return '<div class="alert-global-banner" style="margin-bottom:0.5rem;"><div class="alert-dot"></div><span class="alert-banner-text">' + a.text + '</span><span class="alert-type-badge badge-' + a.type + '">' + a.type.toUpperCase() + '</span></div>';
+  }).join('');
+}
+
+window.filterAlerts = function() {
+  renderAlerts();
+};
+
+function renderAlertsBanner() {
+  var topbar = document.querySelector('#inicio-screen .home-topbar');
+  if (!topbar || document.getElementById('alert-banner-home')) return;
+  buildAllAlerts();
+  var latest = allAlertsForFilter[0];
+  if (!latest) return;
+  var banner = document.createElement('div');
+  banner.id = 'alert-banner-home';
+  banner.className = 'alert-global-banner';
+  banner.style.cssText = 'margin: 0.5rem 1rem; cursor:pointer;';
+  banner.innerHTML = '<div class="alert-dot"></div><span class="alert-banner-text">' + latest.text + '</span><span class="alert-type-badge badge-' + latest.type + '">' + latest.type + '</span>';
+  banner.onclick = function() { window.showScreenById('alertas-screen'); };
+  topbar.insertAdjacentElement('afterend', banner);
+}
+
+function renderAlertsTicker() {
+  var el = document.getElementById('alerts-ticker');
+  if (!el || !allAlertsForFilter.length) return;
+  var tickerIndex = 0;
+  function showTick() {
+    var a = allAlertsForFilter[tickerIndex % allAlertsForFilter.length];
+    el.innerHTML = '<span class="ticker-label">🔴 EN VIVO</span><span class="ticker-text">' + a.text + '</span>';
+    tickerIndex++;
+  }
+  showTick();
+  setInterval(showTick, 4000);
+}
+
+// ── TERMÓMETRO: Animated counters + mini chart ────────
+function renderSocialStats() {
+  var el = document.getElementById('social-stats-grid');
+  if (!el) return;
+  el.className = 'social-stats-grid';
+  el.innerHTML = SOCIAL_STATS.map(function(s) {
+    var arw = s.trend === 'up' ? '▲' : (s.trend === 'down' ? '▼' : '▬');
+    return '<div class="stat-social-card" data-icon="' + s.icon + '"><div class="ssc-label">' + s.label + '</div><div class="ssc-value">' + s.value + '</div><div class="ssc-unit">' + s.unit + '</div><div class="ssc-trend-' + s.trend + '">' + arw + ' ' + s.change + '</div></div>';
+  }).join('');
+  renderMiniChart();
+}
+
+function renderMiniChart() {
+  var el = document.getElementById('canasta-mini-chart');
+  if (!el || !STATS_HISTORY) return;
+  var values = STATS_HISTORY.canasta;
+  var labels = STATS_HISTORY.labels;
+  var maxV = Math.max.apply(null, values);
+  var bars = values.map(function(v, i) {
+    var pct = Math.round((v / maxV) * 100);
+    var isLast = i === values.length - 1;
+    var barColor = isLast ? 'background:linear-gradient(180deg,#38bdf8,#0284c7)' : 'background:rgba(56,189,248,0.35)';
+    return '<div class="mini-bar-wrap"><div class="mini-bar" style="height:' + pct + '%;' + barColor + '"></div><div class="mini-bar-label">' + labels[i] + '</div></div>';
+  }).join('');
+  el.innerHTML = '<div class="mini-chart-container"><div class="mini-chart-title">📊 Canasta Básica Alimentaria ($)</div><div class="mini-chart-bars">' + bars + '</div><div class="mini-chart-latest">▲ $145.230 Julio 2026</div></div>';
+}
+
+// ── ENCUESTAS: Extended polls + propose feature ────────
+function renderPolls() {
+  var el = document.getElementById('polls-container');
+  if (!el) return;
+  var allPolls = POLLS.concat(POLLS_EXTRA);
+  el.innerHTML = allPolls.map(function(poll) {
+    var hasVoted = pollVotes[poll.id] !== undefined;
+    if (hasVoted) {
+      var myVote = pollVotes[poll.id];
+      var allVotes = poll.votes.slice();
+      allVotes[myVote]++;
+      var total = allVotes.reduce(function(a,b){return a+b;}, 0);
+      var bars = poll.options.map(function(opt, i) {
+        var pct = total > 0 ? Math.round((allVotes[i]/total)*100) : 0;
+        var isWinner = allVotes[i] === Math.max.apply(null, allVotes);
+        return '<div class="poll-result-bar-wrap"><div class="poll-result-label"><span>' + (isWinner ? '🏆 ' : '') + opt + '</span><span>' + pct + '%</span></div><div class="poll-bar-bg"><div class="poll-bar-fill" style="width:' + pct + '%;background:' + (isWinner ? 'linear-gradient(90deg,#f59e0b,#fbbf24)' : 'linear-gradient(90deg,#1d4ed8,#3b82f6)') + '"></div></div></div>';
+      }).join('');
+      return '<div class="poll-card"><p class="poll-question">' + poll.question + '</p><div class="poll-options">' + bars + '</div><div class="poll-total">' + total.toLocaleString('es-AR') + ' votos · Ya votaste ✓</div></div>';
+    }
+    var totalVotes = poll.votes.reduce(function(a,b){return a+b;},0);
+    var btns = poll.options.map(function(opt, i) {
+      return '<button class="poll-option-btn" onclick="window.castVote(\'' + poll.id + '\',' + i + ')">' + opt + '</button>';
+    }).join('');
+    return '<div class="poll-card"><p class="poll-question">' + poll.question + '</p><div class="poll-options">' + btns + '</div><div class="poll-total">' + totalVotes.toLocaleString('es-AR') + ' votos ya registrados</div></div>';
+  }).join('');
+}
+
+window.proposePoll = function() {
+  var input = document.getElementById('propose-poll-input');
+  var val = input ? input.value.trim() : '';
+  if (!val || val.length < 10) {
+    showToast('Escribí una pregunta de al menos 10 caracteres', 'red', '⚠️');
+    return;
+  }
+  if (input) input.value = '';
+  showToast('¡Propuesta enviada! La revisaremos para incluirla. 🗳️', 'gold', '✅');
+};
+
+// ── CONSIGNAS DEL DÍA: Día actual + share ────────────
+function renderConsignasDelDia() {
+  var el = document.getElementById('consigna-del-dia-card');
+  if (!el || !DAILY_PHRASES || !DAILY_PHRASES.length) return;
+  var dayIdx = new Date().getDay(); // 0=Dom, 6=Sáb
+  var phrase = DAILY_PHRASES[dayIdx % DAILY_PHRASES.length];
+  var wa = encodeURIComponent(phrase.icon + ' ' + phrase.text + '\n\n— ' + phrase.author + '\n\n#JusSocial #JusticiaSocial');
+  el.innerHTML = '<div class="cdd-icon">' + phrase.icon + '</div><p class="cdd-text">' + phrase.text + '</p><p class="cdd-author">— ' + phrase.author + '</p><div class="cdd-share-row"><button class="btn-cdd-share" onclick="window.open(\'https://api.whatsapp.com/send?text=' + wa + '\',\'_blank\')">📲 Compartir en WhatsApp</button><button class="btn-cdd-share" onclick="navigator.clipboard.writeText(\'' + phrase.text.replace(/'/g,"\\'") + ' — ' + phrase.author.replace(/'/g,"\\'") + '\').then(function(){showToast(\'¡Frase copiada!\',\'gold\',\'📋\')})">📋 Copiar</button></div>';
+}
+
+function renderConsignas() {
+  var el = document.getElementById('consignas-container');
+  if (!el) return;
+  el.innerHTML = DAILY_PHRASES.map(function(p) {
+    var waText = encodeURIComponent(p.icon + ' ' + p.text + '\n\n— ' + p.author + '\n\n#JusSocial #JusticiaSocial');
+    return '<div class="consigna-card"><div class="consigna-icon">' + p.icon + '</div><p class="consigna-text">' + p.text + '</p><p class="consigna-author">— ' + p.author + '</p><div class="consigna-share-row"><button class="btn-share-consigna" onclick="window.open(\'https://api.whatsapp.com/send?text=' + waText + '\',\'_blank\')">📲 Compartir</button></div></div>';
+  }).join('');
+}
+
+// ── COMUNICADOS: Template shortcuts ───────────────────
+function renderComunicadoTemplates() {
+  var formBox = document.querySelector('.comunicado-form-box');
+  if (!formBox || document.getElementById('templates-row-el')) return;
+  if (!COMUNICADO_TEMPLATES) return;
+
+  var chips = COMUNICADO_TEMPLATES.map(function(t) {
+    return '<button type="button" class="template-chip" onclick="window.loadComunicadoTemplate(\'' + t.id + '\')">' + t.nombre + '</button>';
+  }).join('');
+
+  var row = document.createElement('div');
+  row.id = 'templates-row-el';
+  row.innerHTML = '<p style="font-size:0.8rem;color:var(--text-muted);font-weight:600;margin-bottom:0.35rem;">Plantillas rápidas:</p><div class="templates-row">' + chips + '</div>';
+  formBox.insertBefore(row, formBox.firstChild);
+}
+
+window.loadComunicadoTemplate = function(templateId) {
+  if (!COMUNICADO_TEMPLATES) return;
+  var tpl = COMUNICADO_TEMPLATES.filter(function(t){ return t.id === templateId; })[0];
+  if (!tpl) return;
+  var tipoEl = document.getElementById('com-tipo');
+  var destEl = document.getElementById('com-destinatario');
+  var temaEl = document.getElementById('com-tema');
+  var detEl  = document.getElementById('com-detalle');
+  if (tipoEl) tipoEl.value = tpl.tipo;
+  if (destEl) destEl.value = tpl.destinatario;
+  if (temaEl) temaEl.value = tpl.tema;
+  if (detEl)  detEl.value  = tpl.detalle;
+  showToast('Plantilla cargada: ' + tpl.nombre, 'gold', '📋');
+};
+
+// ── SUSCRIPCIÓN POR PROVINCIA ─────────────────────────
+var subsData = {};
+try {
+  var savedSubs = localStorage.getItem('jussocial_province_subs');
+  if (savedSubs) subsData = JSON.parse(savedSubs);
+} catch(e) {}
+
+function saveSubs() {
+  try { localStorage.setItem('jussocial_province_subs', JSON.stringify(subsData)); } catch(e) {}
+}
+
+function renderSuscripcionScreen() {
+  var el = document.getElementById('subs-provinces-list');
+  if (!el || !ALL_PROVINCES_FOR_SUBS) return;
+  el.className = 'subs-province-list';
+  el.innerHTML = ALL_PROVINCES_FOR_SUBS.map(function(p) {
+    var checked = subsData[p.id] ? 'checked' : '';
+    return '<div class="subs-province-row"><span class="subs-province-label">' + p.label + '</span><label class="subs-toggle"><input type="checkbox" ' + checked + ' onchange="window.toggleProvinceSub(\'' + p.id + '\',this.checked)"/><span class="subs-slider"></span></label></div>';
+  }).join('');
+  renderSubsActive();
+}
+
+function renderSubsActive() {
+  var el = document.getElementById('subs-active-section');
+  if (!el) return;
+  var active = Object.keys(subsData).filter(function(k){ return subsData[k]; });
+  if (active.length === 0) {
+    el.innerHTML = '';
+    return;
+  }
+  var labels = active.map(function(id) {
+    var found = (ALL_PROVINCES_FOR_SUBS || []).filter(function(p){ return p.id === id; })[0];
+    return found ? found.label : id;
+  });
+  el.innerHTML = '<div class="subs-active-card"><div class="subs-active-title">✅ Suscripto a ' + active.length + ' provincia' + (active.length > 1 ? 's' : '') + ':</div><div class="subs-active-list">' + labels.join(' · ') + '</div></div>';
+}
+
+window.toggleProvinceSub = function(provinceId, isOn) {
+  subsData[provinceId] = isOn;
+  saveSubs();
+  renderSubsActive();
+  showToast(isOn ? ('🔔 Suscripto a ' + provinceId) : ('🔕 Desuscripto de ' + provinceId), 'gold', isOn ? '✅' : '✕');
+};
+
+// ── OVERRIDE initCommunicationModules ─────────────────
+function initCommunicationModules() {
+  try { buildAllAlerts(); } catch(e) {}
+  try { renderAlerts(); } catch(e) { console.warn('renderAlerts error:', e); }
+  try { renderAlertsBanner(); } catch(e) { console.warn('renderAlertsBanner error:', e); }
+  try { renderAlertsTicker(); } catch(e) { console.warn('renderAlertsTicker error:', e); }
+  try { renderSocialStats(); } catch(e) { console.warn('renderSocialStats error:', e); }
+  try { renderPolls(); } catch(e) { console.warn('renderPolls error:', e); }
+  try { renderBarrioPosts(); } catch(e) { console.warn('renderBarrioPosts error:', e); }
+  try { renderComunicadoTemplates(); } catch(e) { console.warn('renderComunicadoTemplates error:', e); }
+  try { renderConsignas(); } catch(e) { console.warn('renderConsignas error:', e); }
+  try { renderConsignasDelDia(); } catch(e) { console.warn('renderConsignasDelDia error:', e); }
+  try { renderSuscripcionScreen(); } catch(e) { console.warn('renderSuscripcionScreen error:', e); }
+}

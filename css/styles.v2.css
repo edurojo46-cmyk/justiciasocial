@@ -3386,3 +3386,215 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   border-radius: 10px; padding: 0.5rem 1rem; font-size: 0.82rem;
   font-weight: 700; cursor: pointer;
 }
+
+
+/* ── Alerts Ticker ───────────────────────────────────────────── */
+.alerts-ticker-wrap {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+}
+.ticker-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #f87171;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  padding-right: 0.6rem;
+  border-right: 1px solid rgba(239,68,68,0.3);
+}
+.ticker-text {
+  font-size: 0.84rem;
+  color: #fca5a5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Termómetro Mini Chart ───────────────────────────────────── */
+.mini-chart-container {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.mini-chart-title {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+.mini-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 60px;
+}
+.mini-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+.mini-bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #38bdf8, #0284c7);
+  min-height: 4px;
+  transition: height 0.5s ease;
+}
+.mini-bar-label {
+  font-size: 0.65rem;
+  color: #64748b;
+  text-align: center;
+}
+.mini-chart-latest {
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  color: #4ade80;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* ── Consigna del Día ────────────────────────────────────────── */
+.consigna-del-dia-card {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(29,78,216,0.35);
+}
+.consigna-del-dia-card::before {
+  content: '📅 Consigna del Día';
+  position: absolute;
+  top: 0.75rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+}
+.cdd-icon { font-size: 2.5rem; margin: 1.5rem 0 0.75rem; }
+.cdd-text {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: white;
+  line-height: 1.5;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-bottom: 0.5rem;
+}
+.cdd-author {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+.cdd-share-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+.btn-cdd-share {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.btn-cdd-share:hover { background: rgba(255,255,255,0.3); }
+
+/* ── Suscripcion Screen ──────────────────────────────────────── */
+.subs-province-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.subs-province-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-color, #131b2e);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+}
+.subs-province-label { font-size: 0.9rem; color: white; font-weight: 500; }
+
+/* Toggle Switch */
+.subs-toggle {
+  position: relative;
+  width: 46px;
+  height: 26px;
+}
+.subs-toggle input { opacity: 0; width: 0; height: 0; }
+.subs-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #334155;
+  border-radius: 26px;
+  transition: background 0.25s;
+}
+.subs-slider:before {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  left: 3px; bottom: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.25s;
+}
+.subs-toggle input:checked + .subs-slider { background: #2563eb; }
+.subs-toggle input:checked + .subs-slider:before { transform: translateX(20px); }
+
+.subs-active-card {
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.subs-active-title { font-size: 0.85rem; color: #93c5fd; font-weight: 700; margin-bottom: 0.5rem; }
+.subs-active-list { font-size: 0.85rem; color: #e2e8f0; line-height: 1.7; }
+
+/* ── Comunicado Templates ────────────────────────────────────── */
+.templates-row {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  scrollbar-width: none;
+}
+.templates-row::-webkit-scrollbar { display: none; }
+.template-chip {
+  flex-shrink: 0;
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: #fbbf24;
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.template-chip:hover { background: rgba(245,158,11,0.25); }
