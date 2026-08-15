@@ -1,4 +1,3 @@
-import { JOB_IMPACT } from './data.js';
 // ============================================================
 // JusSocial — Main Application Logic
 // ============================================================
@@ -7,6 +6,7 @@ import {
   PROVINCES, EVENTS, EVENT_TYPES,
   getTotalStats, getEventCountByProvince,
   getUpcomingEvents, filterEvents,
+  JOB_IMPACT,
 } from './data.js';
 import { historyData } from './history.js';
 import {
@@ -14,6 +14,16 @@ import {
   initCounters, initDraggableTimeline, showToast,
 } from './animations.js';
 import { initArgentinaMap } from './map.js';
+
+// ── Global navigation (defined early so buttons always work) ──
+window.showScreenById = function(id) {
+  document.querySelectorAll('section.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  const bottomNav = document.querySelector('.bottom-nav');
+  if (bottomNav) bottomNav.style.display = id === 'inicio-screen' ? 'flex' : 'none';
+  window.scrollTo(0, 0);
+};
 
 // ── State ────────────────────────────────────────────────────
 const state = {
@@ -521,15 +531,7 @@ window.toggleJoin = function(eventId) {
 function initBottomNav() {
   const tabs = document.querySelectorAll('.bottom-nav .nav-item');
 
-  // ── Global navigation helper ─────────────────────────────
-  window.showScreenById = function(id) {
-    document.querySelectorAll('section.screen').forEach(s => s.classList.remove('active'));
-    const el = document.getElementById(id);
-    if (el) el.classList.add('active');
-    const bottomNav = document.querySelector('.bottom-nav');
-    if (bottomNav) bottomNav.style.display = id === 'inicio-screen' ? 'flex' : 'none';
-    window.scrollTo(0, 0);
-  };
+  // showScreenById is now defined at module scope (top of file)
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -809,24 +811,28 @@ function initFuturoLogic() {
 
 // ── Bootstrap ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  renderStats();
-  renderProvinceGrid();
-  renderTypeFilters();
-  renderEvents();
-  renderTimeline();
-  renderHistory();
+  // Critical navigation — runs first, always
+  try { initBottomNav(); } catch(e) { console.warn('initBottomNav error:', e); }
+  try { initHomeButtons(); } catch(e) { console.warn('initHomeButtons error:', e); }
+  try { initFuturoLogic(); } catch(e) { console.warn('initFuturoLogic error:', e); }
 
-  initParticles();
-  initNavbar();
-  initReveal();
-  initCounters();
-  initDraggableTimeline();
-  initSearch();
-  initBottomNav();
-  initHomeButtons();
-  initFuturoLogic();
-  initDateFilter();
-  initMap();
+  // Content rendering
+  try { renderStats(); } catch(e) { console.warn('renderStats error:', e); }
+  try { renderProvinceGrid(); } catch(e) { console.warn('renderProvinceGrid error:', e); }
+  try { renderTypeFilters(); } catch(e) { console.warn('renderTypeFilters error:', e); }
+  try { renderEvents(); } catch(e) { console.warn('renderEvents error:', e); }
+  try { renderTimeline(); } catch(e) { console.warn('renderTimeline error:', e); }
+  try { renderHistory(); } catch(e) { console.warn('renderHistory error:', e); }
+
+  // UI enhancements
+  try { initParticles(); } catch(e) { console.warn('initParticles error:', e); }
+  try { initNavbar(); } catch(e) { console.warn('initNavbar error:', e); }
+  try { initReveal(); } catch(e) { console.warn('initReveal error:', e); }
+  try { initCounters(); } catch(e) { console.warn('initCounters error:', e); }
+  try { initDraggableTimeline(); } catch(e) { console.warn('initDraggableTimeline error:', e); }
+  try { initSearch(); } catch(e) { console.warn('initSearch error:', e); }
+  try { initDateFilter(); } catch(e) { console.warn('initDateFilter error:', e); }
+  try { initMap(); } catch(e) { console.warn('initMap error:', e); }
 
   // Modal close on overlay click
   const modal = document.getElementById('event-modal');
@@ -844,7 +850,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (splash) splash.classList.add('hidden');
     });
   }
-
 
   // Keyboard ESC
   document.addEventListener('keydown', e => {
