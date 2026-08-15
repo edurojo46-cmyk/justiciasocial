@@ -772,3 +772,35 @@ export const ASSISTANT_KNOWLEDGE = [
   }
 ];
 
+
+// ── Cápsulas de Audio y Relatos (Modo Podcast) ────────────────
+export const AUDIO_PODCAST_EPISODES = [
+  {
+    id: "ep1",
+    title: "1891: La chispa de Rerum Novarum",
+    desc: "El nacimiento de los derechos del trabajador frente a la máquina industrial.",
+    duration: "1:45",
+    text: "En mayo de 1891, el mundo vivía las consecuencias más duras de la Revolución Industrial. Jornadas de dieciséis horas, trabajo infantil y salarios de miseria dominaban las fábricas de Europa y América. En ese contexto, el Papa León XIII publicó 'Rerum Novarum', sobre las cosas nuevas. Por primera vez, un documento de escala global afirmó que el salario no es una simple mercancía regulada por el mercado, sino que debe asegurar una vida digna para el trabajador y su familia. Nació allí la doctrina social moderna: el principio inquebrantable de que el capital no puede someter al ser humano."
+  },
+  {
+    id: "ep2",
+    title: "Las 3 Banderas Históricas de Argentina",
+    desc: "Soberanía Política, Independencia Económica y Justicia Social.",
+    duration: "1:50",
+    text: "A mediados del siglo veinte, la Argentina consagró tres principios que transformaron para siempre su historia: Soberanía Política, Independencia Económica y Justicia Social. No se trataba de conceptos teóricos, sino de derechos conquistados: el aguinaldo, las vacaciones pagadas, los convenios colectivos de trabajo, la jubilación universal y el acceso a la universidad gratuita para los hijos de los obreros. La justicia social demostró que una nación sólo es verdaderamente libre cuando el bienestar alcanza a los sectores más postergados de la patria."
+  },
+  {
+    id: "ep3",
+    title: "El Desafío de León XIV: La IA y el Trabajo",
+    desc: "Por qué el ser humano jamás puede ser reducido a un algoritmo.",
+    duration: "1:55",
+    text: "Hoy enfrentamos una nueva frontera: la inteligencia artificial, la automatización y la economía de plataformas. La síntesis de 'Magnifica Humanitas', bajo la figura de León XIV, nos interpela directamente: ¿Servirá la tecnología para emancipar a la humanidad o para precarizar a los trabajadores? El desafío contemporáneo no es rechazar el progreso tecnológico, sino subordinar los algoritmos al bien común. La creatividad, el cuidado, la empatía y la dignidad del trabajo humano son irreemplazables."
+  },
+  {
+    id: "ep4",
+    title: "El Poder de la Solidaridad Comunitaria",
+    desc: "La historia de las ollas populares y asambleas vecinales.",
+    duration: "1:40",
+    text: "En los momentos más difíciles de nuestra historia, cuando el tejido económico se quebró, fue la solidaridad comunitaria la que sostuvo a los barrios. Las ollas populares, los merenderos, los clubes barriales y las cooperativas no son meros lugares de asistencia: son trincheras de dignidad y organización popular. La justicia social no es una dádiva que se espera desde arriba, es un lazo fraterno que se construye colectivamente, codo a codo, en cada rincón de nuestra patria."
+  }
+];

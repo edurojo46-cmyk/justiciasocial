@@ -820,6 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try { initSearch(); } catch(e) { console.warn('initSearch error:', e); }
   try { initDateFilter(); } catch(e) { console.warn('initDateFilter error:', e); }
   try { initMap(); } catch(e) { console.warn('initMap error:', e); }
+  try { updateAudioUI(); } catch(e) { console.warn('updateAudioUI error:', e); }
 
   // Modal close on overlay click
   const modal = document.getElementById('event-modal');
@@ -1059,4 +1060,176 @@ window.locateNearMe = function() {
     },
     { timeout: 5000 }
   );
+};
+
+
+// ── Audio Podcast Player Engine ───────────────────────────────
+let currentAudioIndex = 0;
+let isAudioPlaying = false;
+let audioPlaybackRate = 1.0;
+let audioProgressTimer = null;
+let audioElapsedSeconds = 0;
+let totalTrackSeconds = 105;
+
+function parseDurationToSeconds(durStr) {
+  const parts = durStr.split(':');
+  return (parseInt(parts[0], 10) * 60) + parseInt(parts[1], 10);
+}
+
+function formatSeconds(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function updateAudioUI() {
+  const track = AUDIO_PODCAST_EPISODES[currentAudioIndex];
+  if (!track) return;
+
+  const titleEl = document.getElementById('ap-title');
+  const descEl = document.getElementById('ap-desc');
+  const trackNumEl = document.getElementById('ap-track-number');
+  const durEl = document.getElementById('ap-duration');
+  const currentEl = document.getElementById('ap-current-time');
+  const fillEl = document.getElementById('ap-progress-fill');
+  const transcriptEl = document.getElementById('ap-transcript-text');
+
+  if (titleEl) titleEl.textContent = track.title;
+  if (descEl) descEl.textContent = track.desc;
+  if (trackNumEl) trackNumEl.textContent = `${currentAudioIndex + 1} / ${AUDIO_PODCAST_EPISODES.length}`;
+  if (durEl) durEl.textContent = track.duration;
+  if (currentEl) currentEl.textContent = formatSeconds(audioElapsedSeconds);
+  if (transcriptEl) transcriptEl.textContent = track.text;
+
+  totalTrackSeconds = parseDurationToSeconds(track.duration);
+  const pct = Math.min(100, (audioElapsedSeconds / totalTrackSeconds) * 100);
+  if (fillEl) fillEl.style.width = pct + '%';
+}
+
+window.audioTogglePlay = function() {
+  if (isAudioPlaying) {
+    audioPause();
+  } else {
+    audioPlay();
+  }
+};
+
+function audioPlay() {
+  if (!('speechSynthesis' in window)) {
+    showToast('Reproductor de audio simulado en marcha', 'gold', '🎙️');
+  }
+
+  window.speechSynthesis.cancel(); // Stop any ongoing speech
+
+  const track = AUDIO_PODCAST_EPISODES[currentAudioIndex];
+  const utterance = new SpeechSynthesisUtterance(track.text);
+  utterance.rate = audioPlaybackRate;
+  utterance.lang = 'es-AR';
+
+  // Find Spanish voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const esVoice = voices.find(v => v.lang.includes('es') || v.lang.includes('ES'));
+  if (esVoice) utterance.voice = esVoice;
+
+  utterance.onend = function() {
+    audioStop();
+    // Auto play next episode
+    window.audioNextTrack();
+  };
+
+  utterance.onerror = function() {
+    audioStop();
+  };
+
+  window.speechSynthesis.speak(utterance);
+  isAudioPlaying = true;
+
+  // Toggle UI
+  const widget = document.getElementById('audio-player-widget');
+  if (widget) widget.classList.add('audio-playing');
+  const playIcon = document.getElementById('ap-play-icon');
+  const pauseIcon = document.getElementById('ap-pause-icon');
+  if (playIcon) playIcon.style.display = 'none';
+  if (pauseIcon) pauseIcon.style.display = 'block';
+
+  // Start progress timer
+  clearInterval(audioProgressTimer);
+  audioProgressTimer = setInterval(() => {
+    audioElapsedSeconds += 1 * audioPlaybackRate;
+    if (audioElapsedSeconds >= totalTrackSeconds) {
+      audioElapsedSeconds = totalTrackSeconds;
+    }
+    updateAudioUI();
+  }, 1000);
+
+  showToast(`Reproduciendo: ${track.title}`, 'blue', '🎙️');
+}
+
+function audioPause() {
+  window.speechSynthesis.cancel();
+  audioStop();
+}
+
+function audioStop() {
+  isAudioPlaying = false;
+  clearInterval(audioProgressTimer);
+  const widget = document.getElementById('audio-player-widget');
+  if (widget) widget.classList.remove('audio-playing');
+  const playIcon = document.getElementById('ap-play-icon');
+  const pauseIcon = document.getElementById('ap-pause-icon');
+  if (playIcon) playIcon.style.display = 'block';
+  if (pauseIcon) pauseIcon.style.display = 'none';
+}
+
+window.audioNextTrack = function() {
+  const wasPlaying = isAudioPlaying;
+  window.speechSynthesis.cancel();
+  audioStop();
+  audioElapsedSeconds = 0;
+  currentAudioIndex = (currentAudioIndex + 1) % AUDIO_PODCAST_EPISODES.length;
+  updateAudioUI();
+  if (wasPlaying) audioPlay();
+};
+
+window.audioPrevTrack = function() {
+  const wasPlaying = isAudioPlaying;
+  window.speechSynthesis.cancel();
+  audioStop();
+  audioElapsedSeconds = 0;
+  currentAudioIndex = (currentAudioIndex - 1 + AUDIO_PODCAST_EPISODES.length) % AUDIO_PODCAST_EPISODES.length;
+  updateAudioUI();
+  if (wasPlaying) audioPlay();
+};
+
+window.audioCycleSpeed = function() {
+  if (audioPlaybackRate === 1.0) audioPlaybackRate = 1.25;
+  else if (audioPlaybackRate === 1.25) audioPlaybackRate = 1.5;
+  else audioPlaybackRate = 1.0;
+
+  const btn = document.getElementById('ap-speed-btn');
+  if (btn) btn.textContent = audioPlaybackRate + 'x';
+
+  if (isAudioPlaying) {
+    audioPlay(); // restart with new speed
+  }
+};
+
+window.audioToggleTranscript = function() {
+  const box = document.getElementById('ap-transcript-box');
+  const btn = document.getElementById('ap-transcript-btn');
+  if (box) {
+    const isHidden = box.style.display === 'none';
+    box.style.display = isHidden ? 'block' : 'none';
+    if (btn) btn.style.background = isHidden ? 'rgba(56,189,248,0.3)' : 'rgba(56,189,248,0.1)';
+  }
+};
+
+window.audioSeek = function(e) {
+  const bar = document.getElementById('ap-progress-bar');
+  if (!bar) return;
+  const rect = bar.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const pct = Math.max(0, Math.min(1, clickX / rect.width));
+  audioElapsedSeconds = Math.floor(pct * totalTrackSeconds);
+  updateAudioUI();
 };

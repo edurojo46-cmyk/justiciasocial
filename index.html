@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=38.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=39.0" />
 <script>
   window.showScreenById = function(id) {
     var screens = document.querySelectorAll('section.screen');
@@ -143,6 +143,61 @@
         <svg class="hab-arrow" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
       </a>
 
+    </div>
+
+    
+    <!-- ── AUDIO PODCAST PLAYER (VOCES DE LA JUSTICIA SOCIAL) ── -->
+    <div class="audio-player-widget" id="audio-player-widget">
+      <div class="ap-header">
+        <div class="ap-badge">
+          <span class="ap-pulse-dot"></span>
+          <span>🎙️ Voces de la Justicia Social</span>
+        </div>
+        <div class="ap-track-count" id="ap-track-number">1 / 4</div>
+      </div>
+
+      <div class="ap-body">
+        <div class="ap-info">
+          <h4 class="ap-title" id="ap-title">1891: La chispa de Rerum Novarum</h4>
+          <p class="ap-desc" id="ap-desc">El nacimiento de los derechos laborales modernos frente a la máquina industrial.</p>
+        </div>
+
+        <div class="ap-waveform" id="ap-waveform">
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+
+        <div class="ap-progress-wrap">
+          <div class="ap-progress-bar" id="ap-progress-bar" onclick="window.audioSeek(event)">
+            <div class="ap-progress-fill" id="ap-progress-fill" style="width: 0%;"></div>
+          </div>
+          <div class="ap-times">
+            <span id="ap-current-time">0:00</span>
+            <span id="ap-duration">1:45</span>
+          </div>
+        </div>
+
+        <div class="ap-controls">
+          <button type="button" class="ap-btn" onclick="window.audioPrevTrack()" title="Episodio anterior" aria-label="Anterior">⏮️</button>
+          <button type="button" class="ap-btn ap-btn-play" id="ap-play-btn" onclick="window.audioTogglePlay()" title="Reproducir / Pausar" aria-label="Reproducir">
+            <svg id="ap-play-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="ap-pause-icon" style="display:none" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button type="button" class="ap-btn" onclick="window.audioNextTrack()" title="Episodio siguiente" aria-label="Siguiente">⏭️</button>
+          <button type="button" class="ap-speed-btn" id="ap-speed-btn" onclick="window.audioCycleSpeed()" title="Velocidad de reproducción">1x</button>
+          <button type="button" class="ap-transcript-toggle" id="ap-transcript-btn" onclick="window.audioToggleTranscript()" title="Ver guion escrito">📜 Guion</button>
+        </div>
+
+        <div class="ap-transcript-box" id="ap-transcript-box" style="display:none;">
+          <p id="ap-transcript-text"></p>
+        </div>
+      </div>
     </div>
 
     <!-- Quick access chips -->
@@ -1208,6 +1263,6 @@
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=38.0"></script>
+  <script type="module" src="js/app.v2.js?v=39.0"></script>
 </body>
 </html>

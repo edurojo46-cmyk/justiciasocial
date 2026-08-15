@@ -2908,3 +2908,192 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
 .assistant-send-btn:hover {
   background: #1d4ed8;
 }
+
+/* ── Audio Podcast Widget ────────────────────────────────────── */
+.audio-player-widget {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 18px;
+  padding: 1.25rem;
+  margin: 1.25rem 0 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.audio-player-widget::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0284c7, #38bdf8, #f59e0b);
+}
+
+.ap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+.ap-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.ap-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: js-ring-pulse 2s infinite;
+}
+.ap-track-count {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ap-title {
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin: 0 0 0.25rem;
+  font-family: 'Playfair Display', serif;
+}
+.ap-desc {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 0 0 0.85rem;
+  line-height: 1.35;
+}
+
+/* Sound Waveform Animation */
+.ap-waveform {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  margin-bottom: 0.75rem;
+}
+.wave-bar {
+  flex: 1;
+  background: rgba(56, 189, 248, 0.35);
+  border-radius: 4px;
+  height: 6px;
+  transition: height 0.2s ease, background 0.2s ease;
+}
+.audio-playing .wave-bar:nth-child(1) { animation: waveAnim 0.8s infinite ease-in-out; }
+.audio-playing .wave-bar:nth-child(2) { animation: waveAnim 0.6s infinite ease-in-out 0.1s; }
+.audio-playing .wave-bar:nth-child(3) { animation: waveAnim 1.0s infinite ease-in-out 0.2s; }
+.audio-playing .wave-bar:nth-child(4) { animation: waveAnim 0.7s infinite ease-in-out 0.3s; }
+.audio-playing .wave-bar:nth-child(5) { animation: waveAnim 0.9s infinite ease-in-out 0.15s; }
+.audio-playing .wave-bar:nth-child(6) { animation: waveAnim 0.75s infinite ease-in-out 0.25s; }
+.audio-playing .wave-bar:nth-child(7) { animation: waveAnim 1.1s infinite ease-in-out 0.05s; }
+.audio-playing .wave-bar:nth-child(8) { animation: waveAnim 0.65s infinite ease-in-out 0.35s; }
+
+@keyframes waveAnim {
+  0%, 100% { height: 6px; background: rgba(56, 189, 248, 0.4); }
+  50% { height: 22px; background: #38bdf8; }
+}
+
+/* Progress bar */
+.ap-progress-wrap {
+  margin-bottom: 1rem;
+}
+.ap-progress-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ap-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+  border-radius: 4px;
+  transition: width 0.15s linear;
+}
+.ap-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Controls */
+.ap-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.ap-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.ap-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(1.08);
+}
+.ap-btn-play {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #0284c7, #38bdf8);
+  border: none;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+}
+.ap-btn-play:hover {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+}
+
+.ap-speed-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #cbd5e1;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ap-transcript-toggle {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 8px;
+  color: #38bdf8;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ap-transcript-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #e2e8f0;
+  max-height: 180px;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease;
+}
