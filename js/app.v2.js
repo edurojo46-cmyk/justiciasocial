@@ -821,6 +821,8 @@ document.addEventListener('DOMContentLoaded', () => {
   try { initDateFilter(); } catch(e) { console.warn('initDateFilter error:', e); }
   try { initMap(); } catch(e) { console.warn('initMap error:', e); }
   try { updateAudioUI(); } catch(e) { console.warn('updateAudioUI error:', e); }
+  try { initCommunicationModules(); } catch(e) { console.warn('initCommunicationModules error:', e); }
+
 
   // Modal close on overlay click
   const modal = document.getElementById('event-modal');
@@ -1233,3 +1235,199 @@ window.audioSeek = function(e) {
   audioElapsedSeconds = Math.floor(pct * totalTrackSeconds);
   updateAudioUI();
 };
+
+// ═══════════════════════════════════════════════════════
+// MÓDULO DE COMUNICACIÓN CIUDADANA
+// ═══════════════════════════════════════════════════════
+
+// ── 1. Alertas ────────────────────────────────────────
+function renderAlerts() {
+  var el = document.getElementById('alerts-list');
+  if (!el) return;
+  el.innerHTML = ALERTS.map(function(a) {
+    return '<div class="alert-global-banner"><div class="alert-dot"></div><span class="alert-banner-text">' + a.text + '</span><span class="alert-type-badge badge-' + a.type + '">' + a.type.toUpperCase() + '</span></div>';
+  }).join('');
+}
+
+function renderAlertsBanner() {
+  var topbar = document.querySelector('#inicio-screen .home-topbar');
+  if (!topbar || document.getElementById('alert-banner-home')) return;
+  var latest = ALERTS[0];
+  if (!latest) return;
+  var banner = document.createElement('div');
+  banner.id = 'alert-banner-home';
+  banner.className = 'alert-global-banner';
+  banner.style.cssText = 'margin: 0.5rem 1rem; cursor:pointer;';
+  banner.innerHTML = '<div class="alert-dot"></div><span class="alert-banner-text">' + latest.text + '</span><span class="alert-type-badge badge-' + latest.type + '">' + latest.type + '</span>';
+  banner.onclick = function() { window.showScreenById('alertas-screen'); };
+  topbar.insertAdjacentElement('afterend', banner);
+}
+
+// ── 2. Termómetro Social ──────────────────────────────
+function renderSocialStats() {
+  var el = document.getElementById('social-stats-grid');
+  if (!el) return;
+  el.className = 'social-stats-grid';
+  el.innerHTML = SOCIAL_STATS.map(function(s) {
+    var arw = s.trend === 'up' ? '▲' : (s.trend === 'down' ? '▼' : '▬');
+    return '<div class="stat-social-card" data-icon="' + s.icon + '"><div class="ssc-label">' + s.label + '</div><div class="ssc-value">' + s.value + '</div><div class="ssc-unit">' + s.unit + '</div><div class="ssc-trend-' + s.trend + '">' + arw + ' ' + s.change + '</div></div>';
+  }).join('');
+}
+
+// ── 3. Encuestas ──────────────────────────────────────
+var pollVotes = {};
+try {
+  var savedVotes = localStorage.getItem('jussocial_poll_votes');
+  if (savedVotes) pollVotes = JSON.parse(savedVotes);
+} catch(e) {}
+
+function renderPolls() {
+  var el = document.getElementById('polls-container');
+  if (!el) return;
+  el.innerHTML = POLLS.map(function(poll) {
+    var hasVoted = pollVotes[poll.id] !== undefined;
+    if (hasVoted) {
+      var myVote = pollVotes[poll.id];
+      var allVotes = poll.votes.slice();
+      allVotes[myVote]++;
+      var total = allVotes.reduce(function(a,b){return a+b;}, 0);
+      var bars = poll.options.map(function(opt, i) {
+        var pct = total > 0 ? Math.round((allVotes[i]/total)*100) : 0;
+        return '<div class="poll-result-bar-wrap"><div class="poll-result-label"><span>' + opt + '</span><span>' + pct + '%</span></div><div class="poll-bar-bg"><div class="poll-bar-fill" style="width:' + pct + '%"></div></div></div>';
+      }).join('');
+      return '<div class="poll-card"><p class="poll-question">' + poll.question + '</p><div class="poll-options">' + bars + '</div><div class="poll-total">' + total.toLocaleString('es-AR') + ' votos totales · Ya votaste ✓</div></div>';
+    }
+    var totalVotes = poll.votes.reduce(function(a,b){return a+b;},0);
+    var btns = poll.options.map(function(opt, i) {
+      return '<button class="poll-option-btn" onclick="window.castVote(\'' + poll.id + '\',' + i + ')">' + opt + '</button>';
+    }).join('');
+    return '<div class="poll-card"><p class="poll-question">' + poll.question + '</p><div class="poll-options">' + btns + '</div><div class="poll-total">' + totalVotes.toLocaleString('es-AR') + ' votos ya registrados</div></div>';
+  }).join('');
+}
+
+window.castVote = function(pollId, optionIndex) {
+  pollVotes[pollId] = optionIndex;
+  try { localStorage.setItem('jussocial_poll_votes', JSON.stringify(pollVotes)); } catch(e) {}
+  renderPolls();
+  showToast('¡Voto registrado! Gracias por participar 🗳️', 'gold', '✅');
+};
+
+// ── 4. La Voz del Barrio ──────────────────────────────
+var barrioMessages = [];
+try {
+  var savedBarrio = localStorage.getItem('jussocial_barrio_msgs');
+  if (savedBarrio) barrioMessages = JSON.parse(savedBarrio);
+} catch(e) {}
+
+var PROVINCE_LABELS_MAP = {
+  nacional:'🌍 Nacional', buenosaires:'🏛️ Buenos Aires', caba:'🌆 CABA',
+  cordoba:'⛪ Córdoba', santafe:'🌾 Santa Fe', mendoza:'🍇 Mendoza',
+  tucuman:'🎺 Tucumán', salta:'🦙 Salta', misiones:'🌿 Misiones',
+  chaco:'🌵 Chaco', corrientes:'🐊 Corrientes'
+};
+
+var POST_TYPE_LABELS = {
+  denuncia:'🚨 Denuncia', solidaridad:'🤝 Solidaridad',
+  convocatoria:'📢 Convocatoria', logro:'🏆 Logro', info:'ℹ️ Info'
+};
+
+function renderBarrioPosts() {
+  var el = document.getElementById('barrio-posts-list');
+  if (!el) return;
+  var allPosts = barrioMessages.concat(BARRIO_POSTS_DEFAULT);
+  if (allPosts.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-muted);text-align:center;">Aún no hay mensajes. ¡Sé el primero!</p>';
+    return;
+  }
+  el.innerHTML = allPosts.map(function(post) {
+    var provLabel = PROVINCE_LABELS_MAP[post.province] || post.province;
+    var typeClass = 'type-' + post.type;
+    var typeLabel = POST_TYPE_LABELS[post.type] || post.type;
+    var wa = encodeURIComponent('📡 *La Voz del Barrio - JusSocial*\n\n' + post.text + '\n\nZona: ' + provLabel + '\n\nPlataforma JusSocial Argentina');
+    return '<div class="barrio-post-card"><div class="barrio-post-header"><span class="barrio-post-author">' + (post.author || 'Ciudadano/a') + '</span><span class="barrio-post-type ' + typeClass + '">' + typeLabel + '</span></div><p class="barrio-post-text">' + post.text + '</p><div class="barrio-post-footer"><span class="barrio-post-province">' + provLabel + ' · ' + post.date + '</span><button class="btn-share-barrio" onclick="window.open(\'https://api.whatsapp.com/send?text=' + wa + '\',\'_blank\')">📲 Compartir</button></div></div>';
+  }).join('');
+}
+
+window.publishBarrioMsg = function() {
+  var text = (document.getElementById('barrio-msg-text') || {}).value;
+  text = text ? text.trim() : '';
+  var province = (document.getElementById('barrio-msg-province') || {}).value || 'nacional';
+  var type = (document.getElementById('barrio-msg-type') || {}).value || 'info';
+  var author = (document.getElementById('barrio-msg-author') || {}).value;
+  author = author ? author.trim() : '';
+
+  if (!text || text.length < 10) {
+    showToast('Escribí un mensaje de al menos 10 caracteres', 'red', '⚠️');
+    return;
+  }
+  var today = new Date().toISOString().split('T')[0];
+  var newPost = { id: 'u_' + Date.now(), text: text, province: province, type: type, author: author || 'Ciudadano/a', date: today };
+  barrioMessages.unshift(newPost);
+  try { localStorage.setItem('jussocial_barrio_msgs', JSON.stringify(barrioMessages.slice(0, 50))); } catch(e) {}
+  document.getElementById('barrio-msg-text').value = '';
+  document.getElementById('barrio-msg-author').value = '';
+  renderBarrioPosts();
+  showToast('¡Mensaje publicado en el Foro Federal! 📡', 'gold', '✅');
+};
+
+// ── 5. Generador de Comunicados ────────────────────────
+window.generateComunicado = function() {
+  var tipo = (document.getElementById('com-tipo') || {}).value || '';
+  var dest = ((document.getElementById('com-destinatario') || {}).value || '').trim();
+  var tema = ((document.getElementById('com-tema') || {}).value || '').trim();
+  var detalle = ((document.getElementById('com-detalle') || {}).value || '').trim();
+  var remitente = ((document.getElementById('com-remitente') || {}).value || '').trim();
+  var provincia = (document.getElementById('com-provincia') || {}).value || '';
+
+  if (!dest || !tema || !detalle || !remitente) {
+    showToast('Completá todos los campos obligatorios', 'red', '⚠️');
+    return;
+  }
+  var today = new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+  var tipoLabels = { reclamo:'RECLAMO FORMAL', solicitud:'SOLICITUD DE INFORMACIÓN', denuncia:'DENUNCIA CIUDADANA', agradecimiento:'RECONOCIMIENTO', convocatoria:'CONVOCATORIA COLECTIVA' };
+  var tipoLabel = tipoLabels[tipo] || tipo.toUpperCase();
+
+  var comunicado = '─────────────────────────────────────────\n  COMUNICADO OFICIAL · JUSTICIA SOCIAL\n  ' + tipoLabel + '\n─────────────────────────────────────────\n\nDESTINATARIO/A: ' + dest + '\n\nFECHA: ' + today + '\nLUGAR: ' + provincia + ', Argentina\nREMITENTE: ' + remitente + '\nASUNTO: ' + tema + '\n\n─────────────────────────────────────────\n\nPor medio del presente comunicado, ' + remitente + ', con domicilio\nen la provincia de ' + provincia + ', se dirige respetuosamente a\n' + dest + ' con el objeto de hacer saber lo siguiente:\n\nSITUACIÓN:\n' + detalle + '\n\nEn virtud de lo expuesto, solicitamos que se adopten las medidas\ncorrespondientes conforme a los principios de justicia social,\nel Art. 14 bis de la Constitución Nacional Argentina y los\ncompromisos asumidos con la ciudadanía.\n\nQuedamos a disposición para ampliar la información necesaria.\n\nAtentamente,\n' + remitente + '\n' + provincia + ', Argentina · ' + today + '\n\n─────────────────────────────────────────\nGenerado por JusSocial · Plataforma Nacional';
+
+  var resultEl = document.getElementById('comunicado-result');
+  var formEl = document.getElementById('comunicado-form-section');
+  if (!resultEl) return;
+
+  var waText = encodeURIComponent(comunicado);
+  resultEl.innerHTML = '<div class="comunicado-result-box">' + comunicado + '</div><div class="comunicado-actions"><button class="btn-copy-comunicado" id="com-copy-btn">📋 Copiar texto</button><button class="btn-wa-comunicado" onclick="window.open(\'https://api.whatsapp.com/send?text=' + waText + '\',\'_blank\')">📲 Enviar por WhatsApp</button></div><button class="btn-new-comunicado" id="btn-new-com">← Generar otro comunicado</button>';
+  resultEl.style.display = 'block';
+  if (formEl) formEl.style.display = 'none';
+
+  // Save comunicado text in data attr for clipboard
+  resultEl.setAttribute('data-com-text', comunicado);
+  document.getElementById('com-copy-btn').onclick = function() {
+    navigator.clipboard.writeText(resultEl.getAttribute('data-com-text')).then(function() {
+      showToast('¡Copiado al portapapeles!', 'gold', '📋');
+    });
+  };
+  document.getElementById('btn-new-com').onclick = function() {
+    resultEl.style.display = 'none';
+    if (formEl) formEl.style.display = 'flex';
+  };
+  showToast('¡Comunicado generado! 📰', 'gold', '✅');
+};
+
+// ── 6. Consignas del Día ──────────────────────────────
+function renderConsignas() {
+  var el = document.getElementById('consignas-container');
+  if (!el) return;
+  el.innerHTML = DAILY_PHRASES.map(function(p) {
+    var waText = encodeURIComponent(p.icon + ' ' + p.text + '\n\n— ' + p.author + '\n\n#JusSocial #JusticiaSocial');
+    return '<div class="consigna-card"><div class="consigna-icon">' + p.icon + '</div><p class="consigna-text">' + p.text + '</p><p class="consigna-author">— ' + p.author + '</p><div class="consigna-share-row"><button class="btn-share-consigna" onclick="window.open(\'https://api.whatsapp.com/send?text=' + waText + '\',\'_blank\')">📲 Compartir</button></div></div>';
+  }).join('');
+}
+
+// ── Init all communication modules ────────────────────
+function initCommunicationModules() {
+  try { renderAlerts(); } catch(e) { console.warn('renderAlerts error:', e); }
+  try { renderAlertsBanner(); } catch(e) { console.warn('renderAlertsBanner error:', e); }
+  try { renderSocialStats(); } catch(e) { console.warn('renderSocialStats error:', e); }
+  try { renderPolls(); } catch(e) { console.warn('renderPolls error:', e); }
+  try { renderBarrioPosts(); } catch(e) { console.warn('renderBarrioPosts error:', e); }
+  try { renderConsignas(); } catch(e) { console.warn('renderConsignas error:', e); }
+}

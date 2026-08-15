@@ -3095,3 +3095,294 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   overflow-y: auto;
   animation: fadeIn 0.2s ease;
 }
+
+
+/* ── Communication Shortcuts Grid ───────────────────────────── */
+.comm-shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.comm-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.85rem 0.5rem;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  font-family: inherit;
+}
+.comm-shortcut:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+.cs-icon { font-size: 1.6rem; line-height: 1; }
+.cs-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.3px; }
+
+.comm-red    { background: rgba(239, 68, 68, 0.15);  color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); }
+.comm-blue   { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.35); }
+.comm-purple { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.35); }
+.comm-green  { background: rgba(34, 197, 94, 0.15);  color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.35); }
+.comm-gold   { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
+.comm-cyan   { background: rgba(6, 182, 212, 0.15);  color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.35); }
+
+/* ── Alert Banner (Boletín) ──────────────────────────────────── */
+.alert-global-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(90deg, rgba(239,68,68,0.18), rgba(239,68,68,0.08));
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.alert-global-banner:hover { background: rgba(239,68,68,0.22); }
+.alert-dot { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
+.alert-banner-text { font-size: 0.87rem; color: #fca5a5; line-height: 1.3; flex: 1; }
+.alert-type-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+}
+.badge-urgente { background: rgba(239,68,68,0.3); color: #fca5a5; }
+.badge-info    { background: rgba(59,130,246,0.3); color: #93c5fd; }
+.badge-aviso   { background: rgba(245,158,11,0.3); color: #fcd34d; }
+
+/* ── Social Stats Cards ──────────────────────────────────────── */
+.social-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.stat-social-card {
+  background: var(--surface-color, #131b2e);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  overflow: hidden;
+}
+.stat-social-card::before {
+  content: attr(data-icon);
+  position: absolute;
+  top: 0.75rem; right: 0.75rem;
+  font-size: 1.8rem;
+  opacity: 0.2;
+}
+.ssc-label { font-size: 0.78rem; color: var(--text-secondary, #94a3b8); font-weight: 600; }
+.ssc-value { font-size: 1.6rem; font-weight: 800; color: white; line-height: 1; }
+.ssc-unit  { font-size: 0.72rem; color: var(--text-muted, #64748b); }
+.ssc-trend-up    { font-size: 0.75rem; color: #4ade80; font-weight: 700; }
+.ssc-trend-down  { font-size: 0.75rem; color: #f87171; font-weight: 700; }
+.ssc-trend-stable{ font-size: 0.75rem; color: #fbbf24; font-weight: 700; }
+
+/* ── Poll Cards ──────────────────────────────────────────────── */
+.poll-card {
+  background: var(--surface-color, #131b2e);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.poll-question {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.poll-options { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.poll-option-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  background: rgba(255,255,255,0.04);
+  color: white;
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.poll-option-btn:hover { background: rgba(255,255,255,0.1); }
+.poll-option-btn.voted { border-color: #60a5fa; background: rgba(59,130,246,0.15); }
+
+.poll-result-bar-wrap { margin-top: 0.35rem; }
+.poll-result-label { font-size: 0.82rem; color: #cbd5e1; margin-bottom: 0.3rem; display: flex; justify-content: space-between; }
+.poll-bar-bg { background: rgba(255,255,255,0.08); border-radius: 6px; height: 8px; overflow: hidden; }
+.poll-bar-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8, #3b82f6); border-radius: 6px; transition: width 0.4s ease; }
+.poll-total { font-size: 0.72rem; color: var(--text-muted); text-align: right; margin-top: 0.5rem; }
+
+/* ── Barrio (Foro) Styles ────────────────────────────────────── */
+.barrio-compose-box {
+  background: var(--surface-color, #131b2e);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.12));
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.barrio-compose-box textarea,
+.barrio-compose-box input {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 0.75rem;
+  color: white;
+  font-family: inherit;
+  font-size: 0.88rem;
+  resize: none;
+}
+.barrio-compose-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.barrio-compose-box select {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  color: white;
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+.btn-barrio-publish {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: filter 0.15s;
+}
+.btn-barrio-publish:hover { filter: brightness(1.1); }
+
+.barrio-post-card {
+  background: var(--surface-color, #131b2e);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+.barrio-post-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+.barrio-post-author { font-size: 0.82rem; font-weight: 700; color: white; }
+.barrio-post-type {
+  font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.5rem;
+  border-radius: 6px; text-transform: uppercase;
+}
+.type-denuncia    { background: rgba(239,68,68,0.2); color: #fca5a5; }
+.type-solidaridad { background: rgba(34,197,94,0.2); color: #4ade80; }
+.type-convocatoria{ background: rgba(59,130,246,0.2); color: #93c5fd; }
+.type-logro       { background: rgba(245,158,11,0.2); color: #fcd34d; }
+.type-info        { background: rgba(148,163,184,0.2); color: #cbd5e1; }
+
+.barrio-post-text { font-size: 0.9rem; color: #e2e8f0; line-height: 1.45; margin-bottom: 0.65rem; }
+.barrio-post-footer { display: flex; justify-content: space-between; align-items: center; }
+.barrio-post-province { font-size: 0.75rem; color: var(--text-muted); }
+.btn-share-barrio {
+  background: #25D366; color: white; border: none; border-radius: 8px;
+  padding: 0.4rem 0.75rem; font-size: 0.78rem; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
+}
+
+/* ── Comunicado Form & Result ────────────────────────────────── */
+.comunicado-form-box { display: flex; flex-direction: column; gap: 0.85rem; }
+
+.comunicado-result-box {
+  background: #0f172a;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 1.25rem;
+  color: white;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  margin-top: 1rem;
+}
+.comunicado-actions {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+.btn-copy-comunicado {
+  flex: 1; padding: 0.75rem; background: #1d4ed8; color: white;
+  border: none; border-radius: 10px; font-weight: 700; cursor: pointer;
+  font-family: inherit;
+}
+.btn-wa-comunicado {
+  flex: 1; padding: 0.75rem; background: #25D366; color: white;
+  border: none; border-radius: 10px; font-weight: 700; cursor: pointer;
+  font-family: inherit;
+}
+.btn-new-comunicado {
+  width: 100%; padding: 0.65rem; background: rgba(255,255,255,0.07);
+  color: #94a3b8; border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+
+/* ── Consignas Cards ─────────────────────────────────────────── */
+.consigna-card {
+  background: linear-gradient(135deg, var(--surface-color, #131b2e), #1e293b);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.consigna-card::before {
+  content: '"';
+  position: absolute;
+  top: -15px; left: 10px;
+  font-size: 6rem;
+  font-family: Georgia, serif;
+  color: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.consigna-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.consigna-text {
+  font-size: 1rem;
+  font-style: italic;
+  color: white;
+  line-height: 1.55;
+  margin-bottom: 0.75rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.consigna-author { font-size: 0.78rem; color: #94a3b8; font-weight: 600; }
+.consigna-share-row { display: flex; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
+.btn-share-consigna {
+  background: #25D366; color: white; border: none; border-radius: 10px;
+  padding: 0.5rem 1rem; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer;
+}
+.btn-copy-consigna {
+  background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px; padding: 0.5rem 1rem; font-size: 0.82rem;
+  font-weight: 700; cursor: pointer;
+}

@@ -804,3 +804,68 @@ export const AUDIO_PODCAST_EPISODES = [
     text: "En los momentos más difíciles de nuestra historia, cuando el tejido económico se quebró, fue la solidaridad comunitaria la que sostuvo a los barrios. Las ollas populares, los merenderos, los clubes barriales y las cooperativas no son meros lugares de asistencia: son trincheras de dignidad y organización popular. La justicia social no es una dádiva que se espera desde arriba, es un lazo fraterno que se construye colectivamente, codo a codo, en cada rincón de nuestra patria."
   }
 ];
+
+// ── Alertas Urgentes ──────────────────────────────────────────
+export const ALERTS = [
+  { id: 'a1', type: 'urgente', text: '🔴 PARO DOCENTE · Mañana en todo el país · CTA y CGT', date: '2026-08-16', province: 'nacional' },
+  { id: 'a2', type: 'info',    text: '⚡ Sesión extraordinaria en el Congreso hoy a las 14hs', date: '2026-08-15', province: 'nacional' },
+  { id: 'a3', type: 'aviso',   text: '🍲 Merendero de Villa 31 necesita donaciones urgentes esta semana', date: '2026-08-15', province: 'caba' },
+  { id: 'a4', type: 'info',    text: '📢 Audiencia pública por tarifas en Córdoba · Viernes 18hs', date: '2026-08-15', province: 'cordoba' },
+];
+
+// ── Estadísticas Sociales (Termómetro del País) ──────────────
+export const SOCIAL_STATS = [
+  { id: 's1', label: 'Canasta Básica Alimentaria', value: '$145.230', unit: 'por familia · agosto 2026', icon: '🛒', trend: 'up', change: '+6.2%' },
+  { id: 's2', label: 'Desempleo Nacional', value: '8.1%', unit: 'de la PEA · 2° trimestre 2026', icon: '📉', trend: 'down', change: '-0.4%' },
+  { id: 's3', label: 'Comedores Comunitarios', value: '12.400', unit: 'activos en todo el país', icon: '🍲', trend: 'up', change: '+320 en 2026' },
+  { id: 's4', label: 'Salario Mínimo (SMVM)', value: '$350.000', unit: 'a partir de agosto 2026', icon: '💼', trend: 'up', change: '+12% agosto' },
+  { id: 's5', label: 'Cobertura de Salud', value: '68%', unit: 'de la población con obra social', icon: '🏥', trend: 'stable', change: '=sin cambio' },
+  { id: 's6', label: 'Inflación Acumulada 2026', value: '41.3%', unit: 'enero–julio 2026', icon: '📊', trend: 'down', change: '-18% vs 2025' },
+];
+
+// ── Encuestas Comunitarias ────────────────────────────────────
+export const POLLS = [
+  {
+    id: 'p1',
+    question: '¿Apoyás el aumento del Salario Mínimo Vital y Móvil para 2026?',
+    options: ['✅ Sí, es urgente y necesario', '⚖️ Depende del contexto económico', '❌ No, perjudica a las empresas'],
+    votes: [1240, 180, 95],
+    category: 'laboral',
+    active: true,
+  },
+  {
+    id: 'p2',
+    question: '¿Conocés todos tus derechos laborales básicos?',
+    options: ['✅ Sí, los conozco bien', '🟡 Conozco algunos', '❌ No, necesito orientación'],
+    votes: [430, 890, 650],
+    category: 'educacion',
+    active: true,
+  },
+  {
+    id: 'p3',
+    question: '¿Creés que la Inteligencia Artificial representa una amenaza para el empleo en Argentina?',
+    options: ['🔴 Sí, es una amenaza real', '🟡 Solo en ciertos sectores', '🟢 No, creará nuevos trabajos'],
+    votes: [920, 730, 310],
+    category: 'tecnologia',
+    active: true,
+  },
+];
+
+// ── Foro La Voz del Barrio ────────────────────────────────────
+export const BARRIO_POSTS_DEFAULT = [
+  { id: 'b1', province: 'chaco', author: 'Vecinos del Barrio Namqom', text: 'Sin agua potable desde hace 3 días. Necesitamos asistencia urgente del municipio.', type: 'denuncia', date: '2026-08-15', whatsappReady: true },
+  { id: 'b2', province: 'caba',  author: 'Comedor Los Girasoles · Soldati', text: 'Olla popular diaria necesita donaciones de arroz, fideos y aceite. ¡Gracias comunidad!', type: 'solidaridad', date: '2026-08-14', whatsappReady: true },
+  { id: 'b3', province: 'tucuman', author: 'Centro de Estudiantes UNT', text: 'Asamblea abierta el jueves 18hs para discutir el presupuesto educativo. ¡Todos bienvenidos!', type: 'convocatoria', date: '2026-08-14', whatsappReady: true },
+  { id: 'b4', province: 'santafe', author: 'Sindicato de Docentes AMSAFE', text: 'Lograda la recomposición salarial del 18%. Gracias a todos por el acompañamiento.', type: 'logro', date: '2026-08-13', whatsappReady: true },
+];
+
+// ── Consignas del Día ─────────────────────────────────────────
+export const DAILY_PHRASES = [
+  { text: '"El trabajo engrandece al hombre y a la sociedad que lo respeta."', author: 'Doctrina Social de la Iglesia', icon: '✊' },
+  { text: '"Tres banderas: Soberanía Política, Independencia Económica y Justicia Social."', author: 'Pueblo Argentino, 1946', icon: '🇦🇷' },
+  { text: '"No hay patria sin pueblo y no hay pueblo sin justicia."', author: 'Movimiento Popular', icon: '🏛️' },
+  { text: '"La tecnología debe estar al servicio del ser humano, no al revés."', author: 'Magnifica Humanitas · León XIV, 2025', icon: '⚖️' },
+  { text: '"Donde hay una necesidad, hay un derecho."', author: 'Eva Perón, 1948', icon: '💛' },
+  { text: '"La solidaridad es la virtud que nos hace más fuertes juntos que separados."', author: 'Doctrina Social · Juan Pablo II', icon: '🤝' },
+  { text: '"Ningún niño debe irse a dormir con hambre en una tierra que tiene para todos."', author: 'Organización Barrial Nacional', icon: '🍲' },
+];

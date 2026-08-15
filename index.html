@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=40.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=41.0" />
 <script>
   window.showScreenById = function(id) {
     var screens = document.querySelectorAll('section.screen');
@@ -207,6 +207,34 @@
       <a href="javascript:void(0)" class="home-quick-chip" data-target="comparativa" onclick="window.showScreenById('comparativa-screen'); return false;">⚖️ León XIII·XIV</a>
       <a href="javascript:void(0)" class="home-quick-chip" data-target="documentos" onclick="window.showScreenById('biblioteca-screen'); return false;">📄 Documentos</a>
       <a href="javascript:void(0)" class="home-quick-chip" data-target="mapa" onclick="window.showScreenById('mapa-screen'); return false;">🗺️ Mapa</a>
+    </div>
+
+    <!-- ── 5 Nuevos Accesos de Comunicación ── -->
+    <div class="comm-shortcuts-grid">
+      <button type="button" id="btn-alertas" class="comm-shortcut comm-red" onclick="window.showScreenById('alertas-screen')">
+        <span class="cs-icon">📣</span>
+        <span class="cs-label">Alertas</span>
+      </button>
+      <button type="button" id="btn-termometro" class="comm-shortcut comm-blue" onclick="window.showScreenById('termometro-screen')">
+        <span class="cs-icon">📊</span>
+        <span class="cs-label">Termómetro</span>
+      </button>
+      <button type="button" id="btn-encuestas" class="comm-shortcut comm-purple" onclick="window.showScreenById('encuestas-screen')">
+        <span class="cs-icon">🗳️</span>
+        <span class="cs-label">Encuestas</span>
+      </button>
+      <button type="button" id="btn-barrio" class="comm-shortcut comm-green" onclick="window.showScreenById('barrio-screen')">
+        <span class="cs-icon">📡</span>
+        <span class="cs-label">Mi Barrio</span>
+      </button>
+      <button type="button" id="btn-comunicados" class="comm-shortcut comm-gold" onclick="window.showScreenById('comunicados-screen')">
+        <span class="cs-icon">📰</span>
+        <span class="cs-label">Comunicados</span>
+      </button>
+      <button type="button" id="btn-consignas" class="comm-shortcut comm-cyan" onclick="window.showScreenById('consignas-screen')">
+        <span class="cs-icon">📱</span>
+        <span class="cs-label">Consignas</span>
+      </button>
     </div>
 
 
@@ -1260,9 +1288,202 @@
     </div>
   </div>
 
+  
+
+  <!-- ── ALERTAS SCREEN ──────────────────────────────────────── -->
+  <section class="screen" id="alertas-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">📣 Boletín de Alertas</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="screen-content" style="padding:16px;">
+      <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
+        Alertas, avisos urgentes y noticias del movimiento social en tiempo real.
+      </p>
+      <div id="alerts-list"></div>
+    </div>
+  </section>
+
+  <!-- ── TERMÓMETRO SOCIAL SCREEN ────────────────────────────── -->
+  <section class="screen" id="termometro-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">📊 Termómetro Social</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="screen-content" style="padding:16px;">
+      <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
+        Indicadores socioeconómicos clave del país, actualizados mensualmente.
+      </p>
+      <div id="social-stats-grid"></div>
+      <p style="font-size:0.72rem;color:var(--text-muted);margin-top:1.5rem;text-align:center;">
+        Fuentes: INDEC · Ministerio de Trabajo · Relevamiento de Organizaciones Sociales · Agosto 2026
+      </p>
+    </div>
+  </section>
+
+  <!-- ── ENCUESTAS SCREEN ─────────────────────────────────────── -->
+  <section class="screen" id="encuestas-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">🗳️ Consultas Populares</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="screen-content" style="padding:16px;">
+      <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
+        Hacé oír tu voz. Participá de las consultas comunitarias activas.
+      </p>
+      <div id="polls-container"></div>
+    </div>
+  </section>
+
+  <!-- ── LA VOZ DEL BARRIO SCREEN ─────────────────────────────── -->
+  <section class="screen" id="barrio-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">📡 La Voz del Barrio</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="screen-content" style="padding:16px;">
+      <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1rem;">
+        Foro comunitario federal. Denuncias, logros y solidaridad desde todo el país.
+      </p>
+
+      <!-- Nuevo mensaje -->
+      <div class="barrio-compose-box">
+        <textarea id="barrio-msg-text" placeholder="Escribí tu mensaje, denuncia o convocatoria…" rows="3"></textarea>
+        <div class="barrio-compose-row">
+          <select id="barrio-msg-province">
+            <option value="nacional">🌍 Nacional</option>
+            <option value="buenosaires">🏛️ Buenos Aires</option>
+            <option value="caba">🌆 CABA</option>
+            <option value="cordoba">⛪ Córdoba</option>
+            <option value="santafe">🌾 Santa Fe</option>
+            <option value="mendoza">🍇 Mendoza</option>
+            <option value="tucuman">🎺 Tucumán</option>
+            <option value="salta">🦙 Salta</option>
+            <option value="misiones">🌿 Misiones</option>
+            <option value="chaco">🌵 Chaco</option>
+            <option value="corrientes">🐊 Corrientes</option>
+          </select>
+          <select id="barrio-msg-type">
+            <option value="denuncia">🚨 Denuncia</option>
+            <option value="solidaridad">🤝 Solidaridad</option>
+            <option value="convocatoria">📢 Convocatoria</option>
+            <option value="logro">🏆 Logro</option>
+            <option value="info">ℹ️ Información</option>
+          </select>
+        </div>
+        <input type="text" id="barrio-msg-author" placeholder="Tu nombre o colectivo (opcional)" />
+        <button class="btn-barrio-publish" onclick="window.publishBarrioMsg()">
+          📡 Publicar en el Foro Federal
+        </button>
+      </div>
+
+      <div id="barrio-posts-list" style="margin-top:1.25rem;"></div>
+    </div>
+  </section>
+
+  <!-- ── COMUNICADOS SCREEN ───────────────────────────────────── -->
+  <section class="screen" id="comunicados-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">📰 Generador de Comunicados</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="screen-content" style="padding:16px;">
+      <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
+        Generá comunicados oficiales listos para enviar a municipios, legisladores o sindicatos.
+      </p>
+
+      <div class="comunicado-form-box" id="comunicado-form-section">
+        <div class="form-group">
+          <label for="com-tipo">Tipo de comunicado</label>
+          <select id="com-tipo">
+            <option value="reclamo">🚨 Reclamo formal</option>
+            <option value="solicitud">📋 Solicitud de información</option>
+            <option value="denuncia">⚖️ Denuncia ciudadana</option>
+            <option value="agradecimiento">🙏 Agradecimiento / Reconocimiento</option>
+            <option value="convocatoria">📢 Convocatoria colectiva</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="com-destinatario">Destinatario</label>
+          <input type="text" id="com-destinatario" placeholder="Ej: Municipio de Morón / Diputado Nacional / Ministerio de Trabajo" />
+        </div>
+        <div class="form-group">
+          <label for="com-tema">Tema o asunto</label>
+          <input type="text" id="com-tema" placeholder="Ej: Falta de agua potable / Incumplimiento de convenio laboral" />
+        </div>
+        <div class="form-group">
+          <label for="com-detalle">Detalle de la situación</label>
+          <textarea id="com-detalle" rows="4" placeholder="Describí la situación con todos los detalles relevantes…"></textarea>
+        </div>
+        <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
+          <div class="form-group">
+            <label for="com-remitente">Tu nombre / Organización</label>
+            <input type="text" id="com-remitente" placeholder="Ej: Vecinos de Villa Urquiza" />
+          </div>
+          <div class="form-group">
+            <label for="com-provincia">Provincia</label>
+            <select id="com-provincia">
+              <option value="Buenos Aires">Buenos Aires</option>
+              <option value="CABA">CABA</option>
+              <option value="Córdoba">Córdoba</option>
+              <option value="Santa Fe">Santa Fe</option>
+              <option value="Mendoza">Mendoza</option>
+              <option value="Tucumán">Tucumán</option>
+              <option value="Salta">Salta</option>
+              <option value="Misiones">Misiones</option>
+              <option value="Chaco">Chaco</option>
+              <option value="Corrientes">Corrientes</option>
+              <option value="Entre Ríos">Entre Ríos</option>
+              <option value="Jujuy">Jujuy</option>
+              <option value="Neuquén">Neuquén</option>
+              <option value="Río Negro">Río Negro</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-publish-submit" onclick="window.generateComunicado()">
+          📰 Generar Comunicado
+        </button>
+      </div>
+
+      <div id="comunicado-result" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- ── CONSIGNAS DEL DÍA SCREEN ─────────────────────────────── -->
+  <section class="screen" id="consignas-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio" onclick="window.showScreenById('inicio-screen'); return false;">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">📱 Consignas del Día</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="screen-content" style="padding:16px;">
+      <p class="intro-text" style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
+        Frases históricas y consignas actuales para compartir como estados de WhatsApp o historias de redes.
+      </p>
+      <div id="consignas-container"></div>
+    </div>
+  </section>
+
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=40.0"></script>
+  <script type="module" src="js/app.v2.js?v=41.0"></script>
 </body>
 </html>
