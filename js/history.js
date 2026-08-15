@@ -1,7 +1,7 @@
 export const historyData = [
   {
     type: "intro",
-    title: "Introducción: ¿qué es la justicia social?",
+    title: "1. Introducción: ¿qué es la justicia social?",
     content: `
       <p>La justicia social parte de una pregunta sencilla pero decisiva:</p>
       <blockquote><strong>¿Cómo debemos organizar una sociedad para que cada persona pueda vivir con dignidad?</strong></blockquote>
@@ -20,7 +20,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "1. LAS RAÍCES ANTIGUAS DE LA JUSTICIA",
+    title: "2. LAS RAÍCES ANTIGUAS DE LA JUSTICIA",
     subtitle: "Grecia: Platón y Aristóteles",
     content: `
       <p>Muchísimo antes de utilizarse la expresión justicia social, los filósofos griegos se preguntaron qué hacía justa a una comunidad.</p>
@@ -34,7 +34,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "2. LA TRADICIÓN BÍBLICA",
+    title: "3. LA TRADICIÓN BÍBLICA",
     content: `
       <p>La tradición bíblica introdujo otro elemento fundamental: la relación entre justicia y defensa del vulnerable.</p>
       <p>En el Antiguo Testamento aparecen repetidamente: el pobre, el extranjero, la viuda, el huérfano, el trabajador y la persona endeudada.</p>
@@ -46,7 +46,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "3. JESÚS Y EL CRISTIANISMO",
+    title: "4. JESÚS Y EL CRISTIANISMO",
     content: `
       <p>Con Jesús, la preocupación por los pobres adquiere una dimensión central. Su predicación coloca repetidamente en primer plano a: los pobres, enfermos, excluidos, pecadores, extranjeros, niños y personas socialmente despreciadas.</p>
       <p>La parábola del Buen Samaritano convierte al prójimo en alguien cuya necesidad exige una respuesta concreta.</p>
@@ -55,7 +55,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "4. LAS PRIMERAS COMUNIDADES CRISTIANAS",
+    title: "5. LAS PRIMERAS COMUNIDADES CRISTIANAS",
     content: `
       <p>Los primeros cristianos desarrollaron sistemas de ayuda para: viudas, huérfanos, enfermos, peregrinos y personas pobres.</p>
       <p>Los Padres de la Iglesia insistieron en que la riqueza conlleva responsabilidades. San Juan Crisóstomo, San Ambrosio, San Basilio y otros autores cristianos sostuvieron que ignorar al pobre era incompatible con una auténtica vida cristiana.</p>
@@ -64,7 +64,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "5. LA EDAD MEDIA: TOMÁS DE AQUINO",
+    title: "6. LA EDAD MEDIA: TOMÁS DE AQUINO",
     content: `
       <p>En el siglo XIII, Santo Tomás de Aquino sistematizó buena parte de la tradición filosófica cristiana. Retomó elementos de Aristóteles pero los integró dentro de una concepción cristiana de la persona y de la sociedad.</p>
       <div class="highlight-box">
@@ -76,7 +76,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "6. LA MODERNIDAD: DERECHOS, LIBERTAD Y REVOLUCIONES",
+    title: "7. LA MODERNIDAD: DERECHOS, LIBERTAD Y REVOLUCIONES",
     content: `
       <p>Entre los siglos XVII y XVIII surgieron nuevas discusiones sobre: libertad individual, propiedad, derechos naturales, soberanía política, igualdad jurídica y contrato social.</p>
       <p>Las revoluciones americana y francesa transformaron profundamente la idea de ciudadanía. Pero apareció un problema.</p>
@@ -87,7 +87,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "7. LA REVOLUCIÓN INDUSTRIAL",
+    title: "8. LA REVOLUCIÓN INDUSTRIAL",
     content: `
       <p>Durante los siglos XVIII y XIX la industrialización produjo una transformación gigantesca. Millones de personas abandonaron comunidades rurales y comenzaron a trabajar en fábricas. La producción aumentó enormemente.</p>
       <p>Pero también aparecieron: jornadas laborales extremadamente largas, trabajo infantil, hacinamiento urbano, accidentes laborales, bajos salarios y escasa protección para trabajadores enfermos o desempleados.</p>
@@ -97,7 +97,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1840",
-    title: "8. APARECE LA EXPRESIÓN “JUSTICIA SOCIAL”",
+    title: "9. APARECE LA EXPRESIÓN “JUSTICIA SOCIAL”",
     content: `
       <p>Un personaje fundamental para la historia de la expresión fue el jesuita italiano <strong>Luigi Taparelli d'Azeglio (1793-1862)</strong>.</p>
       <p>En su <em>Saggio teoretico di diritto naturale</em>, publicado entre 1840 y 1843, Taparelli desarrolló una concepción de justicia social vinculada con la naturaleza social de la persona y con la necesidad de ordenar justamente las distintas comunidades que conforman la sociedad.</p>
@@ -111,7 +111,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1891",
-    title: "9. LEÓN XIII Y RERUM NOVARUM",
+    title: "10. LEÓN XIII Y RERUM NOVARUM",
     content: `
       <p>El 15 de mayo de 1891 el papa León XIII publicó <strong>Rerum Novarum</strong> (Sobre las cosas nuevas).</p>
       <p>Las “cosas nuevas” eran las enormes transformaciones de la sociedad industrial. León XIII analiza la relación entre: capital y trabajo, empresarios y obreros, propiedad, Estado, asociaciones y salarios.</p>
@@ -122,7 +122,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1919",
-    title: "10. NACE LA ORGANIZACIÓN INTERNACIONAL DEL TRABAJO",
+    title: "11. NACE LA ORGANIZACIÓN INTERNACIONAL DEL TRABAJO",
     content: `
       <p>Después de la Primera Guerra Mundial ocurrió otro acontecimiento extraordinariamente importante. Se creó la <strong>Organización Internacional del Trabajo — OIT</strong>.</p>
       <p>Su Constitución parte de una convicción histórica: una paz duradera necesita estar basada en la justicia social.</p>
@@ -132,7 +132,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1931",
-    title: "11. PÍO XI Y QUADRAGESIMO ANNO",
+    title: "12. PÍO XI Y QUADRAGESIMO ANNO",
     content: `
       <p>Cuarenta años después de Rerum Novarum, Pío XI publicó <strong>Quadragesimo Anno</strong>. El mundo estaba atravesando la Gran Depresión. La cuestión ya no era solamente la situación individual del trabajador. La pregunta era: ¿cómo debe organizarse todo el sistema económico?</p>
       <p>Pío XI profundizó dos ideas decisivas:</p>
@@ -146,7 +146,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1944",
-    title: "12. DECLARACIÓN DE FILADELFIA",
+    title: "13. DECLARACIÓN DE FILADELFIA",
     content: `
       <p>Durante la Segunda Guerra Mundial la OIT aprobó la <strong>Declaración de Filadelfia</strong>. Esta declaración amplió profundamente el concepto de justicia social.</p>
       <p>Defendió que toda persona debía poder buscar su bienestar material y desarrollo en condiciones de: libertad, dignidad, seguridad económica e igualdad de oportunidades.</p>
@@ -156,16 +156,44 @@ export const historyData = [
   {
     type: "milestone",
     year: "1948",
-    title: "13. DECLARACIÓN UNIVERSAL DE LOS DERECHOS HUMANOS",
+    title: "14. DECLARACIÓN UNIVERSAL DE LOS DERECHOS HUMANOS",
     content: `
       <p>Después del horror de la Segunda Guerra Mundial y del Holocausto, la comunidad internacional dio otro paso histórico. El 10 de diciembre de 1948 Naciones Unidas proclamó la <strong>Declaración Universal de los Derechos Humanos</strong>.</p>
       <p>La Declaración parte de la dignidad inherente de todos los miembros de la familia humana. Junto a derechos civiles y políticos reconoce derechos vinculados directamente con la justicia social: trabajo, remuneración justa, organización sindical, seguridad social, descanso, alimentación, vivienda, salud y educación.</p>
       <p>Esto produjo un cambio enorme. Muchos bienes que anteriormente podían verse como simple caridad comenzaron a considerarse también cuestiones de: <strong>derechos humanos</strong>.</p>
     `
   },
+
   {
     type: "era",
-    title: "14. EL ESTADO SOCIAL DEL SIGLO XX",
+    title: "15. EL PERONISMO Y LAS TRES BANDERAS",
+    content: `
+      <p>En Argentina, la justicia social adquirió una dimensión política e institucional central a partir de 1945 con el surgimiento del peronismo.</p>
+      <p>El movimiento liderado por <strong>Juan Domingo Perón</strong> y <strong>Eva Perón</strong> elevó la <strong>Justicia Social</strong> a la categoría de bandera fundamental del movimiento, junto a la Soberanía Política y la Independencia Económica.</p>
+      <p>Se implementaron políticas masivas de redistribución de la riqueza, aguinaldo, vacaciones pagas, convenios colectivos de trabajo, tribunales laborales, estatuto del peón rural, y planes masivos de salud y vivienda, cambiando para siempre la estructura social argentina.</p>
+    `
+  },
+  {
+    type: "milestone",
+    year: "1949",
+    title: "16. LA CONSTITUCIÓN ARGENTINA DE 1949",
+    content: `
+      <p>Bajo el gobierno de Perón, se sancionó la Constitución de 1949, que incorporó explícitamente los <strong>Derechos del Trabajador, de la Ancianidad y de la Familia</strong> (Decálogo de los Derechos del Trabajador).</p>
+      <p>Por primera vez, el constitucionalismo social fue plasmado en la ley suprema de Argentina, estableciendo que el capital debe estar al servicio de la economía nacional y tener como principal objeto el bienestar social, y que la propiedad privada tiene una función social.</p>
+    `
+  },
+  {
+    type: "milestone",
+    year: "1957",
+    title: "17. EL ARTÍCULO 14 BIS",
+    content: `
+      <p>Tras el golpe de Estado de 1955 y la derogación de la Constitución de 1949, la reforma constitucional de 1957 incorporó el <strong>Artículo 14 bis</strong> para mantener las conquistas sociales.</p>
+      <p>Este artículo garantiza: condiciones dignas y equitativas de labor; jornada limitada; descanso y vacaciones pagados; retribución justa; salario mínimo vital y móvil; igual remuneración por igual tarea; protección contra el despido arbitrario; organización sindical libre y democrática; el derecho a huelga; y los beneficios de la seguridad social.</p>
+    `
+  },
+  {
+    type: "era",
+    title: "18. EL ESTADO SOCIAL DEL SIGLO XX",
     content: `
       <p>Durante buena parte del siglo XX numerosos países desarrollaron instituciones destinadas a reducir los riesgos sociales. Aparecieron o se ampliaron: sistemas jubilatorios, seguros de desempleo, educación pública, salud pública, protección laboral, negociación colectiva, vivienda social y seguridad social.</p>
       <p>Las formas concretas fueron diferentes según cada país. Pero detrás de muchas de ellas existía una misma pregunta: <em>¿qué condiciones mínimas debe garantizar una sociedad para que la libertad y la dignidad sean reales?</em></p>
@@ -174,7 +202,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1961",
-    title: "15. JUAN XXIII: JUSTICIA SOCIAL Y DERECHOS HUMANOS",
+    title: "19. JUAN XXIII: JUSTICIA SOCIAL Y DERECHOS HUMANOS",
     content: `
       <p><strong>Mater et Magistra (1961)</strong><br/>
       Juan XXIII amplió el análisis hacia nuevos problemas: desigualdad entre sectores económicos, participación de los trabajadores, remuneración justa y creciente desigualdad entre países.</p>
@@ -185,7 +213,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1962",
-    title: "16. EL CONCILIO VATICANO II",
+    title: "20. EL CONCILIO VATICANO II",
     content: `
       <p>Entre 1962 y 1965 la Iglesia Católica celebró el Concilio Vaticano II. Uno de sus documentos sociales fundamentales fue <strong>Gaudium et Spes (1965)</strong>.</p>
       <p>La Iglesia se presenta acompañando las alegrías, esperanzas, sufrimientos y angustias de la humanidad. La persona humana aparece situada dentro de una comunidad. La dignidad no puede analizarse separadamente de las condiciones sociales que permiten o impiden su desarrollo.</p>
@@ -195,7 +223,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1967",
-    title: "17. PABLO VI: EL DESARROLLO DE LOS PUEBLOS",
+    title: "21. PABLO VI: EL DESARROLLO DE LOS PUEBLOS",
     content: `
       <p>En 1967 Pablo VI publicó <strong>Populorum Progressio</strong>. El problema social ya no podía analizarse solamente dentro de cada nación. Existían desigualdades enormes entre países ricos y pobres. La cuestión pasa a ser mundial.</p>
       <p>Pablo VI desarrolla entonces el concepto de <strong>Desarrollo humano integral</strong>. Desarrollo no significa únicamente producir más dinero. Significa promover a: cada persona y a toda la persona.</p>
@@ -205,7 +233,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1968",
-    title: "18. AMÉRICA LATINA Y MEDELLÍN",
+    title: "22. AMÉRICA LATINA Y MEDELLÍN",
     content: `
       <p>Un año después de Populorum Progressio, los obispos latinoamericanos se reunieron en Medellín, Colombia. La conferencia buscó aplicar el Concilio Vaticano II a la realidad latinoamericana.</p>
       <p>Se analizaron: pobreza, desigualdad, educación, participación, desarrollo, justicia y paz. Medellín tuvo enorme influencia en la evolución de la conciencia social de la Iglesia latinoamericana y en su preocupación por la pobreza y las desigualdades estructurales.</p>
@@ -215,7 +243,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "1971",
-    title: "19. JOHN RAWLS Y LA FILOSOFÍA CONTEMPORÁNEA",
+    title: "23. JOHN RAWLS Y LA FILOSOFÍA CONTEMPORÁNEA",
     content: `
       <p>La justicia social también tuvo un enorme desarrollo fuera del pensamiento religioso. En 1971 el filósofo estadounidense John Rawls publicó <strong>A Theory of Justice</strong>.</p>
       <p>Rawls propuso imaginar qué principios sociales elegiríamos si no supiéramos previamente: si seríamos ricos o pobres; saludables o enfermos; poderosos o débiles; miembros de una mayoría o de una minoría. A este experimento mental lo denominó: <em>“velo de ignorancia”</em>.</p>
@@ -224,7 +252,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "20. JUAN PABLO II: TRABAJO, SOLIDARIDAD Y ESTRUCTURAS SOCIALES",
+    title: "24. JUAN PABLO II: TRABAJO, SOLIDARIDAD Y ESTRUCTURAS SOCIALES",
     content: `
       <p>El pontificado de Juan Pablo II produjo importantes documentos sociales.</p>
       <ul>
@@ -237,7 +265,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "21. LA JUSTICIA SOCIAL EN EL SIGLO XXI",
+    title: "25. LA JUSTICIA SOCIAL EN EL SIGLO XXI",
     content: `
       <p>A comienzos del nuevo siglo el concepto se amplió todavía más. Ya no se discute solamente salario y condiciones laborales.</p>
       <p>También entran en la conversación: discapacidad, migraciones, discriminación, igualdad entre mujeres y varones, medio ambiente, acceso digital, exclusión urbana, pueblos indígenas, protección de niños y ancianos, tráfico de personas y nuevas formas de precarización laboral.</p>
@@ -247,7 +275,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "2009",
-    title: "22. BENEDICTO XVI: CARIDAD, VERDAD Y ECONOMÍA",
+    title: "26. BENEDICTO XVI: CARIDAD, VERDAD Y ECONOMÍA",
     content: `
       <p>En 2009 Benedicto XVI publicó <strong>Caritas in Veritate</strong>. Introduce una reflexión especialmente interesante: La economía no puede funcionar completamente separada de la ética.</p>
       <p>Las relaciones humanas necesitan: justicia, confianza, solidaridad, reciprocidad y gratuidad. El desarrollo económico debe estar al servicio del desarrollo integral de las personas. León XIV incluye Caritas in Veritate dentro de la tradición que conecta justicia social, solidaridad, desarrollo y responsabilidad económica.</p>
@@ -256,7 +284,7 @@ export const historyData = [
   {
     type: "milestone",
     year: "2007",
-    title: "23. LA JUSTICIA SOCIAL SE CONSOLIDA COMO AGENDA MUNDIAL",
+    title: "27. LA JUSTICIA SOCIAL SE CONSOLIDA COMO AGENDA MUNDIAL",
     content: `
       <p>En 2007 la Asamblea General de Naciones Unidas decidió establecer el <strong>20 de febrero como Día Mundial de la Justicia Social</strong>. La ONU relacionó la justicia social con: erradicación de la pobreza, empleo, trabajo digno, igualdad, inclusión y bienestar social.</p>
       <p>En 2008 la OIT aprobó además la Declaración sobre la Justicia Social para una Globalización Equitativa. La justicia social quedó vinculada directamente con el concepto de <strong>Trabajo decente</strong> (empleo, derechos laborales, protección social y diálogo social).</p>
@@ -264,7 +292,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "24-28. FRANCISCO: FRATERNIDAD, ECOLOGÍA Y LOS POBRES",
+    title: "28. FRANCISCO: FRATERNIDAD, ECOLOGÍA Y LOS POBRES",
     content: `
       <p>La elección de Jorge Mario Bergoglio como papa Francisco en 2013 abrió una nueva etapa, colocando en primer plano a los descartados de la sociedad.</p>
       <ul>
@@ -309,7 +337,7 @@ export const historyData = [
   },
   {
     type: "era",
-    title: "32-33. LA NUEVA “CUESTIÓN SOCIAL”: INTELIGENCIA ARTIFICIAL",
+    title: "32. LA NUEVA “CUESTIÓN SOCIAL”: INTELIGENCIA ARTIFICIAL",
     content: `
       <p>León XIV analiza cuestiones como: automatización, transformación del empleo, algoritmos, poder digital, información, democracia, educación, armas autónomas, responsabilidad tecnológica y acceso desigual.</p>
       <p>Su planteo no es rechazar la tecnología. Es preguntar: <strong>¿Para quién trabaja la tecnología?</strong></p>
@@ -321,7 +349,7 @@ export const historyData = [
   },
   {
     type: "summary",
-    title: "34. LOS PRINCIPIOS DE LA JUSTICIA SOCIAL EN LA ACTUALIDAD",
+    title: "33. LOS PRINCIPIOS DE LA JUSTICIA SOCIAL EN LA ACTUALIDAD",
     content: `
       <p>Después de más de dos mil años de desarrollo, podemos sintetizar la justicia social contemporánea en estos grandes principios:</p>
       <div class="principles-grid">
@@ -345,7 +373,7 @@ export const historyData = [
   },
   {
     type: "definition",
-    title: "35. UNA DEFINICIÓN PARA LA APP",
+    title: "34. UNA DEFINICIÓN PARA LA APP",
     content: `
       <div class="definition-box">
         <h3>JUSTICIA SOCIAL</h3>
@@ -355,7 +383,7 @@ export const historyData = [
   },
   {
     type: "concepts",
-    title: "36-39. CONCEPTOS CLAVE EN 2026",
+    title: "35. CONCEPTOS CLAVE EN 2026",
     content: `
       <h4>Caridad vs. Justicia</h4>
       <p><strong>Caridad:</strong> Ayudo a una persona que tiene hambre (¿qué necesita ahora?).<br>
@@ -374,7 +402,7 @@ export const historyData = [
   },
   {
     type: "summary",
-    title: "40. LA GRAN LÍNEA HISTÓRICA",
+    title: "36. LA GRAN LÍNEA HISTÓRICA",
     content: `
       <div class="history-flow">
         <div class="flow-item">Justicia como virtud</div>
