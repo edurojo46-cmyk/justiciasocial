@@ -663,3 +663,55 @@ export function filterEvents({ provinceId = null, type = null, search = "", date
   });
 }
 
+
+// ── IA vs Profesiones ─────────────────────────────────────────
+export const JOB_IMPACT = {
+  "administrativo": {
+    name: "Administrativo / Oficinista",
+    ai: "Alta automatización en tareas repetitivas, carga de datos y redacción de emails estándar.",
+    human: "Criterio ético, negociación de conflictos, empatía con clientes difíciles y toma de decisiones no estructuradas.",
+    learn: "Aprende a usar Copilot o ChatGPT para redactar más rápido. Fórmate en análisis de datos básicos y gestión de proyectos."
+  },
+  "abogado": {
+    name: "Abogado / Legal",
+    ai: "Búsqueda rápida de jurisprudencia, revisión inicial de contratos y redacción de documentos tipo.",
+    human: "Estrategia legal compleja, persuasión en juicios, negociación con contrapartes y empatía con el cliente.",
+    learn: "Usa IA para investigación legal (LegalTech). Fórmate en mediación humana y derecho digital."
+  },
+  "conductor": {
+    name: "Conductor / Transportista",
+    ai: "Optimización de rutas por IA. A largo plazo, vehículos autónomos en rutas sencillas.",
+    human: "Resolución de imprevistos en ruta, asistencia física a pasajeros/cargas, seguridad y primeros auxilios.",
+    learn: "Capacitación en logística integral, manejo de software de flotas, mecánica ligera y trato al cliente."
+  },
+  "medico": {
+    name: "Médico / Salud",
+    ai: "Diagnóstico inicial por imágenes, cruce masivo de síntomas y gestión de historias clínicas.",
+    human: "El tacto humano, la contención emocional del paciente, las decisiones éticas complejas y las cirugías no estándar.",
+    learn: "Aprende a leer informes asistidos por IA. Fórmate en bioética y enfócate en la relación médico-paciente."
+  },
+  "comerciante": {
+    name: "Comerciante / Ventas",
+    ai: "Chatbots para atención 24/7, predicción de stock y recomendaciones de productos.",
+    human: "La conexión emocional, la persuasión cara a cara, entender el problema real del cliente más allá del producto.",
+    learn: "Domina herramientas de e-commerce e IA para marketing digital. Fórmate en ventas consultivas."
+  },
+  "docente": {
+    name: "Docente / Educador",
+    ai: "Calificación automática de exámenes cerrados, creación rápida de material de apoyo y tutorías personalizadas básicas.",
+    human: "Motivar al alumno, detectar problemas emocionales, enseñar pensamiento crítico y debate en vivo.",
+    learn: "Usa la IA como tu asistente para armar clases. Fórmate en metodologías activas (aula invertida) y neuroeducación."
+  },
+  "disenador": {
+    name: "Diseñador / Creativo",
+    ai: "Generación rápida de bocetos, variantes de color y retoque automático de imágenes (Midjourney, DALL-E).",
+    human: "Entender la identidad de la marca, el impacto cultural del diseño y la dirección de arte general.",
+    learn: "Conviértete en un 'Director de IA' (Prompt Engineering). Fórmate en experiencia de usuario (UX) y estrategia de marca."
+  },
+  "programador": {
+    name: "Programador / IT",
+    ai: "Generación de bloques de código comunes, detección de bugs sintácticos y refactorización automática.",
+    human: "Arquitectura de sistemas complejos, entendimiento del negocio, seguridad profunda y resolución de problemas inéditos.",
+    learn: "Aprende a programar junto a GitHub Copilot. Fórmate en arquitectura Cloud, ciberseguridad y habilidades blandas (Scrum)."
+  }
+};

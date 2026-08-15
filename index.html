@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.css?v=15.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=15.0" />
 </head>
 <body>
   <!-- ── NAVIGATION HELPERS ── inline so it works regardless of module scope ── -->
@@ -1141,30 +1141,7 @@
 
   
   <!-- ── MEJORAR MI FUTURO SCREEN ──────────────────────── -->
-  <section class="screen" id="futuro-screen">
-    <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
-        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-      </button>
-      <h2 class="screen-top-title" style="flex:1">Mejorar mi Futuro</h2>
-      <div style="width:32px"></div>
-    </div>
-    <div class="coming-soon-screen">
-      <div class="coming-soon-icon">🚀</div>
-      <h2>Próximamente</h2>
-      <p>Esta sección reunirá herramientas sobre trabajo, inteligencia artificial, capacitación y oportunidades para prepararte para el mundo que viene.</p>
-      <div style="background:rgba(74,158,218,0.1);border:1px solid rgba(74,158,218,0.3);border-radius:12px;padding:1rem;max-width:320px;text-align:left;">
-        <p style="color:var(--blue-bright);font-weight:600;margin-bottom:0.5rem">¿Qué vendrá aquí?</p>
-        <ul style="list-style:none;padding:0;color:var(--text-secondary);font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem">
-          <li>🤖 ¿Cómo cambia mi trabajo con la IA?</li>
-          <li>📋 Test de Trabajo Digno</li>
-          <li>📚 Cursos y becas gratuitas</li>
-          <li>🗓️ Plan personalizado de capacitación</li>
-          <li>🔍 Oportunidades de empleo</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ── NECESITO AYUDA SCREEN ──────────────────────────── -->
   <section class="screen" id="ayuda-screen">
@@ -1220,30 +1197,7 @@
 
   
   <!-- ── MEJORAR MI FUTURO SCREEN ──────────────────────────── -->
-  <section class="screen" id="futuro-screen">
-    <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
-        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-      </button>
-      <h2 class="screen-top-title" style="flex:1">Mejorar mi Futuro</h2>
-      <div style="width:32px"></div>
-    </div>
-    <div class="coming-soon-screen">
-      <div class="coming-soon-icon">🚀</div>
-      <h2>Próximamente</h2>
-      <p>Esta sección reunirá herramientas sobre trabajo, inteligencia artificial, capacitación y oportunidades para prepararte para el mundo que viene.</p>
-      <div style="background:rgba(74,158,218,0.1);border:1px solid rgba(74,158,218,0.3);border-radius:12px;padding:1rem;max-width:320px;text-align:left;margin-top:1rem;">
-        <p style="color:var(--blue-bright);font-weight:600;margin-bottom:0.5rem">¿Qué vendrá aquí?</p>
-        <ul style="list-style:none;padding:0;color:var(--text-secondary);font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem">
-          <li>🤖 ¿Cómo cambia mi trabajo con la IA?</li>
-          <li>📋 Test de Trabajo Digno</li>
-          <li>📚 Cursos y becas gratuitas</li>
-          <li>🗓️ Plan personalizado de capacitación</li>
-          <li>🔍 Oportunidades de empleo</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ── NECESITO AYUDA SCREEN ──────────────────────────────── -->
   <section class="screen" id="ayuda-screen">
@@ -1296,9 +1250,123 @@
       </div>
     </div>
   </section>
+  
+  <section class="screen" id="futuro-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">Mejorar mi Futuro</h2>
+      <div style="width:32px"></div>
+    </div>
+    
+    <div class="screen-content" style="padding: 16px;">
+      <p class="intro-text" style="color:var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem;">
+        El trabajo no es solo una forma de ganar dinero, es la expresión de nuestra dignidad humana. Descubre cómo potenciar tus habilidades y conocer tus derechos ante el avance tecnológico.
+      </p>
+
+      <!-- SECCIÓN A: LA IA Y MI PROFESIÓN -->
+      <div class="card" style="margin-bottom: 24px;">
+        <h3 style="color:var(--primary-color); margin-bottom: 8px;">¿Cómo está cambiando mi trabajo?</h3>
+        <p style="font-size: 0.9rem; color:var(--text-secondary); margin-bottom: 16px;">Selecciona tu profesión para ver el impacto de la Inteligencia Artificial y descubrir tus fortalezas irreemplazables.</p>
+        
+        <div class="ai-job-selector" style="margin-bottom: 16px;">
+          <select id="job-select" style="width:100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--text-color); font-size: 1rem;">
+            <option value="" disabled selected>Elige tu profesión o área...</option>
+            <option value="administrativo">Administrativo / Oficinista</option>
+            <option value="abogado">Abogado / Legal</option>
+            <option value="conductor">Conductor / Transportista</option>
+            <option value="medico">Médico / Salud</option>
+            <option value="comerciante">Comerciante / Ventas</option>
+            <option value="docente">Docente / Educador</option>
+            <option value="disenador">Diseñador / Creativo</option>
+            <option value="programador">Programador / IT</option>
+          </select>
+        </div>
+
+        <div id="ai-impact-result" style="display:none; background: var(--bg-color); padding: 16px; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+          <h4 id="ai-job-name" style="margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;"></h4>
+          
+          <div style="margin-bottom: 12px;">
+            <strong style="color:var(--text-color); display:flex; align-items:center; gap:6px;"><span style="font-size:1.2rem">🤖</span> Automatización probable:</strong>
+            <p id="ai-job-ai" style="font-size: 0.9rem; color:var(--text-secondary); margin-top:4px; margin-left: 28px;"></p>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <strong style="color:var(--text-color); display:flex; align-items:center; gap:6px;"><span style="font-size:1.2rem">🧠</span> Tu fortaleza humana:</strong>
+            <p id="ai-job-human" style="font-size: 0.9rem; color:var(--text-secondary); margin-top:4px; margin-left: 28px;"></p>
+          </div>
+          <div>
+            <strong style="color:var(--text-color); display:flex; align-items:center; gap:6px;"><span style="font-size:1.2rem">📚</span> Plan de capacitación:</strong>
+            <p id="ai-job-learn" style="font-size: 0.9rem; color:var(--text-secondary); margin-top:4px; margin-left: 28px;"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN B: ÍNDICE DE TRABAJO DIGNO -->
+      <div class="card" style="margin-bottom: 24px; border-top: 4px solid var(--accent-color);">
+        <h3 style="color:var(--accent-color); margin-bottom: 8px;">Índice de Trabajo Digno</h3>
+        <p style="font-size: 0.9rem; color:var(--text-secondary); margin-bottom: 16px;">Un pequeño test interactivo para evaluar si tus condiciones laborales actuales respetan tu dignidad y qué derechos te amparan.</p>
+        
+        <div id="digno-quiz-container" style="background: var(--bg-color); padding: 16px; border-radius: 8px;">
+          <!-- Start -->
+          <div id="digno-start" style="text-align:center;">
+            <button id="btn-start-quiz" class="btn-primary" style="width:100%; padding:12px;">Comenzar Evaluación</button>
+          </div>
+          
+          <!-- Question -->
+          <div id="digno-question" style="display:none;">
+            <span id="quiz-progress" style="font-size: 0.8rem; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;"></span>
+            <h4 id="quiz-q-text" style="margin: 12px 0; font-size:1.1rem; line-height:1.4;"></h4>
+            <div id="quiz-options-container" style="display:flex; flex-direction:column; gap:10px;">
+              <!-- Options injected by JS -->
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div id="digno-result" style="display:none; text-align:center;">
+            <h4 style="margin-bottom:8px;">Resultado de tu evaluación</h4>
+            <div style="font-size: 3rem; font-weight: 800; color: var(--primary-color); margin: 16px 0;">
+              <span id="digno-score-value"></span><span style="font-size:1.5rem; color:var(--text-secondary)">/10</span>
+            </div>
+            <p id="digno-feedback-text" style="margin-bottom: 16px; font-weight:500;"></p>
+            <div style="background: var(--surface-color); padding: 12px; border-radius: 8px; text-align:left; border-left: 3px solid var(--accent-color); margin-bottom: 16px;">
+              <strong style="display:block; margin-bottom:4px; font-size:0.9rem;">Tus Derechos:</strong>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Según el <strong>Art. 14 bis de la Constitución Nacional</strong>, el trabajo debe asegurar condiciones dignas y equitativas, jornada limitada y retribución justa. Además, toda persona tiene derecho a formarse para el trabajo (Doctrina Social).</p>
+            </div>
+            <button id="btn-restart-quiz" class="btn-secondary" style="width:100%; padding:10px;">Volver a evaluar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN C: RECURSOS -->
+      <div class="card">
+        <h3 style="margin-bottom: 16px;">Herramientas y Oportunidades</h3>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <a href="#" style="background:var(--bg-color); padding:16px; border-radius:12px; text-align:center; text-decoration:none; color:var(--text-color); display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <span style="font-size:2rem;">💻</span>
+            <span style="font-size:0.85rem; font-weight:500;">Cursos Tech (Gratis)</span>
+          </a>
+          <a href="#" style="background:var(--bg-color); padding:16px; border-radius:12px; text-align:center; text-decoration:none; color:var(--text-color); display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <span style="font-size:2rem;">🎓</span>
+            <span style="font-size:0.85rem; font-weight:500;">Becas Progresar</span>
+          </a>
+          <a href="#" style="background:var(--bg-color); padding:16px; border-radius:12px; text-align:center; text-decoration:none; color:var(--text-color); display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <span style="font-size:2rem;">⚖️</span>
+            <span style="font-size:0.85rem; font-weight:500;">Asesoría Legal</span>
+          </a>
+          <a href="#" style="background:var(--bg-color); padding:16px; border-radius:12px; text-align:center; text-decoration:none; color:var(--text-color); display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <span style="font-size:2rem;">🤝</span>
+            <span style="font-size:0.85rem; font-weight:500;">Mutuales</span>
+          </a>
+        </div>
+      </div>
+      <br><br>
+
+    </div>
+  </section>
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.js?v=15.0"></script>
+  <script type="module" src="js/app.v2.js?v=15.0"></script>
 </body>
 </html>
