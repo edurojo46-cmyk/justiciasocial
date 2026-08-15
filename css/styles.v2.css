@@ -1888,7 +1888,7 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background-image: linear-gradient(135deg, rgba(28, 102, 216, 0.7), rgba(0, 73, 190, 0.9)), url('../assets/img/fondo-evita.jpg');
+  background-image: linear-gradient(135deg, rgba(28, 102, 216, 0.15), rgba(0, 73, 190, 0.35)), url('../assets/img/fondo-evita.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1931,12 +1931,14 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   text-align: center;
   margin-bottom: 0.5rem;
   letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 .splash-subtitle {
   font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
   text-align: center;
   margin-bottom: 4rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 .splash-enter-wrapper {
   position: absolute;
