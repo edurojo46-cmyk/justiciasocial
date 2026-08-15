@@ -715,3 +715,60 @@ export const JOB_IMPACT = {
     learn: "Aprende a programar junto a GitHub Copilot. Fórmate en arquitectura Cloud, ciberseguridad y habilidades blandas (Scrum)."
   }
 };
+
+// ── Base de Conocimiento del Asistente Virtual JS ──────────────
+export const ASSISTANT_KNOWLEDGE = [
+  {
+    keywords: ["despido", "despidieron", "echaron", "indemnizacion", "telegrama", "trabajo no registrado", "en negro", "derechos laborales", "sueldo"],
+    topic: "Derechos Laborales y Despido",
+    question: "¿Qué hacer ante un despido o trabajo no registrado?",
+    answer: `📌 <strong>Derechos Laborales Fundamentales (Ley 20.744):</strong><br><br>
+1. <strong>Despido sin causa:</strong> Tenés derecho al cobro de indemnización por antigüedad (1 mes de sueldo por año trabajado), preaviso, integración del mes y aguinaldo proporcional.<br>
+2. <strong>Trabajo no registrado ('en negro'):</strong> La ley contempla indemnizaciones agravadas a favor del trabajador. No firmes nada sin asesorarte previamente.<br>
+3. <strong>Telegrama Laboral:</strong> Es <strong>100% gratuito</strong> a través del Correo Argentino por ley nacional 23.789.<br>
+4. <strong>Asesoría Gratuita:</strong> Podés recurrir al Ministerio de Trabajo, Colegios de Abogados y Defensorías del Pueblo de tu provincia.`
+  },
+  {
+    keywords: ["comedor", "alimentos", "comida", "hambre", "merendero", "bolson", "ayuda social", "donaciones"],
+    topic: "Asistencia Alimentaria y Comedores",
+    question: "¿Dónde pedir ayuda alimentaria o encontrar un comedor?",
+    answer: `🍲 <strong>Red de Asistencia Alimentaria y Solidaridad:</strong><br><br>
+1. <strong>Comedores y Merenderos:</strong> Existen espacios comunitarios y parroquiales organizados territorialmente en cada provincia.<br>
+2. <strong>Centros de Salud Barriales (CAPS):</strong> Cuentan con trabajadores sociales que gestionan asistencia alimentaria y nutricional.<br>
+3. <strong>Cáritas y Fundaciones:</strong> Acercate a la parroquia o sede barrial más cercana para asistencia directa urgente.<br>
+4. <strong>En el Mapa de JusSocial:</strong> Podés consultar en nuestra sección 'Mapa de Argentina' seleccionando tu provincia para ver actividades comunitarias.`
+  },
+  {
+    keywords: ["inteligencia artificial", "ia", "tecnologia", "leon xiv", "leon xiii", "doctrina social", "humanitas", "futuro", "trabajo"],
+    topic: "Doctrina Social e Inteligencia Artificial",
+    question: "¿Qué plantea la Doctrina Social sobre la Inteligencia Artificial?",
+    answer: `⚖️ <strong>La persona en el centro de la tecnología:</strong><br><br>
+- Así como León XIII en 1891 (<em>Rerum Novarum</em>) defendió al trabajador frente a la máquina industrial, la doctrina actual (con la síntesis de <em>Magnifica Humanitas</em>) sostiene que <strong>la Inteligencia Artificial debe estar al servicio de la persona humana</strong> y el bien común.<br>
+- Nadie debe ser reducido a mero dato, productividad algorítmica o recurso descartable.<br>
+- El progreso tecnológico sólo es legítimo si mejora las condiciones de vida y genera trabajo digno.`
+  },
+  {
+    keywords: ["asamblea", "organizar", "vecinos", "reunion", "voluntariado", "participar", "publicar", "evento"],
+    topic: "Organización Comunitaria y Asambleas",
+    question: "¿Cómo organizar una asamblea o publicar un evento?",
+    answer: `🤝 <strong>Organización Popular y Participación:</strong><br><br>
+1. <strong>Definir la consigna:</strong> Un objetivo claro (mejora barrial, comedor, apoyo escolar, reclamo de servicios).<br>
+2. <strong>Convocatoria abierta:</strong> Elegí un lugar público y horario accesible (plaza, club de barrio, vereda).<br>
+3. <strong>Publicar en JusSocial:</strong> Hacé clic en <strong>'+ Publicar Evento'</strong> en la pantalla del mapa para que tu actividad aparezca registrada en todo el país.<br>
+4. <strong>Compartir en WhatsApp:</strong> Usá el botón verde de difusión para enviar la invitación directamente a grupos vecinales.`
+  },
+  {
+    keywords: ["salud", "medicamentos", "medico", "hospital", "remedios", "urgencia", "emergencia"],
+    topic: "Salud Pública y Medicación",
+    question: "¿Cómo acceder a atención médica o medicamentos gratuitos?",
+    answer: `🏥 <strong>Acceso a la Salud Pública:</strong><br><br>
+- <strong>Hospitales Públicos y CAPS:</strong> La atención en guardias y centros de salud pública es libre y gratuita en todo el territorio argentino.<br>
+- <strong>Programas de Medicación:</strong> Los CAPS proveen medicamentos esenciales del botiquín básico sin costo.<br>
+- <strong>Líneas directas gratuitas:</strong><br>
+  📞 <strong>144:</strong> Violencia de género<br>
+  📞 <strong>102:</strong> Derechos de niñas, niños y adolescentes<br>
+  📞 <strong>141:</strong> SEDRONAR (Salud mental y consumos problemáticos)<br>
+  📞 <strong>107 / 911:</strong> Urgencias médicas`
+  }
+];
+

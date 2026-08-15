@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=37.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=38.0" />
 <script>
   window.showScreenById = function(id) {
     var screens = document.querySelectorAll('section.screen');
@@ -69,7 +69,7 @@
 
     <!-- JS Center Logo / Assistant -->
     <div class="home-js-center">
-      <div class="js-logo-big" id="js-assistant-btn">
+      <div class="js-logo-big" id="js-assistant-btn" onclick="window.openAssistantModal()" title="Abrir Asistente Virtual JS">
         <span>JS</span>
         <div class="js-pulse"></div>
         <div class="js-pulse js-pulse-2"></div>
@@ -228,6 +228,14 @@
           <p class="section-desc">
             Todas las marchas, audiencias, asambleas y acciones solidarias del país en un solo lugar.
           </p>
+        </div>
+        <div class="map-actions-bar">
+          <button id="btn-open-publish" class="btn-publish-trigger" onclick="window.openPublishModal()">
+            <span>📢 + Publicar Evento</span>
+          </button>
+          <button id="btn-near-me" class="btn-near-me" onclick="window.locateNearMe()">
+            <span>📍 Cerca de Mí</span>
+          </button>
         </div>
         <div class="events-toolbar" role="toolbar" aria-label="Herramientas de búsqueda">
           <div class="toolbar-search-wrap">
@@ -1052,9 +1060,154 @@
 
     </div>
   </section>
+  
+  <!-- ── EVENT MODAL ─────────────────────────────────────────── -->
+  <div class="modal-overlay" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close-btn" aria-label="Cerrar ventana" onclick="window.closeModal()">✕</button>
+      <div id="modal-content">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MODAL PUBLICAR EVENTO COMUNITARIO ────────────────────── -->
+  <div class="modal-overlay" id="publish-modal" role="dialog" aria-modal="true" aria-labelledby="publish-modal-title">
+    <div class="modal-box publish-modal-box">
+      <button class="modal-close" id="publish-modal-close-btn" aria-label="Cerrar ventana" onclick="window.closePublishModal()">✕</button>
+      <div class="publish-header">
+        <span class="publish-badge">📢 Participación Popular</span>
+        <h3 id="publish-modal-title">Publicar Evento o Actividad</h3>
+        <p class="publish-subtitle">Sumá una marcha, asamblea, olla popular o festival a la agenda nacional de justicia social.</p>
+      </div>
+
+      <form id="publish-event-form" class="publish-form" onsubmit="window.handlePublishEvent(event)">
+        <div class="form-group">
+          <label for="pub-title">Título de la actividad *</label>
+          <input type="text" id="pub-title" required placeholder="Ej: Olla Popular y Asamblea Barrial" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pub-type">Tipo de evento *</label>
+            <select id="pub-type" required>
+              <option value="marcha">✊ Marcha</option>
+              <option value="asamblea">🏛️ Asamblea</option>
+              <option value="solidario">🍲 Olla Popular / Merendero</option>
+              <option value="cultural">🎭 Festival Cultural</option>
+              <option value="audiencia">⚖️ Audiencia / Reclamo</option>
+              <option value="debate">🎙️ Charla / Debate</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pub-province">Provincia *</label>
+            <select id="pub-province" required>
+              <option value="buenosaires">🏛️ Buenos Aires</option>
+              <option value="caba">🌆 CABA</option>
+              <option value="cordoba">⛪ Córdoba</option>
+              <option value="santafe">🌾 Santa Fe</option>
+              <option value="mendoza">🍇 Mendoza</option>
+              <option value="tucuman">🎺 Tucumán</option>
+              <option value="entrerios">🌊 Entre Ríos</option>
+              <option value="salta">🦙 Salta</option>
+              <option value="misiones">🌿 Misiones</option>
+              <option value="chaco">🌵 Chaco</option>
+              <option value="corrientes">🐊 Corrientes</option>
+              <option value="santiago">☀️ Santiago del Estero</option>
+              <option value="sanluisargo">🏔️ San Luis</option>
+              <option value="jujuy">🪘 Jujuy</option>
+              <option value="rionegro">🏔️ Río Negro</option>
+              <option value="neuquen">⛽ Neuquén</option>
+              <option value="formosa">🌴 Formosa</option>
+              <option value="chubut">🐋 Chubut</option>
+              <option value="lapampa">🌻 La Pampa</option>
+              <option value="sanjuan">🌋 San Juan</option>
+              <option value="catamarca">💎 Catamarca</option>
+              <option value="larioja">🌄 La Rioja</option>
+              <option value="santacruz">🐧 Santa Cruz</option>
+              <option value="tierradelfuego">🔥 Tierra del Fuego</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pub-date">Fecha *</label>
+            <input type="date" id="pub-date" required />
+          </div>
+          <div class="form-group">
+            <label for="pub-time">Hora *</label>
+            <input type="time" id="pub-time" required value="17:00" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pub-location">Lugar / Dirección exacta *</label>
+          <input type="text" id="pub-location" required placeholder="Ej: Plaza San Martín / Av. de Mayo y 9 de Julio" />
+        </div>
+
+        <div class="form-group">
+          <label for="pub-organizer">Organización o Colectivo convocante *</label>
+          <input type="text" id="pub-organizer" required placeholder="Ej: Vecinos Autoconvocados / Movimiento Social" />
+        </div>
+
+        <div class="form-group">
+          <label for="pub-description">Descripción y consignas *</label>
+          <textarea id="pub-description" rows="3" required placeholder="Contá el motivo de la convocatoria, qué llevar, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn-publish-submit">
+          <span>🚀 Publicar en el Mapa Nacional</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── MODAL ASISTENTE VIRTUAL JS ───────────────────────────── -->
+  <div class="modal-overlay" id="assistant-modal" role="dialog" aria-modal="true" aria-labelledby="assistant-title">
+    <div class="modal-box assistant-modal-box">
+      <div class="assistant-topbar">
+        <div class="assistant-badge-box">
+          <div class="assistant-avatar">JS</div>
+          <div>
+            <h3 id="assistant-title" class="assistant-name">Asistente Justicia Social</h3>
+            <span class="assistant-status">🟢 En línea · Orientación ciudadana</span>
+          </div>
+        </div>
+        <button class="modal-close" id="assistant-modal-close-btn" aria-label="Cerrar asistente" onclick="window.closeAssistantModal()">✕</button>
+      </div>
+
+      <div class="assistant-chat-body" id="assistant-chat-body">
+        <div class="chat-msg assistant-msg">
+          <div class="chat-bubble">
+            👋 <strong>¡Hola! Soy tu asistente de Justicia Social.</strong><br><br>
+            Estoy acá para orientarte sobre <strong>derechos laborales</strong>, <strong>comedores y ayuda alimentaria</strong>, <strong>doctrina social frente a la IA</strong> y organización popular.
+          </div>
+        </div>
+
+        <div class="assistant-suggestions" id="assistant-suggestions">
+          <span class="suggestions-label">💡 Consultas frecuentes:</span>
+          <button type="button" class="sugg-chip" onclick="window.askAssistantFromChip(0)">⚖️ ¿Qué hacer ante un despido?</button>
+          <button type="button" class="sugg-chip" onclick="window.askAssistantFromChip(1)">🍲 ¿Dónde pedir ayuda alimentaria?</button>
+          <button type="button" class="sugg-chip" onclick="window.askAssistantFromChip(2)">🤖 ¿Qué dice la doctrina sobre IA?</button>
+          <button type="button" class="sugg-chip" onclick="window.askAssistantFromChip(3)">🤝 ¿Cómo organizar una asamblea?</button>
+          <button type="button" class="sugg-chip" onclick="window.askAssistantFromChip(4)">🏥 ¿Acceso a salud y medicamentos?</button>
+        </div>
+      </div>
+
+      <form class="assistant-input-bar" id="assistant-input-form" onsubmit="window.handleAssistantSubmit(event)">
+        <input type="text" id="assistant-user-input" placeholder="Escribí tu consulta aquí…" autocomplete="off" />
+        <button type="submit" class="assistant-send-btn" aria-label="Enviar consulta">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=37.0"></script>
+  <script type="module" src="js/app.v2.js?v=38.0"></script>
 </body>
 </html>

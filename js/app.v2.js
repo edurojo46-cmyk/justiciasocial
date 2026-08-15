@@ -25,6 +25,23 @@ window.showScreenById = function(id) {
   window.scrollTo(0, 0);
 };
 
+// ── Custom Events (localStorage) ──────────────────────────
+let customEvents = [];
+try {
+  const saved = localStorage.getItem('jussocial_custom_events');
+  if (saved) customEvents = JSON.parse(saved);
+} catch (e) {
+  console.warn('Error loading custom events:', e);
+}
+
+function getAllEvents() {
+  return [...customEvents, ...EVENTS];
+}
+
+function getEventById(id) {
+  return getAllEvents().find(e => e.id === id);
+}
+
 // ── State ────────────────────────────────────────────────────
 const state = {
   activeProvince: null,
@@ -825,3 +842,221 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') window.closeModal();
   });
 });
+
+// ── WhatsApp & Calendar Helpers ───────────────────────────────
+window.shareToWhatsApp = function(eventId) {
+  const ev = getEventById(eventId);
+  if (!ev) return;
+  const provinceName = getProvinceName(ev.provinceId);
+  const msg = `✊ *CONVOCATORIA - JUSTICIA SOCIAL*
+
+📌 *${ev.title}*
+📅 *Fecha:* ${formatDate(ev.date)} a las ${ev.time}hs
+📍 *Lugar:* ${ev.location} (${provinceName})
+🏛️ *Convoca:* ${ev.organizer}
+
+ℹ️ *Detalles:* ${ev.description}
+
+📲 *Ver más en JusSocial:* ${window.location.origin + window.location.pathname}`;
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+};
+
+window.addToGoogleCalendar = function(eventId) {
+  const ev = getEventById(eventId);
+  if (!ev) return;
+  const startDateTime = ev.date.replace(/-/g, '') + 'T' + ev.time.replace(':', '') + '00';
+  const startHour = Number(ev.time.split(':')[0]) || 17;
+  const endHour = String(startHour + 2).padStart(2, '0');
+  const endDateTime = ev.date.replace(/-/g, '') + 'T' + endHour + (ev.time.split(':')[1] || '00') + '00';
+  const title = encodeURIComponent(ev.title);
+  const details = encodeURIComponent(`${ev.description}
+
+Organizado por: ${ev.organizer}
+Plataforma JusSocial`);
+  const location = encodeURIComponent(ev.location + ', ' + getProvinceName(ev.provinceId) + ', Argentina');
+  const calUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDateTime}/${endDateTime}&details=${details}&location=${location}`;
+  window.open(calUrl, '_blank');
+};
+
+// ── Publicar Evento Comunitario ───────────────────────────────
+window.openPublishModal = function() {
+  const modal = document.getElementById('publish-modal');
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Set default date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const dateInput = document.getElementById('pub-date');
+    if (dateInput && !dateInput.value) {
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+    }
+  }
+};
+
+window.closePublishModal = function() {
+  const modal = document.getElementById('publish-modal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+window.handlePublishEvent = function(e) {
+  e.preventDefault();
+  const title = document.getElementById('pub-title').value.trim();
+  const type = document.getElementById('pub-type').value;
+  const provinceId = document.getElementById('pub-province').value;
+  const date = document.getElementById('pub-date').value;
+  const time = document.getElementById('pub-time').value;
+  const location = document.getElementById('pub-location').value.trim();
+  const organizer = document.getElementById('pub-organizer').value.trim();
+  const description = document.getElementById('pub-description').value.trim();
+
+  if (!title || !location || !organizer || !description) return;
+
+  const newEv = {
+    id: 'custom_' + Date.now(),
+    provinceId,
+    type,
+    title,
+    date,
+    time,
+    location,
+    organizer,
+    description,
+    attendees: 1,
+    priority: 'alta',
+    tags: [type, 'comunitario', 'popular']
+  };
+
+  customEvents.unshift(newEv);
+  try {
+    localStorage.setItem('jussocial_custom_events', JSON.stringify(customEvents));
+  } catch (err) {
+    console.warn('LocalStorage error:', err);
+  }
+
+  // Refresh views
+  state.activeProvince = provinceId;
+  renderEvents();
+  renderProvinceGrid();
+  renderStats();
+  initMap();
+
+  window.closePublishModal();
+  document.getElementById('publish-event-form').reset();
+  showToast('¡Actividad publicada con éxito en el Mapa Nacional! 🚀', 'gold', '📢');
+};
+
+// ── Asistente Virtual JS ──────────────────────────────────────
+window.openAssistantModal = function() {
+  const modal = document.getElementById('assistant-modal');
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeAssistantModal = function() {
+  const modal = document.getElementById('assistant-modal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+window.askAssistantFromChip = function(index) {
+  const item = ASSISTANT_KNOWLEDGE[index];
+  if (!item) return;
+  appendAssistantMessage(item.question, item.answer);
+};
+
+function appendAssistantMessage(userText, assistantHtml) {
+  const chatBody = document.getElementById('assistant-chat-body');
+  if (!chatBody) return;
+
+  // User msg
+  const userEl = document.createElement('div');
+  userEl.className = 'chat-msg user-msg';
+  userEl.innerHTML = `<div class="chat-bubble">${userText}</div>`;
+  chatBody.appendChild(userEl);
+
+  // Assistant response
+  const astEl = document.createElement('div');
+  astEl.className = 'chat-msg assistant-msg';
+  astEl.innerHTML = `<div class="chat-bubble">${assistantHtml}</div>`;
+  chatBody.appendChild(astEl);
+
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+window.handleAssistantSubmit = function(e) {
+  e.preventDefault();
+  const input = document.getElementById('assistant-user-input');
+  if (!input) return;
+  const q = input.value.trim();
+  if (!q) return;
+
+  const qLower = q.toLowerCase();
+  input.value = '';
+
+  // Find match in ASSISTANT_KNOWLEDGE
+  let matched = null;
+  for (const item of ASSISTANT_KNOWLEDGE) {
+    const match = item.keywords.some(k => qLower.includes(k.toLowerCase()));
+    if (match) {
+      matched = item;
+      break;
+    }
+  }
+
+  let reply = '';
+  if (matched) {
+    reply = matched.answer;
+  } else {
+    reply = `🤝 <strong>Orientación General:</strong><br><br>
+Para tu consulta sobre "<em>${q}</em>", te sugiero revisar nuestras secciones especializadas:<br>
+- 🗺️ <strong>Mapa de Argentina:</strong> Para ver asambleas, ollas populares y marchas.<br>
+- 📘 <strong>Aprender:</strong> Historia de la justicia social y comparativa León XIII–XIV.<br>
+- 🟢 <strong>Mejorar mi Futuro:</strong> Simulador de profesiones con IA y test de trabajo digno.<br><br>
+O podés elegir una de las <strong>preguntas frecuentes</strong> de arriba.`;
+  }
+
+  appendAssistantMessage(q, reply);
+};
+
+// ── Geolocalización / Cerca de Mí ──────────────────────────────
+window.locateNearMe = function() {
+  if (!navigator.geolocation) {
+    showToast('La geolocalización no está disponible en este navegador', 'red', '📍');
+    return;
+  }
+
+  showToast('Buscando actividades en tu región…', 'gold', '📍');
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      // Default to Buenos Aires / CABA if inside lat/lon box, or choose closest
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+      
+      let closest = 'buenosaires';
+      if (lat < -34.5 && lat > -34.7 && lon < -58.3 && lon > -58.6) {
+        closest = 'caba';
+      } else if (lat < -31 && lat > -33 && lon < -63 && lon > -65) {
+        closest = 'cordoba';
+      } else if (lat < -32 && lat > -34 && lon < -68 && lon > -70) {
+        closest = 'mendoza';
+      } else if (lat < -32 && lat > -34 && lon < -60 && lon > -62) {
+        closest = 'santafe';
+      }
+
+      window.selectProvince(closest);
+      showToast(`📍 Ubicado en ${getProvinceName(closest)}`, 'green', '✅');
+    },
+    (err) => {
+      // Fallback: select CABA/Buenos Aires
+      window.selectProvince('buenosaires');
+      showToast('Mostrando eventos destacados de la región pampeana', 'gold', '📍');
+    },
+    { timeout: 5000 }
+  );
+};

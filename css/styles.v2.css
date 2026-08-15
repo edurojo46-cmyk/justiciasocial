@@ -2576,3 +2576,335 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   max-width: 300px;
   line-height: 1.5;
 }
+
+/* ── Action Buttons for Events (WhatsApp, Calendar, Publish) ── */
+.map-actions-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn-publish-trigger {
+  background: linear-gradient(135deg, #0284c7, #38bdf8);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-publish-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+}
+
+.btn-near-me {
+  background: var(--surface-color, #131b2e);
+  color: var(--text-color, #ffffff);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.15s ease;
+}
+.btn-near-me:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.event-action-btns {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  transition: filter 0.15s ease;
+}
+.btn-whatsapp:hover { filter: brightness(1.1); }
+
+.btn-calendar {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  transition: filter 0.15s ease;
+}
+.btn-calendar:hover { filter: brightness(1.1); }
+
+/* ── Modal Overlays & Boxes ──────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  animation: fadeIn 0.25s ease;
+}
+.modal-overlay.open {
+  display: flex !important;
+}
+
+.publish-modal-box,
+.assistant-modal-box {
+  background: #0f172a;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  color: white;
+}
+
+/* Form Styles inside Publish Modal */
+.publish-header {
+  margin-bottom: 1.25rem;
+}
+.publish-badge {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #38bdf8;
+  font-weight: 700;
+}
+.publish-header h3 {
+  font-size: 1.3rem;
+  margin: 0.25rem 0;
+  color: white;
+}
+.publish-subtitle {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.publish-form .form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.publish-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.publish-form label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+.publish-form input,
+.publish-form select,
+.publish-form textarea {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 0.75rem;
+  color: white;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+.publish-form input:focus,
+.publish-form select:focus,
+.publish-form textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.btn-publish-submit {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #0284c7, #0284c7);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.btn-publish-submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* ── Assistant Chat Modal Styles ─────────────────────────────── */
+.assistant-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+.assistant-badge-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.assistant-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  color: white;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4);
+}
+.assistant-name {
+  font-size: 1.05rem;
+  margin: 0;
+  color: white;
+}
+.assistant-status {
+  font-size: 0.75rem;
+  color: #4ade80;
+}
+
+.assistant-chat-body {
+  height: 340px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-right: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.chat-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+  animation: fadeIn 0.2s ease;
+}
+.chat-msg.assistant-msg {
+  align-self: flex-start;
+}
+.chat-msg.user-msg {
+  align-self: flex-end;
+}
+
+.chat-bubble {
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.assistant-msg .chat-bubble {
+  background: #1e293b;
+  color: #f1f5f9;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #334155;
+}
+.user-msg .chat-bubble {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.assistant-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.suggestions-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+.sugg-chip {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.sugg-chip:hover {
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.assistant-input-bar {
+  display: flex;
+  gap: 0.5rem;
+}
+.assistant-input-bar input {
+  flex: 1;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 0.9rem;
+}
+.assistant-input-bar input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+.assistant-send-btn {
+  background: #2563eb;
+  border: none;
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.assistant-send-btn:hover {
+  background: #1d4ed8;
+}
