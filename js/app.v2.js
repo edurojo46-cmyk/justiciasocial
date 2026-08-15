@@ -1,3 +1,4 @@
+import { JOB_IMPACT } from './data.js';
 // ============================================================
 // JusSocial — Main Application Logic
 // ============================================================
@@ -665,7 +666,7 @@ function initHomeButtons() {
 
 
 // ── Mejorar Mi Futuro Logic ────────────────────────────────────
-import { JOB_IMPACT } from './data.js';
+
 
 function initFuturoLogic() {
   const jobSelect = document.getElementById('job-select');
