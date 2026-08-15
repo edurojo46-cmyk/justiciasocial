@@ -531,8 +531,6 @@ window.toggleJoin = function(eventId) {
 function initBottomNav() {
   const tabs = document.querySelectorAll('.bottom-nav .nav-item');
 
-  // showScreenById is now defined at module scope (top of file)
-
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       // Remove active class from all tabs
@@ -555,33 +553,6 @@ function initBottomNav() {
       if (bottomNav) bottomNav.style.display = 'flex';
       
       window.scrollTo(0, 0);
-    });
-  });
-
-  // ── Home: 4 Action Buttons & Quick Links ─────────────────
-  document.querySelectorAll('.home-action-btn, .home-quick-chip, .menu-card').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = btn.dataset.target;
-      if (!targetId) return;
-
-      // Map targets to screens
-      const screenMap = {
-        historia:     () => document.querySelector('.nav-item[data-tab="biblioteca"]').click(),
-        comparativa:  () => window.showScreenById('comparativa-screen'),
-        documentos:   () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
-        conceptos:    () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
-        mapa:         () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
-        accion:       () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
-        aprender:     () => document.querySelector('.nav-item[data-tab="biblioteca"]').click(),
-        futuro:       () => window.showScreenById('futuro-screen'),
-        ayuda:        () => window.showScreenById('ayuda-screen'),
-        voluntario:   () => window.showScreenById('voluntario-screen'),
-      };
-
-      if (screenMap[targetId]) {
-        screenMap[targetId]();
-      }
     });
   });
 }
