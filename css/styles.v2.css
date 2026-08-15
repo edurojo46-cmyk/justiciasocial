@@ -2464,6 +2464,7 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   transform: scale(1.08);
 }
 
+.hab-cyan  { background: linear-gradient(135deg, #0284c7, #38bdf8); color: white; }
 .hab-blue  { background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: white; }
 .hab-green { background: linear-gradient(135deg, #15803d, #22c55e); color: white; }
 .hab-red   { background: linear-gradient(135deg, #b91c1c, #ef4444); color: white; }

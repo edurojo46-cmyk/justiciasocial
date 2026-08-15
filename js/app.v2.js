@@ -637,7 +637,12 @@ function initHomeButtons() {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const target = btn.dataset.target;
-      if (target === 'aprender') {
+      if (target === 'mapa') {
+        window.showScreenById('inicio-screen');
+        setTimeout(() => {
+          document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      } else if (target === 'aprender') {
         const tab = document.querySelector('.nav-item[data-tab="biblioteca"]');
         if (tab) tab.click();
       } else if (target === 'futuro') {
