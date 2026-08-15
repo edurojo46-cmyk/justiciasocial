@@ -1888,9 +1888,9 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background-image: linear-gradient(135deg, rgba(28, 102, 216, 0.15), rgba(0, 73, 190, 0.35)), url('../assets/img/fondo-evita.jpg');
+  background-image: linear-gradient(135deg, rgba(28, 102, 216, 0.4), rgba(0, 73, 190, 0.6)), url('../assets/img/fondo-evita.jpg');
     background-size: cover;
-    background-position: 40% center;
+    background-position: 35% center;
     background-repeat: no-repeat;
   z-index: 99999;
   display: flex;
