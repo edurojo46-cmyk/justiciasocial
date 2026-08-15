@@ -540,32 +540,17 @@ function initBottomNav() {
 
       const targetId = tab.dataset.tab;
       if (targetId === 'explorar') {
-        window.showScreenById('inicio-screen');
-        setTimeout(() => {
-          document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth' });
-        }, 50);
+        window.showScreenById('mapa-screen');
         return;
       }
       if (targetId === 'inicio') {
         window.showScreenById('inicio-screen');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
       // Hide all screens, show target
-      document.querySelectorAll('section.screen').forEach(screen => {
-        if (screen.id === targetId + '-screen') {
-          screen.classList.add('active');
-        } else {
-          screen.classList.remove('active');
-        }
-      });
-      
-      // Ensure bottom nav is visible on main tab screens
-      const bottomNav = document.querySelector('.bottom-nav');
-      if (bottomNav) bottomNav.style.display = 'flex';
-      
-      window.scrollTo(0, 0);
+      const screenId = targetId + '-screen';
+      window.showScreenById(screenId);
     });
   });
 }
@@ -623,10 +608,9 @@ function initHomeButtons() {
       e.preventDefault();
       const target = chip.dataset.target;
       if (target === 'historia' || target === 'documentos') {
-        const tab = document.querySelector('.nav-item[data-tab="biblioteca"]');
-        if (tab) tab.click();
+        window.showScreenById('biblioteca-screen');
       } else if (target === 'mapa') {
-        document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth' });
+        window.showScreenById('mapa-screen');
       } else if (target === 'comparativa') {
         window.showScreenById('comparativa-screen');
       }
@@ -638,13 +622,9 @@ function initHomeButtons() {
       e.preventDefault();
       const target = btn.dataset.target;
       if (target === 'mapa') {
-        window.showScreenById('inicio-screen');
-        setTimeout(() => {
-          document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth' });
-        }, 50);
+        window.showScreenById('mapa-screen');
       } else if (target === 'aprender') {
-        const tab = document.querySelector('.nav-item[data-tab="biblioteca"]');
-        if (tab) tab.click();
+        window.showScreenById('biblioteca-screen');
       } else if (target === 'futuro') {
         window.showScreenById('futuro-screen');
       } else if (target === 'ayuda') {
