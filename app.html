@@ -15,7 +15,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <title>JusSocial — Plataforma Nacional de Justicia Social</title>
-  <link rel="stylesheet" href="css/styles.v2.css?v=20.0" />
+  <link rel="stylesheet" href="css/styles.v2.css?v=23.0" />
 </head>
 <body>
   <!-- ── NAVIGATION HELPERS ── inline so it works regardless of module scope ── -->
@@ -120,11 +120,107 @@
     <!-- Quick access chips -->
     <div class="home-quick-links">
       <span class="home-quick-label">Accesos rápidos:</span>
-      <a href="#" class="home-quick-chip" >📚 Historia</a>
-      <a href="#" class="home-quick-chip" >⚖️ León XIII·XIV</a>
-      <a href="#" class="home-quick-chip" >📄 Documentos</a>
-      <a href="#" class="home-quick-chip" >🗺️ Mapa</a>
+      <a href="#" class="home-quick-chip" data-target="historia">📚 Historia</a>
+      <a href="#" class="home-quick-chip" data-target="comparativa">⚖️ León XIII·XIV</a>
+      <a href="#" class="home-quick-chip" data-target="documentos">📄 Documentos</a>
+      <a href="#" class="home-quick-chip" data-target="mapa">🗺️ Mapa</a>
     </div>
+
+
+    <!-- ── SECCIÓN MAPA Y EVENTOS SOCIALES ───────────────────── -->
+    <div class="section-divider"></div>
+
+  <section class="section map-section" id="mapa" aria-labelledby="map-title">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-eyebrow">Vista Territorial</span>
+          <h2 class="section-title" id="map-title">Mapa de Argentina</h2>
+          <p class="section-desc">
+            Hacé clic en una provincia para filtrar sus eventos. El color indica la cantidad de actividades registradas.
+          </p>
+        </div>
+        <div id="map-legend" class="map-legend" aria-label="Leyenda del mapa">
+          <span class="map-legend-label">Menos eventos</span>
+          <div class="map-legend-bar"></div>
+          <span class="map-legend-label">Más eventos</span>
+        </div>
+      </div>
+      <div class="map-container" role="region" aria-label="Mapa interactivo de Argentina">
+        <div class="map-tooltip" id="map-tooltip" aria-live="polite"></div>
+        <svg id="argentina-map" viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Rendered by JS -->
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROVINCES ───────────────────────────────────────────── -->
+  <div class="section-divider"></div>
+
+  <section class="section provinces-section" id="provincias" aria-labelledby="provinces-title">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-eyebrow">Organización Territorial</span>
+          <h2 class="section-title" id="provinces-title">Seleccioná tu Provincia</h2>
+          <p class="section-desc">
+            Filtrá los eventos por territorio. Hacé clic en una provincia para ver todas las actividades de esa región.
+          </p>
+        </div>
+        <div class="filter-bar" id="type-filter-bar" role="group" aria-label="Filtros por tipo de evento">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <div class="province-grid" id="province-grid" role="list" aria-label="Grilla de provincias">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EVENTS ──────────────────────────────────────────────── -->
+  <div class="section-divider"></div>
+
+  <section class="section events-section" id="eventos" aria-labelledby="events-title">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-eyebrow">Agenda Nacional</span>
+          <h2 class="section-title" id="events-title">Eventos y Actividades</h2>
+          <p class="section-desc">
+            Todas las marchas, audiencias, asambleas y acciones solidarias del país en un solo lugar.
+          </p>
+        </div>
+        <div class="events-toolbar" role="toolbar" aria-label="Herramientas de búsqueda">
+          <div class="toolbar-search-wrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Buscar eventos…"
+              autocomplete="off"
+              aria-label="Buscar eventos"
+            />
+          </div>
+          <div class="toolbar-date-wrap">
+            <label for="date-from" class="date-label">Desde</label>
+            <input type="date" id="date-from" class="date-input" aria-label="Fecha desde" />
+            <label for="date-to" class="date-label">Hasta</label>
+            <input type="date" id="date-to" class="date-input" aria-label="Fecha hasta" />
+            <button class="date-clear-btn" id="date-clear-btn" aria-label="Limpiar fechas">✕</button>
+          </div>
+          <div class="events-count-tag" id="events-count" aria-live="polite">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="events-grid" id="events-grid" role="list" aria-label="Lista de eventos">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
 
   </section>
   <!-- ── COMPARATIVA SCREEN
@@ -494,109 +590,6 @@
 
   
 
-  <!-- ── EXPLORAR SCREEN ────────────────────────────────────────── -->
-  <section class="screen" id="explorar-screen">
-    <div class="screen-top-bar">
-      <button class="back-btn"  aria-label="Volver al inicio">
-        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-      </button>
-      <h2 class="screen-top-title">Explorar</h2>
-      <div style="width:32px"></div>
-    </div>
-
-  <section class="section map-section" id="mapa" aria-labelledby="map-title">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-title-block">
-          <span class="section-eyebrow">Vista Territorial</span>
-          <h2 class="section-title" id="map-title">Mapa de Argentina</h2>
-          <p class="section-desc">
-            Hacé clic en una provincia para filtrar sus eventos. El color indica la cantidad de actividades registradas.
-          </p>
-        </div>
-        <div id="map-legend" class="map-legend" aria-label="Leyenda del mapa">
-          <span class="map-legend-label">Menos eventos</span>
-          <div class="map-legend-bar"></div>
-          <span class="map-legend-label">Más eventos</span>
-        </div>
-      </div>
-      <div class="map-container" role="region" aria-label="Mapa interactivo de Argentina">
-        <div class="map-tooltip" id="map-tooltip" aria-live="polite"></div>
-        <svg id="argentina-map" viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Rendered by JS -->
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PROVINCES ───────────────────────────────────────────── -->
-  <div class="section-divider"></div>
-
-  <section class="section provinces-section" id="provincias" aria-labelledby="provinces-title">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-title-block">
-          <span class="section-eyebrow">Organización Territorial</span>
-          <h2 class="section-title" id="provinces-title">Seleccioná tu Provincia</h2>
-          <p class="section-desc">
-            Filtrá los eventos por territorio. Hacé clic en una provincia para ver todas las actividades de esa región.
-          </p>
-        </div>
-        <div class="filter-bar" id="type-filter-bar" role="group" aria-label="Filtros por tipo de evento">
-          <!-- Rendered by JS -->
-        </div>
-      </div>
-
-      <div class="province-grid" id="province-grid" role="list" aria-label="Grilla de provincias">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ── EVENTS ──────────────────────────────────────────────── -->
-  <div class="section-divider"></div>
-
-  <section class="section events-section" id="eventos" aria-labelledby="events-title">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-title-block">
-          <span class="section-eyebrow">Agenda Nacional</span>
-          <h2 class="section-title" id="events-title">Eventos y Actividades</h2>
-          <p class="section-desc">
-            Todas las marchas, audiencias, asambleas y acciones solidarias del país en un solo lugar.
-          </p>
-        </div>
-        <div class="events-toolbar" role="toolbar" aria-label="Herramientas de búsqueda">
-          <div class="toolbar-search-wrap">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input
-              type="search"
-              id="search-input"
-              placeholder="Buscar eventos…"
-              autocomplete="off"
-              aria-label="Buscar eventos"
-            />
-          </div>
-          <div class="toolbar-date-wrap">
-            <label for="date-from" class="date-label">Desde</label>
-            <input type="date" id="date-from" class="date-input" aria-label="Fecha desde" />
-            <label for="date-to" class="date-label">Hasta</label>
-            <input type="date" id="date-to" class="date-input" aria-label="Fecha hasta" />
-            <button class="date-clear-btn" id="date-clear-btn" aria-label="Limpiar fechas">✕</button>
-          </div>
-          <div class="events-count-tag" id="events-count" aria-live="polite">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
-      </div>
-
-      <div class="events-grid" id="events-grid" role="list" aria-label="Lista de eventos">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  </section>
 
   <!-- ── BIBLIOTECA SCREEN ──────────────────────────────────────── -->
   <section class="screen" id="biblioteca-screen">
@@ -956,6 +949,6 @@
   </div> <!-- End of #app-container -->
 
   <!-- ── SCRIPTS ──────────────────────────────────────────────── -->
-  <script type="module" src="js/app.v2.js?v=20.0"></script>
+  <script type="module" src="js/app.v2.js?v=23.0"></script>
 </body>
 </html>

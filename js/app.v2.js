@@ -538,8 +538,21 @@ function initBottomNav() {
       // Add active class to clicked tab
       tab.classList.add('active');
 
-      // Hide all screens, show target (live query so it includes new screens)
       const targetId = tab.dataset.tab;
+      if (targetId === 'explorar') {
+        window.showScreenById('inicio-screen');
+        setTimeout(() => {
+          document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+        return;
+      }
+      if (targetId === 'inicio') {
+        window.showScreenById('inicio-screen');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      // Hide all screens, show target
       document.querySelectorAll('section.screen').forEach(screen => {
         if (screen.id === targetId + '-screen') {
           screen.classList.add('active');
@@ -548,7 +561,7 @@ function initBottomNav() {
         }
       });
       
-      // Ensure bottom nav is visible if we were on a hidden screen
+      // Ensure bottom nav is visible on main tab screens
       const bottomNav = document.querySelector('.bottom-nav');
       if (bottomNav) bottomNav.style.display = 'flex';
       
@@ -609,10 +622,11 @@ function initHomeButtons() {
     chip.addEventListener('click', (e) => {
       e.preventDefault();
       const target = chip.dataset.target;
-      if (target === 'historia' || target === 'documentos' || target === 'mapa') {
-        const tabName = target === 'historia' ? 'biblioteca' : 'explorar';
-        const tab = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
+      if (target === 'historia' || target === 'documentos') {
+        const tab = document.querySelector('.nav-item[data-tab="biblioteca"]');
         if (tab) tab.click();
+      } else if (target === 'mapa') {
+        document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth' });
       } else if (target === 'comparativa') {
         window.showScreenById('comparativa-screen');
       }
