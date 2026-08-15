@@ -2292,3 +2292,275 @@ h4, h5, h6, label, button, input { font-family: 'Inter', sans-serif; }
   .compare-col-header span { font-size: 0.8rem; }
   .compare-row .col { font-size: 0.8rem; padding: 0.75rem 0.5rem; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   HOME SCREEN — 4 ACTION BUTTONS REDESIGN
+   ══════════════════════════════════════════════════════════ */
+
+#inicio-screen {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px;
+  overflow-y: auto;
+}
+
+/* Top bar */
+.home-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.2rem 0;
+}
+
+.home-greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.home-hello {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.home-subtitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+/* JS Center Logo */
+.home-js-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0 1rem;
+  gap: 0.5rem;
+}
+
+.js-logo-big {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a3a6c, #0F52BA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(15, 82, 186, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.js-logo-big:hover,
+.js-logo-big:active {
+  transform: scale(1.06);
+  box-shadow: 0 12px 40px rgba(15, 82, 186, 0.5);
+}
+
+.js-logo-big > span {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -1px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Pulsing rings */
+.js-pulse {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px; height: 90px;
+  border: 2px solid rgba(15, 82, 186, 0.4);
+  border-radius: 50%;
+  animation: js-ring-pulse 2.5s ease-out infinite;
+  pointer-events: none;
+}
+
+.js-pulse-2 {
+  animation-delay: 1.25s;
+}
+
+@keyframes js-ring-pulse {
+  0%   { width: 90px; height: 90px; opacity: 0.6; }
+  100% { width: 140px; height: 140px; opacity: 0; }
+}
+
+.js-tagline {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* 4 Action Buttons */
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+
+.home-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1rem 1rem 0.9rem;
+  border-radius: 16px;
+  background: var(--navy-surface);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-action-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+  pointer-events: none;
+}
+
+.home-action-btn:hover,
+.home-action-btn:active {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  background: #1a2340;
+}
+
+/* Urgent button (NECESITO AYUDA) */
+.home-action-btn.hab-urgent {
+  border-color: rgba(239, 68, 68, 0.35);
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.15);
+}
+
+.home-action-btn.hab-urgent .hab-title {
+  color: #ff7070;
+}
+
+/* Icon boxes */
+.hab-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.home-action-btn:hover .hab-icon {
+  transform: scale(1.08);
+}
+
+.hab-blue  { background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: white; }
+.hab-green { background: linear-gradient(135deg, #15803d, #22c55e); color: white; }
+.hab-red   { background: linear-gradient(135deg, #b91c1c, #ef4444); color: white; }
+.hab-gold  { background: linear-gradient(135deg, #92400e, #f59e0b); color: white; }
+
+/* Text content */
+.hab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hab-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.hab-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+/* Arrow */
+.hab-arrow {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.home-action-btn:hover .hab-arrow {
+  transform: translateX(3px);
+}
+
+/* Quick links row */
+.home-quick-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1rem 0.5rem;
+  flex-wrap: wrap;
+}
+
+.home-quick-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.home-quick-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+
+.home-quick-chip:hover {
+  background: rgba(74, 158, 218, 0.15);
+  color: var(--blue-bright);
+  border-color: rgba(74, 158, 218, 0.3);
+}
+
+/* ── Placeholder screens for new sections ──────────────────── */
+.coming-soon-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.coming-soon-icon {
+  font-size: 4rem;
+}
+
+.coming-soon-screen h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.coming-soon-screen p {
+  color: var(--text-secondary);
+  max-width: 300px;
+  line-height: 1.5;
+}

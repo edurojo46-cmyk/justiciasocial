@@ -546,20 +546,37 @@ function initBottomNav() {
     });
   });
 
-  // Handle Home menu links
-  document.querySelectorAll('.menu-card').forEach(card => {
-    card.addEventListener('click', (e) => {
+  // ── Home: 4 Action Buttons ───────────────────────────────
+  function showScreenById(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) bottomNav.style.display = id === 'inicio-screen' ? 'flex' : 'none';
+  }
+
+  document.querySelectorAll('.home-action-btn, .home-quick-chip, .menu-card').forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const targetId = card.dataset.target;
-      if (targetId === 'historia') {
-        document.querySelector('.nav-item[data-tab="biblioteca"]').click();
-      } else if (targetId === 'comparativa') {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById('comparativa-screen').classList.add('active');
-        const bottomNav = document.querySelector('.bottom-nav');
-        if (bottomNav) bottomNav.style.display = 'none'; // Hide bottom nav for this screen
-      } else if (targetId === 'accion' || targetId === 'documentos' || targetId === 'conceptos' || targetId === 'mapa') {
-        document.querySelector('.nav-item[data-tab="explorar"]').click();
+      const targetId = btn.dataset.target;
+      if (!targetId) return;
+
+      // Map targets to screens
+      const screenMap = {
+        historia:     () => document.querySelector('.nav-item[data-tab="biblioteca"]').click(),
+        comparativa:  () => { showScreenById('comparativa-screen'); },
+        documentos:   () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
+        conceptos:    () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
+        mapa:         () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
+        accion:       () => document.querySelector('.nav-item[data-tab="explorar"]').click(),
+        aprender:     () => document.querySelector('.nav-item[data-tab="biblioteca"]').click(),
+        futuro:       () => showScreenById('futuro-screen'),
+        ayuda:        () => showScreenById('ayuda-screen'),
+        voluntario:   () => showScreenById('voluntario-screen'),
+      };
+
+      if (screenMap[targetId]) {
+        screenMap[targetId]();
       }
     });
   });

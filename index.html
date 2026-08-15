@@ -36,78 +36,92 @@
 
   <!-- ── HOME SCREEN (INICIO) ────────────────────────────────── -->
   <section class="screen active" id="inicio-screen">
-    <div class="screen-header">
-      <div>
-        <h1 class="screen-title">¡Bienvenido!</h1>
-        <p class="screen-subtitle">Construyamos juntos un mundo más justo.</p>
+
+    <!-- Top greeting bar -->
+    <div class="home-topbar">
+      <div class="home-greeting">
+        <span class="home-hello">Justicia</span>
+        <span class="home-subtitle">Social</span>
       </div>
       <button class="icon-btn" aria-label="Notificaciones">
         <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
       </button>
     </div>
 
-    <div class="menu-list">
-      <!-- Card 1 -->
-      <a href="#historia" class="menu-card" data-target="historia">
-        <div class="menu-icon-box">
-          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M4 10h3v7H4zM10.5 10h3v7h-3zM2 19h20v3H2zM17 10h3v7h-3zM12 1L2 6v2h20V6L12 1zm-1 8h2v7h-2z"/></svg>
-        </div>
-        <div class="menu-content">
-          <h3>Historia</h3>
-          <p>Un recorrido por los hitos de la justicia social</p>
-        </div>
-        <div class="menu-arrow">›</div>
-      </a>
-      
-      <!-- Card 2 -->
-      <a href="#comparativa" class="menu-card" data-target="comparativa">
-        <div class="menu-icon-box">
-          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-        </div>
-        <div class="menu-content">
-          <h3>León XIII → León XIV</h3>
-          <p>Del mundo industrial a la era de la IA</p>
-        </div>
-        <div class="menu-arrow">›</div>
-      </a>
-
-      <!-- Card 3 -->
-      <a href="#documentos" class="menu-card" data-target="documentos">
-        <div class="menu-icon-box">
-          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-        </div>
-        <div class="menu-content">
-          <h3>Documentos</h3>
-          <p>Encíclicas y textos clave de la Doctrina Social</p>
-        </div>
-        <div class="menu-arrow">›</div>
-      </a>
-
-      <!-- Card 4 -->
-      <a href="#conceptos" class="menu-card" data-target="conceptos">
-        <div class="menu-icon-box">
-          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>
-        </div>
-        <div class="menu-content">
-          <h3>Conceptos</h3>
-          <p>Ideas fundamentales para comprender y transformar</p>
-        </div>
-        <div class="menu-arrow">›</div>
-      </a>
-
-      <!-- Card 5 -->
-      <a href="#accion" class="menu-card" data-target="accion">
-        <div class="menu-icon-box">
-          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        </div>
-        <div class="menu-content">
-          <h3>Acción Solidaria</h3>
-          <p>Inspirate y sumate a iniciativas que cambian vidas</p>
-        </div>
-        <div class="menu-arrow">›</div>
-      </a>
+    <!-- JS Center Logo / Assistant -->
+    <div class="home-js-center">
+      <div class="js-logo-big" id="js-assistant-btn">
+        <span>JS</span>
+        <div class="js-pulse"></div>
+        <div class="js-pulse js-pulse-2"></div>
+      </div>
+      <p class="js-tagline">Historia · Dignidad · Bien Común</p>
     </div>
+
+    <!-- 4 Big Action Buttons -->
+    <div class="home-actions">
+
+      <!-- APRENDER -->
+      <a href="#" class="home-action-btn" data-target="aprender" id="btn-aprender">
+        <div class="hab-icon hab-blue">
+          <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18V15h2v-2.82L9 13.36V15c0 1.66 1.34 3 3 3s3-1.34 3-3v-1.64l4.5-2.18V9L12 3zm0 2.34l5.5 3.02L12 11.38 6.5 8.36 12 5.34zM15 15c0 1.66-1.34 3-3 3s-3-1.34-3-3v-.64l3 1.45 3-1.45V15z"/></svg>
+        </div>
+        <div class="hab-content">
+          <span class="hab-title">APRENDER</span>
+          <span class="hab-desc">Historia, León XIII–XIV, documentos y conceptos</span>
+        </div>
+        <svg class="hab-arrow" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </a>
+
+      <!-- MEJORAR MI FUTURO -->
+      <a href="#" class="home-action-btn" data-target="futuro" id="btn-futuro">
+        <div class="hab-icon hab-green">
+          <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <div class="hab-content">
+          <span class="hab-title">MEJORAR MI FUTURO</span>
+          <span class="hab-desc">Trabajo, IA, capacitación y oportunidades</span>
+        </div>
+        <svg class="hab-arrow" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </a>
+
+      <!-- NECESITO AYUDA -->
+      <a href="#" class="home-action-btn hab-urgent" data-target="ayuda" id="btn-ayuda">
+        <div class="hab-icon hab-red">
+          <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <div class="hab-content">
+          <span class="hab-title">NECESITO AYUDA</span>
+          <span class="hab-desc">Servicios, instituciones y organizaciones cercanas</span>
+        </div>
+        <svg class="hab-arrow" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </a>
+
+      <!-- QUIERO AYUDAR -->
+      <a href="#" class="home-action-btn" data-target="voluntario" id="btn-voluntario">
+        <div class="hab-icon hab-gold">
+          <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div class="hab-content">
+          <span class="hab-title">QUIERO AYUDAR</span>
+          <span class="hab-desc">Voluntariado, necesidades comunitarias y proyectos</span>
+        </div>
+        <svg class="hab-arrow" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </a>
+
+    </div>
+
+    <!-- Quick access to existing content -->
+    <div class="home-quick-links">
+      <span class="home-quick-label">Accesos rápidos:</span>
+      <a href="#" class="home-quick-chip" data-target="historia">📚 Historia</a>
+      <a href="#" class="home-quick-chip" data-target="comparativa">⚖️ León XIII·XIV</a>
+      <a href="#" class="home-quick-chip" data-target="documentos">📄 Documentos</a>
+      <a href="#" class="home-quick-chip" data-target="mapa">🗺️ Mapa</a>
+    </div>
+
   </section>
+  <!-- ── COMPARATIVA SCREEN
   <!-- ── COMPARATIVA SCREEN ────────────────────────────────────────── -->
   <section class="screen" id="comparativa-screen">
     <div class="screen-top-bar">
@@ -754,6 +768,85 @@
       <span>Perfil</span>
     </button>
   </nav>
+
+  
+  <!-- ── MEJORAR MI FUTURO SCREEN ──────────────────────── -->
+  <section class="screen" id="futuro-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" onclick="document.querySelector('.nav-item[data-tab=\'inicio\']').click()" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">Mejorar mi Futuro</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="coming-soon-screen">
+      <div class="coming-soon-icon">🚀</div>
+      <h2>Próximamente</h2>
+      <p>Esta sección reunirá herramientas sobre trabajo, inteligencia artificial, capacitación y oportunidades para prepararte para el mundo que viene.</p>
+      <div style="background:rgba(74,158,218,0.1);border:1px solid rgba(74,158,218,0.3);border-radius:12px;padding:1rem;max-width:320px;text-align:left;">
+        <p style="color:var(--blue-bright);font-weight:600;margin-bottom:0.5rem">¿Qué vendrá aquí?</p>
+        <ul style="list-style:none;padding:0;color:var(--text-secondary);font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem">
+          <li>🤖 ¿Cómo cambia mi trabajo con la IA?</li>
+          <li>📋 Test de Trabajo Digno</li>
+          <li>📚 Cursos y becas gratuitas</li>
+          <li>🗓️ Plan personalizado de capacitación</li>
+          <li>🔍 Oportunidades de empleo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NECESITO AYUDA SCREEN ──────────────────────────── -->
+  <section class="screen" id="ayuda-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" onclick="document.querySelector('.nav-item[data-tab=\'inicio\']').click()" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">Necesito Ayuda</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="coming-soon-screen">
+      <div class="coming-soon-icon">🤝</div>
+      <h2>Próximamente</h2>
+      <p>Esta sección conectará personas con servicios, instituciones y organizaciones que pueden ayudar en situaciones concretas.</p>
+      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:1rem;max-width:320px;text-align:left;">
+        <p style="color:#ff7070;font-weight:600;margin-bottom:0.5rem">¿Qué vendrá aquí?</p>
+        <ul style="list-style:none;padding:0;color:var(--text-secondary);font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem">
+          <li>🥗 Alimentos · Salud · Vivienda</li>
+          <li>⚖️ Conocé tus derechos</li>
+          <li>🏛️ Instituciones y organismos</li>
+          <li>⛪ Parroquias y fundaciones cercanas</li>
+          <li>📞 Asesoramiento gratuito</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUIERO AYUDAR SCREEN ───────────────────────────── -->
+  <section class="screen" id="voluntario-screen">
+    <div class="screen-top-bar">
+      <button class="back-btn" onclick="document.querySelector('.nav-item[data-tab=\'inicio\']').click()" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <h2 class="screen-top-title" style="flex:1">Quiero Ayudar</h2>
+      <div style="width:32px"></div>
+    </div>
+    <div class="coming-soon-screen">
+      <div class="coming-soon-icon">❤️</div>
+      <h2>Próximamente</h2>
+      <p>Esta sección conectará a quienes quieren dar su tiempo, habilidades y solidaridad con quienes más lo necesitan.</p>
+      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:12px;padding:1rem;max-width:320px;text-align:left;">
+        <p style="color:var(--gold);font-weight:600;margin-bottom:0.5rem">¿Qué vendrá aquí?</p>
+        <ul style="list-style:none;padding:0;color:var(--text-secondary);font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem">
+          <li>👐 Voluntariado local</li>
+          <li>🏘️ Proyectos comunitarios</li>
+          <li>🎯 Desafío de justicia social</li>
+          <li>📦 Donaciones de ropa y alimentos</li>
+          <li>📊 Tu impacto personal</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   </div> <!-- End of #app-container -->
 
