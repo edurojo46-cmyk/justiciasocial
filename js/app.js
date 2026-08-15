@@ -538,6 +538,10 @@ function initBottomNav() {
         }
       });
       
+      // Ensure bottom nav is visible if we were on a hidden screen
+      const bottomNav = document.querySelector('.bottom-nav');
+      if (bottomNav) bottomNav.style.display = 'flex';
+      
       window.scrollTo(0, 0);
     });
   });
@@ -549,7 +553,12 @@ function initBottomNav() {
       const targetId = card.dataset.target;
       if (targetId === 'historia') {
         document.querySelector('.nav-item[data-tab="biblioteca"]').click();
-      } else if (targetId === 'accion' || targetId === 'comparativa' || targetId === 'documentos' || targetId === 'conceptos') {
+      } else if (targetId === 'comparativa') {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('comparativa-screen').classList.add('active');
+        const bottomNav = document.querySelector('.bottom-nav');
+        if (bottomNav) bottomNav.style.display = 'none'; // Hide bottom nav for this screen
+      } else if (targetId === 'accion' || targetId === 'documentos' || targetId === 'conceptos' || targetId === 'mapa') {
         document.querySelector('.nav-item[data-tab="explorar"]').click();
       }
     });
@@ -631,24 +640,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Handle menu card clicks on home screen
-  document.querySelectorAll('.menu-card').forEach(card => {
-    card.addEventListener('click', e => {
-      e.preventDefault();
-      // Go to biblioteca screen
-      const bibliotecaNav = document.querySelector('.nav-item[data-tab="biblioteca"]');
-      if (bibliotecaNav) bibliotecaNav.click();
-      
-      // Scroll to target section
-      const targetId = card.getAttribute('href').substring(1);
-      setTimeout(() => {
-        const el = document.getElementById(targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 50);
-    });
-  });
 
   // Keyboard ESC
   document.addEventListener('keydown', e => {
